@@ -25,7 +25,8 @@
     "_ayuda": "Poné hideProductsWithoutPhoto en true para ocultar los perfumes que todavía no tienen foto.",
     "hideProductsWithoutPhoto": true,
     "brandedBackground": true,
-    "_ayuda2": "brandedBackground aplica el fondo propio (src/img/backdrop.svg) a todas las fotos de estudio. Poné false para dejar las fotos tal cual."
+    "_ayuda2": "brandedBackground aplica el fondo propio (src/img/backdrop.svg) a todas las fotos de estudio. Poné false para dejar las fotos tal cual.",
+    "watermark": true
   },
   "instagram": {
     "_ayuda": "Para mostrar el feed real de Instagram, creá un widget gratuito en behold.so (o similar) y pegá aquí el ID del feed. Mientras esté vacío se muestra una grilla con tus perfumes.",

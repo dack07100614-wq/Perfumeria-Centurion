@@ -41,17 +41,20 @@ const copyDir = (from, to) => {
 
 // Un fondo propio de la marca para todas las fotos de producto (config.catalog.brandedBackground).
 // Se aplica con "multiply" sobre fotos de estudio de fondo claro, así se conservan las sombras y los reflejos.
-async function isStudioPhoto(file) {
-  if (!sharp) return false;
-  const { width, height } = await sharp(file).metadata();
+async function studioInfo(file) {
+  if (!sharp) return null;
+  const flat = await sharp(file).rotate().flatten({ background: '#ffffff' }).png().toBuffer();
+  const { width, height } = await sharp(flat).metadata();
   const t = Math.max(8, Math.round(Math.min(width, height) * 0.02));
   const strips = [[0, 0, width, t], [0, height - t, width, t], [0, 0, t, height], [width - t, 0, t, height]];
+  const sum = [0, 0, 0];
   for (const [left, top, w, h] of strips) {
-    const strip = await sharp(file).extract({ left, top, width: w, height: h }).removeAlpha().png().toBuffer();
+    const strip = await sharp(flat).extract({ left, top, width: w, height: h }).removeAlpha().png().toBuffer();
     const st = await sharp(strip).stats();
-    if (st.channels.some((c) => c.mean < 214 || c.stdev > 16)) return false;
+    if (st.channels.some((c) => c.mean < 214 || c.stdev > 16)) return null;
+    st.channels.slice(0, 3).forEach((c, i) => { sum[i] += c.mean / 4; });
   }
-  return true;
+  return sum; // color medio del fondo de la foto
 }
 
 async function processImages(branded) {
@@ -59,6 +62,9 @@ async function processImages(branded) {
   const dirOut = path.join(OUT, 'img/products');
   fs.mkdirSync(dirOut, { recursive: true });
   const nonStudio = new Set();
+  const watermarkOn = !(config.catalog && config.catalog.watermark === false);
+  const emblemFile = path.join(SRC, 'img/logo-emblem.png');
+  const emblemMark = async () => fs.readFileSync(emblemFile);
   const files = fs.existsSync(dirIn) ? fs.readdirSync(dirIn).filter((f) => /\.(webp|jpe?g|png)$/i.test(f)) : [];
   const backdropFile = path.join(SRC, 'img/backdrop.svg');
   const backdropTime = fs.existsSync(backdropFile) ? fs.statSync(backdropFile).mtimeMs : 0;
@@ -70,24 +76,40 @@ async function processImages(branded) {
     const inFile = path.join(dirIn, f);
     const big = path.join(dirOut, `${base}.webp`);
     const small = path.join(dirOut, `${base}-sm.webp`);
-    const studio = branded && sharp ? await isStudioPhoto(inFile) : false;
+    const bgMean = branded && sharp ? await studioInfo(inFile) : null;
+    const studio = !!bgMean;
     if (!studio) nonStudio.add(base);
     const cached = path.join(cacheDir, `${base}.${branded ? 'b' : 'p'}.webp`);
     const newest = Math.max(fs.statSync(inFile).mtimeMs, branded ? backdropTime : 0, buildTime);
     if (sharp) {
       if (!fs.existsSync(cached) || fs.statSync(cached).mtimeMs < newest) {
-        let img = sharp(inFile).rotate().resize({ width: 1800, height: 1800, fit: 'inside', withoutEnlargement: true });
+        const wm = branded && watermarkOn ? await emblemMark() : null;
+        let out;
         if (studio) {
-          // Las fotos de estudio se llevan a formato cuadrado (fondo blanco) antes de aplicar el fondo de la marca.
-          const meta = await sharp(inFile).rotate().metadata();
-          const side = Math.min(1800, Math.max(meta.width, meta.height));
-          img = sharp(inFile).rotate().resize({ width: side, height: side, fit: 'contain', background: '#ffffff' });
-          const { data, info } = await img.toBuffer({ resolveWithObject: true });
-          const bg = await sharp(backdropFile).resize(info.width, info.height, { fit: 'cover' }).png().toBuffer();
-          await sharp(bg).composite([{ input: data, blend: 'multiply' }]).webp({ quality: 90, effort: 5 }).toFile(cached);
+          // Encuadre uniforme: se recorta el fondo sobrante y el producto queda centrado con el mismo margen en todas las fotos.
+          const lift = bgMean.map((m) => Math.min(1.12, 255 / Math.max(m, 200)));
+          const trimmed = await sharp(inFile).rotate().flatten({ background: '#ffffff' }).linear(lift, [0, 0, 0]).trim({ threshold: 14 }).toBuffer();
+          const tm = await sharp(trimmed).metadata();
+          const side = Math.min(1800, Math.ceil(Math.max(tm.width, tm.height) / 0.76));
+          const inner = Math.round(side * 0.76);
+          const prod = await sharp(trimmed).resize({ width: inner, height: inner, fit: 'inside', withoutEnlargement: false }).toBuffer({ resolveWithObject: true });
+          const left = Math.floor((side - prod.info.width) / 2);
+          const top = Math.floor((side - prod.info.height) * 0.56);
+          const canvas = await sharp({ create: { width: side, height: side, channels: 3, background: '#ffffff' } }).composite([{ input: prod.data, left, top }]).png().toBuffer();
+          const bg = await sharp(backdropFile).resize(side, side, { fit: 'cover' }).png().toBuffer();
+          let comp = sharp(bg).composite([{ input: canvas, blend: 'multiply' }]);
+          out = await comp.png().toBuffer();
         } else {
-          await img.webp({ quality: 90, effort: 5 }).toFile(cached);
+          out = await sharp(inFile).rotate().resize({ width: 1800, height: 1800, fit: 'inside', withoutEnlargement: true }).png().toBuffer();
         }
+        let final = sharp(out);
+        if (wm) {
+          const m = await sharp(out).metadata();
+          const mark = await sharp(wm).resize({ width: Math.round(m.width * 0.075) }).ensureAlpha().linear([1, 1, 1, 0.55], [0, 0, 0, 0]).png().toBuffer();
+          const mm = await sharp(mark).metadata();
+          final = sharp(out).composite([{ input: mark, left: m.width - mm.width - Math.round(m.width * 0.035), top: m.height - mm.height - Math.round(m.width * 0.035) }]);
+        }
+        await final.webp({ quality: 90, effort: 5 }).toFile(cached);
       }
       fs.copyFileSync(cached, big);
       await sharp(cached).resize({ width: 560, height: 560, fit: 'inside', withoutEnlargement: true }).webp({ quality: 80, effort: 5 }).toFile(small);
