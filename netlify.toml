@@ -1,0 +1,10 @@
+[build]
+  command = "node build.js"
+  publish = "public"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+[functions]
+  directory = "netlify/functions"
+  included_files = ["data/products.json"]

@@ -1,0 +1,57 @@
+# Panel para cargar y editar perfumes sin tocar código.
+# Requiere: repositorio en GitHub + OAuth en Netlify (ver README.md, sección "Panel de administración").
+backend:
+  name: github
+  repo: dack07100614-wq/perfumeria-centurion
+  branch: main
+
+locale: es
+site_url: /
+display_url: /
+media_folder: "src/img/products"
+public_folder: "/img/products"
+
+collections:
+  - name: tienda
+    label: Tienda
+    files:
+      - name: perfumes
+        label: Perfumes
+        file: data/products.json
+        format: json
+        fields:
+          - label: Perfumes
+            name: products
+            widget: list
+            label_singular: perfume
+            summary: "{{fields.brand}} · {{fields.name}} — ${{fields.price}}"
+            fields:
+              - { label: "ID (sin espacios ni tildes, ej: khamrah-qahwa)", name: id, widget: string, pattern: ["^[a-z0-9-]+$", "Solo minúsculas, números y guiones"] }
+              - { label: Nombre, name: name, widget: string }
+              - { label: Marca, name: brand, widget: string }
+              - { label: Concentración, name: concentration, widget: select, options: ["EDP", "EDT", "Parfum", "Extrait", "Otro"], default: "EDP" }
+              - { label: Tamaño (ml), name: ml, widget: number, value_type: int, min: 1 }
+              - { label: Género, name: gender, widget: select, options: [{ label: Masculino, value: masculino }, { label: Femenino, value: femenino }, { label: Unisex, value: unisex }] }
+              - { label: Familia olfativa (texto), name: family, widget: string }
+              - { label: Categorías (filtros), name: tags, widget: select, multiple: true, options: [dulce, fresco, amaderado, especiado, floral, frutal, gourmand, cítrico, ahumado] }
+              - { label: Precio actual ($U), name: price, widget: number, value_type: int, min: 1 }
+              - { label: Precio anterior ($U) — solo si está en oferta, name: oldPrice, widget: number, value_type: int, required: false }
+              - { label: Foto principal, name: image, widget: image, required: false }
+              - { label: Etiquetas, name: badges, widget: select, multiple: true, required: false, options: [{ label: Más vendido, value: bestseller }, { label: Nuevo ingreso, value: new }, { label: Pack, value: pack }] }
+              - { label: Frase corta, name: short, widget: string }
+              - { label: Descripción, name: description, widget: text }
+              - label: Notas olfativas
+                name: notes
+                widget: object
+                required: false
+                fields:
+                  - { label: Notas de salida, name: top, widget: list, required: false }
+                  - { label: Notas de corazón, name: heart, widget: list, required: false }
+                  - { label: Notas de fondo, name: base, widget: list, required: false }
+              - { label: Notas destacadas (si no tenés pirámide completa), name: keyNotes, widget: list, required: false }
+              - { label: Duración aproximada, name: longevity, widget: string, required: false }
+              - { label: Proyección, name: projection, widget: string, required: false }
+              - { label: Ocasiones recomendadas, name: occasion, widget: list, required: false }
+              - { label: Temporada, name: season, widget: string, required: false }
+              - { label: Orden en el catálogo (menor = primero), name: priority, widget: number, value_type: int, default: 50 }
+              - { label: Publicado, name: published, widget: boolean, default: true }

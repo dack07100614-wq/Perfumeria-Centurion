@@ -1,0 +1,125 @@
+{
+  "_ayuda": "Este archivo concentra todos los datos editables de la tienda. Después de cambiarlo, el sitio se regenera solo (Netlify) o con `node build.js`.",
+
+  "site": {
+    "name": "Perfumería Centurión",
+    "shortName": "Centurión",
+    "url": "https://perfumeriacenturion.uy",
+    "language": "es-UY",
+    "country": "UY",
+    "currency": "UYU",
+    "currencySymbol": "$",
+    "tagline": "Perfumes árabes originales e importados en Uruguay",
+    "heroText": "Perfumes árabes originales e importados, seleccionados por su calidad, fijación y proyección.",
+    "foundedText": "Perfumería online uruguaya"
+  },
+
+  "contact": {
+    "whatsapp": "59898830520",
+    "whatsappDisplay": "098 830 520",
+    "email": "infoperfumeriacenturion@gmail.com",
+    "instagram": "perfumescenturionuy",
+    "tiktok": "",
+    "hours": "",
+    "zone": "Montevideo · Envíos a todo Uruguay"
+  },
+
+  "catalog": {
+    "_ayuda": "Poné hideProductsWithoutPhoto en true para ocultar los perfumes que todavía no tienen foto.",
+    "hideProductsWithoutPhoto": false
+  },
+
+  "instagram": {
+    "_ayuda": "Para mostrar el feed real de Instagram, creá un widget gratuito en behold.so (o similar) y pegá aquí el ID del feed. Mientras esté vacío se muestra una grilla con tus perfumes.",
+    "beholdFeedId": ""
+  },
+
+  "shipping": {
+    "title": "Envíos a todo Uruguay",
+    "intro": "Llegamos a los 19 departamentos. Elegís cómo recibirlo al finalizar la compra.",
+    "methods": [
+      {
+        "id": "dac",
+        "label": "Envío por DAC a todo el país",
+        "description": "Se despacha por DAC y el costo del envío lo pagás vos en destino, al retirarlo.",
+        "costLabel": "A pagar en destino",
+        "who": "Lo paga el cliente a DAC al recibir",
+        "eta": "2 a 3 días hábiles",
+        "needsAddress": true
+      },
+      {
+        "id": "montevideo",
+        "label": "Entrega coordinada en Montevideo",
+        "description": "Coordinamos por WhatsApp el día y el lugar de entrega.",
+        "costLabel": "A coordinar",
+        "who": "Se acuerda por WhatsApp",
+        "eta": "A coordinar",
+        "needsAddress": true
+      }
+    ],
+    "notes": [
+      "Los tiempos corren desde que confirmamos el pago.",
+      "Te avisamos por WhatsApp cuando tu pedido sale en camino.",
+      "Si tenés dudas sobre tu zona, escribinos antes de comprar."
+    ]
+  },
+
+  "payments": {
+    "title": "Medios de pago",
+    "intro": "Pagá de forma simple y segura. Podés agregar o quitar métodos editando esta lista.",
+    "methods": [
+      {
+        "id": "transferencia",
+        "type": "transfer",
+        "enabled": true,
+        "label": "Transferencia Prex",
+        "description": "Transferís el total de los productos y nos mandás el comprobante por WhatsApp.",
+        "icon": "bank",
+        "account": {
+          "bank": "Prex",
+          "number": "23390693",
+          "holder": "Nahuel Centurion"
+        }
+      },
+      {
+        "id": "mercadopago",
+        "type": "mercadopago",
+        "enabled": false,
+        "label": "Mercado Pago",
+        "description": "Tarjetas de crédito, débito y saldo en Mercado Pago.",
+        "icon": "card"
+      }
+    ],
+    "_mercadopago": "Para activar el cobro online: 1) creá una cuenta de Mercado Pago Uruguay, 2) cargá tu Access Token en Netlify como variable MP_ACCESS_TOKEN, 3) cambiá enabled a true arriba. Ver README."
+  },
+
+  "policies": {
+    "originals": "Todos nuestros perfumes son originales y sellados.",
+    "reservations": "Reservas con seña.",
+    "wholesale": "Precios al por menor. Consultá por precios especiales por cantidad o reventa.",
+    "availability": "Consultá disponibilidad por mensaje."
+  },
+
+  "brands": [
+    { "name": "Lattafa", "slug": "lattafa", "origin": "Emiratos Árabes Unidos", "blurb": "La casa árabe más popular de los últimos años: fragancias intensas, dulces y de gran duración a un precio muy accesible." },
+    { "name": "Afnan", "slug": "afnan", "origin": "Emiratos Árabes Unidos", "blurb": "Fragancias modernas y de carácter, con la línea 9PM como gran protagonista de las noches." },
+    { "name": "Armaf", "slug": "armaf", "origin": "Emiratos Árabes Unidos", "blurb": "Club de Nuit y Odyssey: perfumes icónicos, proyectores y muy buscados." },
+    { "name": "Al Haramain", "slug": "al-haramain", "origin": "Emiratos Árabes Unidos", "blurb": "Tradición perfumista árabe con la línea Amber Oud, de enorme presencia." },
+    { "name": "French Avenue", "slug": "french-avenue", "origin": "Emiratos Árabes Unidos", "blurb": "Fragancias gourmand sofisticadas con un perfil de lujo moderno." },
+    { "name": "Rasasi", "slug": "rasasi", "origin": "Emiratos Árabes Unidos", "blurb": "Casa clásica de Dubái, referente en fragancias frescas y elegantes." },
+    { "name": "Giorgio Armani", "slug": "giorgio-armani", "origin": "Italia", "blurb": "Elegancia italiana en una fragancia femenina luminosa y refinada." },
+    { "name": "Valentino", "slug": "valentino", "origin": "Italia", "blurb": "Fragancias cálidas y nocturnas de la casa de moda italiana." },
+    { "name": "Carolina Herrera", "slug": "carolina-herrera", "origin": "Estados Unidos", "blurb": "Clásicos femeninos de Nueva York, urbanos y reconocibles." }
+  ],
+
+  "trust": [
+    { "icon": "shield", "title": "Perfumes originales", "text": "Todos nuestros perfumes son originales y sellados." },
+    { "icon": "star", "title": "Productos seleccionados", "text": "Elegimos fragancias por su calidad, fijación y proyección." },
+    { "icon": "truck", "title": "Envíos a todo Uruguay", "text": "Despachamos por DAC a los 19 departamentos." },
+    { "icon": "chat", "title": "Atención personalizada", "text": "Te asesoramos por WhatsApp para elegir tu fragancia." },
+    { "icon": "lock", "title": "Compra segura", "text": "Pagás por transferencia y confirmamos cada pedido personalmente." },
+    { "icon": "card", "title": "Medios de pago", "text": "Pagos simples, con más métodos a medida que crecemos." }
+  ],
+
+  "departamentos": ["Artigas", "Canelones", "Cerro Largo", "Colonia", "Durazno", "Flores", "Florida", "Lavalleja", "Maldonado", "Montevideo", "Paysandú", "Río Negro", "Rivera", "Rocha", "Salto", "San José", "Soriano", "Tacuarembó", "Treinta y Tres"]
+}

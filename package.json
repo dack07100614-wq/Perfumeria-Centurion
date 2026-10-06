@@ -1,0 +1,8 @@
+{
+  "name": "perfumeria-centurion",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Tienda online de Perfumería Centurión (sitio estático generado desde data/products.json)",
+  "scripts": { "build": "node build.js", "start": "node build.js && npx --yes serve public -l 4173" },
+  "optionalDependencies": { "sharp": "^0.33.5" }
+}
