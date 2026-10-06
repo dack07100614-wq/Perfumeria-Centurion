@@ -82,10 +82,10 @@ function hashOf(files) {
   copyDir(path.join(ROOT, 'static'), OUT); // admin, _headers, robots, etc.
 
   // CSS / JS con hash para cache largo
-  const css = ['css/fonts.css', 'css/styles.css', 'css/premium.css'].map((f) => fs.readFileSync(path.join(SRC, f), 'utf8')).join('\n');
+  const css = ['css/fonts.css', 'css/styles.css'].map((f) => fs.readFileSync(path.join(SRC, f), 'utf8')).join('\n');
   write('css/styles.css', css);
   copyDir(path.join(SRC, 'js'), path.join(OUT, 'js'));
-  const ver = hashOf(['css/fonts.css', 'css/styles.css', 'css/premium.css', 'js/app.js', 'js/checkout.js', 'js/boot.js']);
+  const ver = hashOf(['css/fonts.css', 'css/styles.css', 'js/app.js', 'js/checkout.js', 'js/boot.js']);
 
   const ctx = { config, products, ver, publicConfig: null };
   const out = pages(ctx);

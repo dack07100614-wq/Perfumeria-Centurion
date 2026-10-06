@@ -794,7 +794,7 @@
         "dulce",
         "frutal"
       ],
-      "price": 2150,
+      "price": 1890,
       "image": "fakhar-rose.webp",
       "badges": [],
       "short": "Floral blanco brillante, elegante e intenso desde el primer spray.",
@@ -1093,28 +1093,27 @@
     },
     {
       "id": "raghba",
-      "name": "Raghba",
+      "name": "Raghba Wood Intense",
       "brand": "Lattafa",
       "concentration": "EDP",
       "ml": 100,
       "gender": "masculino",
-      "family": "Dulce amaderado con oud",
+      "family": "Amaderado dulce",
       "tags": [
-        "dulce",
-        "amaderado"
+        "amaderado",
+        "dulce"
       ],
       "price": 1650,
       "image": "",
       "photoPending": true,
       "badges": [],
-      "short": "Vainilla, oud y maderas: cálido, masculino y accesible.",
-      "description": "Una fragancia masculina dulce y amaderada con vainilla y un toque de oud. Cálida, envolvente y fácil de llevar, es una de las opciones más accesibles para quienes se inician en los perfumes árabes.",
+      "short": "Amaderado dulce, intenso y de carácter.",
+      "description": "Raghba Wood Intense de Lattafa es una fragancia masculina amaderada y envolvente, de perfil dulce e intenso. Original y sellada, con envíos a todo Uruguay.",
       "notes": {},
       "keyNotes": [
-        "Vainilla",
+        "Maderas",
         "Oud",
-        "Sándalo",
-        "Incienso"
+        "Vainilla"
       ],
       "longevity": "Buena · 6 a 8 h aprox.",
       "projection": "Media a alta",
@@ -1635,38 +1634,6 @@
       "revisar": true
     },
     {
-      "id": "club-de-nuit-precieux",
-      "name": "Club de Nuit Precieux",
-      "brand": "Armaf",
-      "concentration": "EDP",
-      "ml": 105,
-      "gender": "unisex",
-      "family": "Frutal amaderado ambarado",
-      "tags": [
-        "dulce",
-        "amaderado",
-        "frutal"
-      ],
-      "price": 2790,
-      "image": "",
-      "photoPending": true,
-      "badges": [],
-      "short": "Fragancia unisex de perfil frutal amaderado ambarado.",
-      "description": "Club de Nuit Precieux de Armaf es una fragancia unisex de perfil frutal amaderado ambarado. Original y sellada, con envíos a todo Uruguay.",
-      "notes": {},
-      "keyNotes": [],
-      "longevity": "",
-      "projection": "",
-      "occasion": [
-        "Noches",
-        "Salidas",
-        "Eventos"
-      ],
-      "season": "Otoño / Invierno",
-      "priority": 65,
-      "revisar": true
-    },
-    {
       "id": "odyssey-aoud",
       "name": "Odyssey Aoud",
       "brand": "Armaf",
@@ -2065,36 +2032,6 @@
       ],
       "season": "Primavera / Verano",
       "priority": 78,
-      "revisar": true
-    },
-    {
-      "id": "fakhar-woman",
-      "name": "Fakhar Woman",
-      "brand": "Lattafa",
-      "concentration": "EDP",
-      "ml": 100,
-      "gender": "femenino",
-      "family": "Floral frutal",
-      "tags": [
-        "floral",
-        "dulce"
-      ],
-      "price": 1890,
-      "image": "",
-      "photoPending": true,
-      "badges": [],
-      "short": "Fragancia femenina de perfil floral frutal.",
-      "description": "Fakhar Woman de Lattafa es una fragancia femenina de perfil floral frutal. Original y sellada, con envíos a todo Uruguay.",
-      "notes": {},
-      "keyNotes": [],
-      "longevity": "",
-      "projection": "",
-      "occasion": [
-        "Noches",
-        "Salidas"
-      ],
-      "season": "Otoño / Invierno",
-      "priority": 79,
       "revisar": true
     },
     {

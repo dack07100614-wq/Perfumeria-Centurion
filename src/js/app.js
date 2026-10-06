@@ -261,6 +261,12 @@
     if (bar && main && 'IntersectionObserver' in window) {
       new IntersectionObserver(([en]) => bar.classList.toggle('is-on', !en.isIntersecting && en.boundingClientRect.top < 0)).observe(main);
     }
+    // Miniaturas de la galería
+    $$('.pgal-thumb').forEach((th) => th.addEventListener('click', () => {
+      $$('.pgal-thumb').forEach((x) => x.classList.toggle('is-active', x === th));
+      const main = $('.pgallery-main'); const img = $('img', main);
+      img.removeAttribute('srcset'); img.src = th.dataset.full; main.dataset.zoom = th.dataset.full;
+    }));
     // Zoom de foto
     const zoom = $('[data-zoom]');
     zoom?.addEventListener('click', () => {
@@ -268,7 +274,7 @@
       lb.className = 'lightbox';
       lb.setAttribute('role', 'dialog'); lb.setAttribute('aria-label', 'Foto ampliada');
       const img = document.createElement('img');
-      img.src = zoom.getAttribute('data-zoom'); img.alt = $('img', zoom)?.alt || '';
+      img.src = zoom.dataset.zoom; img.alt = $('img', zoom)?.alt || '';
       lb.appendChild(img);
       lb.addEventListener('click', () => lb.remove());
       document.body.appendChild(lb);

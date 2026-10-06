@@ -16,6 +16,7 @@ Sitio estático (HTML/CSS/JS, sin servidor). Se genera desde dos archivos de dat
 ## Agregar o editar perfumes
 - **Panel visual** (`tusitio.com/admin/`): editá `static/admin/config.yml` si cambia el repo/rama, y en Netlify activá *Site configuration → Access & security → OAuth → GitHub*. Entrá con tu usuario de GitHub.
 - **A mano:** copiá un bloque de `data/products.json`, cambiá `id` y datos, y poné la foto en `src/img/products/` (nombre en `image`). Las fotos se optimizan solas al generar el sitio.
+- **Fotos oficiales:** las fotos se tomaron de las tiendas oficiales de Lattafa, Armaf, Afnan y French Avenue. Para Al Haramain, Rasasi y Maison Alhambra, y para Asad Bourbon y Mayar, no hay tienda oficial con fotos accesibles: esos perfumes quedan ocultos hasta que agregues la foto.
 - **Fotos:** guardá la imagen en `src/img/products/` con el **mismo nombre que el `id`** (ej. `eclaire.jpg`). Se detecta sola y se optimiza (hasta 1800 px). Un perfume sin foto queda oculto mientras `catalog.hideProductsWithoutPhoto` sea `true` en `config.json`. Recomendado: fotos cuadradas o 4:5, fondo limpio, mínimo 1200 px.
 - **Ofertas:** poné `oldPrice` (precio anterior) y `price` (precio actual); el % se calcula solo.
 - **Más vendidos / Nuevos:** `badges: ["bestseller"]` / `["new"]`. **Nueva marca:** se agrega sola; para su texto y país, sumala a `brands` en `config.json`.
