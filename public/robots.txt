@@ -3,4 +3,4 @@ Allow: /
 Disallow: /checkout/
 Disallow: /admin/
 
-Sitemap: https://perfumeriacenturion.uy/sitemap.xml
+Sitemap: https://perfumeriacenturion.netlify.app/sitemap.xml
