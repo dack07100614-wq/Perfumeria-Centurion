@@ -1,6 +1,5 @@
 {
   "_ayuda": "Este archivo concentra todos los datos editables de la tienda. Después de cambiarlo, el sitio se regenera solo (Netlify) o con `node build.js`.",
-
   "site": {
     "name": "Perfumería Centurión",
     "shortName": "Centurión",
@@ -13,7 +12,6 @@
     "heroText": "Perfumes árabes originales e importados, seleccionados por su calidad, fijación y proyección.",
     "foundedText": "Perfumería online uruguaya"
   },
-
   "contact": {
     "whatsapp": "59898830520",
     "whatsappDisplay": "098 830 520",
@@ -23,17 +21,14 @@
     "hours": "",
     "zone": "Montevideo · Envíos a todo Uruguay"
   },
-
   "catalog": {
     "_ayuda": "Poné hideProductsWithoutPhoto en true para ocultar los perfumes que todavía no tienen foto.",
-    "hideProductsWithoutPhoto": false
+    "hideProductsWithoutPhoto": true
   },
-
   "instagram": {
     "_ayuda": "Para mostrar el feed real de Instagram, creá un widget gratuito en behold.so (o similar) y pegá aquí el ID del feed. Mientras esté vacío se muestra una grilla con tus perfumes.",
     "beholdFeedId": ""
   },
-
   "shipping": {
     "title": "Envíos a todo Uruguay",
     "intro": "Llegamos a los 19 departamentos. Elegís cómo recibirlo al finalizar la compra.",
@@ -63,7 +58,6 @@
       "Si tenés dudas sobre tu zona, escribinos antes de comprar."
     ]
   },
-
   "payments": {
     "title": "Medios de pago",
     "intro": "Pagá de forma simple y segura. Podés agregar o quitar métodos editando esta lista.",
@@ -92,34 +86,128 @@
     ],
     "_mercadopago": "Para activar el cobro online: 1) creá una cuenta de Mercado Pago Uruguay, 2) cargá tu Access Token en Netlify como variable MP_ACCESS_TOKEN, 3) cambiá enabled a true arriba. Ver README."
   },
-
   "policies": {
     "originals": "Todos nuestros perfumes son originales y sellados.",
     "reservations": "Reservas con seña.",
     "wholesale": "Precios al por menor. Consultá por precios especiales por cantidad o reventa.",
     "availability": "Consultá disponibilidad por mensaje."
   },
-
   "brands": [
-    { "name": "Lattafa", "slug": "lattafa", "origin": "Emiratos Árabes Unidos", "blurb": "La casa árabe más popular de los últimos años: fragancias intensas, dulces y de gran duración a un precio muy accesible." },
-    { "name": "Afnan", "slug": "afnan", "origin": "Emiratos Árabes Unidos", "blurb": "Fragancias modernas y de carácter, con la línea 9PM como gran protagonista de las noches." },
-    { "name": "Armaf", "slug": "armaf", "origin": "Emiratos Árabes Unidos", "blurb": "Club de Nuit y Odyssey: perfumes icónicos, proyectores y muy buscados." },
-    { "name": "Al Haramain", "slug": "al-haramain", "origin": "Emiratos Árabes Unidos", "blurb": "Tradición perfumista árabe con la línea Amber Oud, de enorme presencia." },
-    { "name": "French Avenue", "slug": "french-avenue", "origin": "Emiratos Árabes Unidos", "blurb": "Fragancias gourmand sofisticadas con un perfil de lujo moderno." },
-    { "name": "Rasasi", "slug": "rasasi", "origin": "Emiratos Árabes Unidos", "blurb": "Casa clásica de Dubái, referente en fragancias frescas y elegantes." },
-    { "name": "Giorgio Armani", "slug": "giorgio-armani", "origin": "Italia", "blurb": "Elegancia italiana en una fragancia femenina luminosa y refinada." },
-    { "name": "Valentino", "slug": "valentino", "origin": "Italia", "blurb": "Fragancias cálidas y nocturnas de la casa de moda italiana." },
-    { "name": "Carolina Herrera", "slug": "carolina-herrera", "origin": "Estados Unidos", "blurb": "Clásicos femeninos de Nueva York, urbanos y reconocibles." }
+    {
+      "name": "Lattafa",
+      "slug": "lattafa",
+      "origin": "Emiratos Árabes Unidos",
+      "blurb": "La casa árabe más popular de los últimos años: fragancias intensas, dulces y de gran duración a un precio muy accesible."
+    },
+    {
+      "name": "Afnan",
+      "slug": "afnan",
+      "origin": "Emiratos Árabes Unidos",
+      "blurb": "Fragancias modernas y de carácter, con la línea 9PM como gran protagonista de las noches."
+    },
+    {
+      "name": "Armaf",
+      "slug": "armaf",
+      "origin": "Emiratos Árabes Unidos",
+      "blurb": "Club de Nuit y Odyssey: perfumes icónicos, proyectores y muy buscados."
+    },
+    {
+      "name": "Al Haramain",
+      "slug": "al-haramain",
+      "origin": "Emiratos Árabes Unidos",
+      "blurb": "Tradición perfumista árabe con la línea Amber Oud, de enorme presencia."
+    },
+    {
+      "name": "French Avenue",
+      "slug": "french-avenue",
+      "origin": "Emiratos Árabes Unidos",
+      "blurb": "Fragancias gourmand sofisticadas con un perfil de lujo moderno."
+    },
+    {
+      "name": "Rasasi",
+      "slug": "rasasi",
+      "origin": "Emiratos Árabes Unidos",
+      "blurb": "Casa clásica de Dubái, referente en fragancias frescas y elegantes."
+    }
   ],
-
   "trust": [
-    { "icon": "shield", "title": "Perfumes originales", "text": "Todos nuestros perfumes son originales y sellados." },
-    { "icon": "star", "title": "Productos seleccionados", "text": "Elegimos fragancias por su calidad, fijación y proyección." },
-    { "icon": "truck", "title": "Envíos a todo Uruguay", "text": "Despachamos por DAC a los 19 departamentos." },
-    { "icon": "chat", "title": "Atención personalizada", "text": "Te asesoramos por WhatsApp para elegir tu fragancia." },
-    { "icon": "lock", "title": "Compra segura", "text": "Pagás por transferencia y confirmamos cada pedido personalmente." },
-    { "icon": "card", "title": "Medios de pago", "text": "Pagos simples, con más métodos a medida que crecemos." }
+    {
+      "icon": "shield",
+      "title": "Perfumes originales",
+      "text": "Todos nuestros perfumes son originales y sellados."
+    },
+    {
+      "icon": "star",
+      "title": "Productos seleccionados",
+      "text": "Elegimos fragancias por su calidad, fijación y proyección."
+    },
+    {
+      "icon": "truck",
+      "title": "Envíos a todo Uruguay",
+      "text": "Despachamos por DAC a los 19 departamentos."
+    },
+    {
+      "icon": "chat",
+      "title": "Atención personalizada",
+      "text": "Te asesoramos por WhatsApp para elegir tu fragancia."
+    },
+    {
+      "icon": "lock",
+      "title": "Compra segura",
+      "text": "Pagás por transferencia y confirmamos cada pedido personalmente."
+    },
+    {
+      "icon": "card",
+      "title": "Medios de pago",
+      "text": "Pagos simples, con más métodos a medida que crecemos."
+    }
   ],
-
-  "departamentos": ["Artigas", "Canelones", "Cerro Largo", "Colonia", "Durazno", "Flores", "Florida", "Lavalleja", "Maldonado", "Montevideo", "Paysandú", "Río Negro", "Rivera", "Rocha", "Salto", "San José", "Soriano", "Tacuarembó", "Treinta y Tres"]
+  "departamentos": [
+    "Artigas",
+    "Canelones",
+    "Cerro Largo",
+    "Colonia",
+    "Durazno",
+    "Flores",
+    "Florida",
+    "Lavalleja",
+    "Maldonado",
+    "Montevideo",
+    "Paysandú",
+    "Río Negro",
+    "Rivera",
+    "Rocha",
+    "Salto",
+    "San José",
+    "Soriano",
+    "Tacuarembó",
+    "Treinta y Tres"
+  ],
+  "aromas": [
+    {
+      "key": "dulce",
+      "label": "Dulces",
+      "text": "Vainilla, caramelo, dátiles y postres especiados.",
+      "product": "khamrah"
+    },
+    {
+      "key": "fresco",
+      "label": "Frescos",
+      "text": "Cítricos y frutas para el día a día y el verano.",
+      "product": "mayar"
+    },
+    {
+      "key": "amaderado",
+      "label": "Amaderados",
+      "text": "Maderas, oud y ámbar con carácter.",
+      "product": "club-de-nuit-oud"
+    },
+    {
+      "key": "especiado",
+      "label": "Especiados",
+      "text": "Canela, pimienta y cardamomo para las noches.",
+      "product": "asad-edp"
+    }
+  ],
+  "featured": "khamrah"
 }

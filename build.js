@@ -51,7 +51,7 @@ async function processImages() {
     const small = path.join(dirOut, `${base}-sm.webp`);
     const stale = (out) => !fs.existsSync(out) || fs.statSync(out).mtimeMs < fs.statSync(inFile).mtimeMs;
     if (sharp) {
-      if (stale(big)) await sharp(inFile).rotate().resize({ width: 1200, height: 1200, fit: 'inside', withoutEnlargement: true }).webp({ quality: 84, effort: 5 }).toFile(big);
+      if (stale(big)) await sharp(inFile).rotate().resize({ width: 1800, height: 1800, fit: 'inside', withoutEnlargement: true }).webp({ quality: 90, effort: 5 }).toFile(big);
       if (stale(small)) await sharp(inFile).rotate().resize({ width: 560, height: 560, fit: 'inside', withoutEnlargement: true }).webp({ quality: 78, effort: 5 }).toFile(small);
     } else {
       fs.copyFileSync(inFile, big);
@@ -82,10 +82,10 @@ function hashOf(files) {
   copyDir(path.join(ROOT, 'static'), OUT); // admin, _headers, robots, etc.
 
   // CSS / JS con hash para cache largo
-  const css = ['css/fonts.css', 'css/styles.css'].map((f) => fs.readFileSync(path.join(SRC, f), 'utf8')).join('\n');
+  const css = ['css/fonts.css', 'css/styles.css', 'css/premium.css'].map((f) => fs.readFileSync(path.join(SRC, f), 'utf8')).join('\n');
   write('css/styles.css', css);
   copyDir(path.join(SRC, 'js'), path.join(OUT, 'js'));
-  const ver = hashOf(['css/fonts.css', 'css/styles.css', 'js/app.js', 'js/checkout.js', 'js/boot.js']);
+  const ver = hashOf(['css/fonts.css', 'css/styles.css', 'css/premium.css', 'js/app.js', 'js/checkout.js', 'js/boot.js']);
 
   const ctx = { config, products, ver, publicConfig: null };
   const out = pages(ctx);
