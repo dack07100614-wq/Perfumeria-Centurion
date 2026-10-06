@@ -78,6 +78,10 @@ async function processImages(branded) {
       if (!fs.existsSync(cached) || fs.statSync(cached).mtimeMs < newest) {
         let img = sharp(inFile).rotate().resize({ width: 1800, height: 1800, fit: 'inside', withoutEnlargement: true });
         if (studio) {
+          // Las fotos de estudio se llevan a formato cuadrado (fondo blanco) antes de aplicar el fondo de la marca.
+          const meta = await sharp(inFile).rotate().metadata();
+          const side = Math.min(1800, Math.max(meta.width, meta.height));
+          img = sharp(inFile).rotate().resize({ width: side, height: side, fit: 'contain', background: '#ffffff' });
           const { data, info } = await img.toBuffer({ resolveWithObject: true });
           const bg = await sharp(backdropFile).resize(info.width, info.height, { fit: 'cover' }).png().toBuffer();
           await sharp(bg).composite([{ input: data, blend: 'multiply' }]).webp({ quality: 90, effort: 5 }).toFile(cached);
