@@ -2778,7 +2778,7 @@
       "name": "Salvo Elixir",
       "brand": "Maison Alhambra",
       "concentration": "EDP",
-      "ml": 100,
+      "ml": 60,
       "gender": "masculino",
       "family": "Amaderado especiado avainillado",
       "tags": [
@@ -2864,6 +2864,38 @@
       ],
       "season": "Primavera / Verano",
       "priority": 106,
+      "revisar": true
+    },
+    {
+      "id": "hawas-pink",
+      "name": "Hawas Pink",
+      "brand": "Rasasi",
+      "concentration": "EDP",
+      "ml": 100,
+      "gender": "femenino",
+      "family": "Frutal floral",
+      "tags": [
+        "dulce",
+        "frutal",
+        "floral"
+      ],
+      "price": 2290,
+      "image": "",
+      "badges": [
+        "new"
+      ],
+      "short": "Fragancia femenina de perfil frutal floral.",
+      "description": "Hawas Pink de Rasasi es una fragancia femenina de perfil frutal floral. Original y sellada, con envíos a todo Uruguay.",
+      "notes": {},
+      "keyNotes": [],
+      "longevity": "",
+      "projection": "",
+      "occasion": [
+        "Salidas",
+        "Uso diario"
+      ],
+      "season": "Primavera / Verano",
+      "priority": 64,
       "revisar": true
     }
   ]
