@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1800" viewBox="0 0 1800 1800">
+  <defs>
+    <linearGradient id="base" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f1ede6"/><stop offset="1" stop-color="#ddd6ca"/></linearGradient>
+    <radialGradient id="spot" cx="50%" cy="38%" r="62%"><stop offset="0" stop-color="#fff" stop-opacity=".75"/><stop offset=".55" stop-color="#fff" stop-opacity=".12"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+    <radialGradient id="vig" cx="50%" cy="50%" r="75%"><stop offset=".6" stop-color="#8a7b63" stop-opacity="0"/><stop offset="1" stop-color="#8a7b63" stop-opacity=".16"/></radialGradient>
+    <pattern id="star" width="180" height="180" patternUnits="userSpaceOnUse">
+      <g fill="none" stroke="#a3926f" stroke-width="1.6" opacity=".16">
+        <rect x="45" y="45" width="90" height="90"/><rect x="45" y="45" width="90" height="90" transform="rotate(45 90 90)"/><circle cx="90" cy="90" r="19"/>
+      </g>
+    </pattern>
+    <mask id="fade"><radialGradient id="fm" cx="50%" cy="50%" r="70%"><stop offset="0" stop-color="#fff" stop-opacity=".25"/><stop offset="1" stop-color="#fff"/></radialGradient><rect width="1800" height="1800" fill="url(#fm)"/></mask>
+  </defs>
+  <rect width="1800" height="1800" fill="url(#base)"/>
+  <rect width="1800" height="1800" fill="url(#star)" mask="url(#fade)"/>
+  <rect width="1800" height="1800" fill="url(#spot)"/>
+  <rect width="1800" height="1800" fill="url(#vig)"/>
+</svg>
