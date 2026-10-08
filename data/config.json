@@ -81,9 +81,9 @@
       {
         "id": "mercadopago",
         "type": "mercadopago",
-        "enabled": false,
+        "enabled": true,
         "label": "Mercado Pago",
-        "description": "Tarjetas de crédito, débito y saldo en Mercado Pago.",
+        "description": "Pagá online con tarjeta de crédito, débito o saldo de Mercado Pago, de forma segura.",
         "icon": "card"
       }
     ],
