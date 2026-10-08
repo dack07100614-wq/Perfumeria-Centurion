@@ -1,0 +1,4 @@
+Fotos para Mercado Libre
+- perfumes/: 77 fotos 1200x1200, fondo blanco, sin marca de agua. El nombre del archivo es el id del perfume.
+- logo/: logo para el perfil de la tienda.
+- Sin foto limpia (tienen escenario de fondo): pack-khamrah-duo, hawas-for-him.
