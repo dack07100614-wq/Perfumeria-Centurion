@@ -41,7 +41,7 @@
   function showState() {
     const lines = Cart.lines();
     const last = readLast();
-    if (location.hash === '#confirmacion' && last) { showConfirmation(last); return; }
+    if (location.hash === '#confirmacion' && last) { if (last.pago && last.pago.type === 'mercadopago') Cart.clear(); showConfirmation(last); return; }
     wrapConf.hidden = true;
     wrapEmpty.hidden = lines.length > 0;
     wrapCheckout.hidden = lines.length === 0;
@@ -135,7 +135,9 @@
       ? `<h3>Cómo pagar</h3><p>Transferí <b>${fmt(o.subtotal)}</b> a esta cuenta y enviá el comprobante por WhatsApp indicando tu pedido <b>${esc(o.id)}</b>.</p>
          <dl class="acct"><div><dt>Banco</dt><dd>${esc(acc.bank)}</dd></div><div><dt>Cuenta</dt><dd>${esc(acc.number)}</dd></div><div><dt>Titular</dt><dd>${esc(acc.holder)}</dd></div><div><dt>Monto</dt><dd>${fmt(o.subtotal)}</dd></div></dl>
          <p>Con el comprobante, preparamos y despachamos tu pedido.</p>`
-      : `<h3>Pago</h3><p>${esc(o.pago.label)}. Te contactamos por WhatsApp para coordinar el pago.</p>`;
+      : o.pago.type === 'mercadopago'
+        ? `<h3>Pago con Mercado Pago</h3><p>Si el pago se aprobó, ya lo recibimos. Para coordinar el envío, mandanos el pedido por WhatsApp con el botón de abajo.</p><p>Si cerraste la ventana de pago antes de terminar, escribinos y te ayudamos a completarlo.</p>`
+        : `<h3>Pago</h3><p>${esc(o.pago.label)}. Te contactamos por WhatsApp para coordinar el pago.</p>`;
     $('[data-conf-wa]').href = waUrl(message(o) + `\n\nQuedo atento/a a los datos de pago.`);
     if (location.hash !== '#confirmacion') history.replaceState(null, '', '#confirmacion');
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -162,8 +164,7 @@
       if (o.pago.type === 'mercadopago') {
         saveLast(o);
         registerOrder(o);
-        const url = await startMercadoPago(o);
-        Cart.clear();
+        const url = await startMercadoPago(o); // el carrito se vacía al volver del pago, así no se pierde si el pago falla
         location.href = url;
         return;
       }
