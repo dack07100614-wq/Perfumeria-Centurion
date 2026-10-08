@@ -80,7 +80,7 @@ async function processImages(branded) {
     const studio = !!bgMean;
     if (!studio) nonStudio.add(base);
     const cached = path.join(cacheDir, `${base}.${branded ? 'b' : 'p'}.webp`);
-    const newest = Math.max(fs.statSync(inFile).mtimeMs, branded ? backdropTime : 0, buildTime);
+    const newest = Math.max(fs.statSync(inFile).mtimeMs, branded ? backdropTime : 0, buildTime, fs.statSync(emblemFile).mtimeMs);
     if (sharp) {
       if (!fs.existsSync(cached) || fs.statSync(cached).mtimeMs < newest) {
         const wm = branded && watermarkOn ? await emblemMark() : null;

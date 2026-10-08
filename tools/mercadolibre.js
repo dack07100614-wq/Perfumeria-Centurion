@@ -27,9 +27,11 @@ async function isStudio(file) {
     ok.push(p.id);
   }
   const L = ROOT + '/src/img/logo-emblem.png';
-  await sharp(L).resize(1000, 1000, { fit: 'contain', background: '#fff' }).flatten({ background: '#fff' }).jpeg({ quality: 95 }).toFile(OUT + '/logo/logo-1000-fondo-blanco.jpg');
-  await sharp(L).resize(1000, 1000, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } }).png().toFile(OUT + '/logo/logo-1000-transparente.png');
-  await sharp(L).resize(500, 500, { fit: 'contain', background: '#fff' }).flatten({ background: '#fff' }).jpeg({ quality: 95 }).toFile(OUT + '/logo/logo-500-perfil.jpg');
+  const LF = ROOT + '/src/img/brand/logo-original.jpg';
+  await sharp(LF).extract({ left: 384, top: 60, width: 640, height: 640 }).resize(1000, 1000).jpeg({ quality: 95 }).toFile(OUT + '/logo/logo-completo-1000.jpg');
+  await sharp(LF).extract({ left: 384, top: 60, width: 640, height: 640 }).resize(500, 500).jpeg({ quality: 95 }).toFile(OUT + '/logo/logo-completo-500-perfil.jpg');
+  await sharp(L).resize(900, 900, { fit: 'contain', background: '#fff' }).flatten({ background: '#fff' }).jpeg({ quality: 95 }).toFile(OUT + '/logo/escudo-1000-fondo-blanco.jpg');
+  await sharp(L).resize(900, 900, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } }).png().toFile(OUT + '/logo/escudo-transparente.png');
   fs.writeFileSync(OUT + '/LEEME.txt', `Fotos para Mercado Libre\n- perfumes/: ${ok.length} fotos 1200x1200, fondo blanco, sin marca de agua. El nombre del archivo es el id del perfume.\n- logo/: logo para el perfil de la tienda.\n- Sin foto limpia (tienen escenario de fondo): ${skipped.join(', ') || 'ninguno'}.\n`);
   console.log(ok.length, 'fotos;', skipped.length, 'omitidas:', skipped.join(', '));
 })();
