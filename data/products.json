@@ -15,8 +15,8 @@
         "amaderado",
         "ahumado"
       ],
-      "price": 1590,
-      "oldPrice": 1750,
+      "price": 1790,
+      "oldPrice": 1990,
       "image": "asad-edp.webp",
       "badges": [
         "bestseller"
@@ -162,7 +162,7 @@
         "gourmand",
         "amaderado"
       ],
-      "price": 1790,
+      "price": 1890,
       "image": "khamrah-qahwa.webp",
       "badges": [
         "bestseller"
@@ -215,7 +215,7 @@
         "floral",
         "gourmand"
       ],
-      "price": 1720,
+      "price": 1850,
       "image": "yara.webp",
       "badges": [
         "bestseller"
@@ -267,7 +267,7 @@
         "floral",
         "gourmand"
       ],
-      "price": 1799,
+      "price": 1850,
       "image": "yara-moi.webp",
       "badges": [],
       "short": "La Yara más elegante y madura: floral, cremosa y suave.",
@@ -370,8 +370,8 @@
         "amaderado",
         "cítrico"
       ],
-      "price": 1790,
-      "oldPrice": 1990,
+      "price": 1990,
+      "oldPrice": 2190,
       "image": "mandarin-sky.webp",
       "badges": [
         "bestseller"
@@ -744,8 +744,8 @@
         "gourmand",
         "frutal"
       ],
-      "price": 1390,
-      "oldPrice": 1550,
+      "price": 1890,
+      "oldPrice": 1990,
       "image": "badee-al-oud.webp",
       "badges": [
         "bestseller"
@@ -983,8 +983,8 @@
         "especiado",
         "gourmand"
       ],
-      "price": 3290,
-      "oldPrice": 3540,
+      "price": 3590,
+      "oldPrice": 3640,
       "image": "pack-khamrah-duo.webp",
       "badges": [
         "pack"
@@ -1025,8 +1025,8 @@
         "floral",
         "gourmand"
       ],
-      "price": 3290,
-      "oldPrice": 3519,
+      "price": 3490,
+      "oldPrice": 3700,
       "image": "pack-yara-duo.webp",
       "badges": [
         "pack"
@@ -1173,7 +1173,7 @@
         "floral",
         "frutal"
       ],
-      "price": 1790,
+      "price": 1850,
       "image": "",
       "photoPending": true,
       "badges": [],
@@ -2078,7 +2078,7 @@
         "especiado",
         "ahumado"
       ],
-      "price": 1890,
+      "price": 1990,
       "image": "",
       "photoPending": true,
       "badges": [],
@@ -2141,7 +2141,7 @@
         "dulce",
         "frutal"
       ],
-      "price": 1790,
+      "price": 1850,
       "image": "",
       "photoPending": true,
       "badges": [],
