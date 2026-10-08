@@ -65,7 +65,7 @@ const durs = [1.75, ...offers.map(() => 1.3), 2.2]; // con 7 fundidos de 0.25 s 
   const args = ['-y'];
   durs.forEach((d, i) => args.push('-i', path.join(tmp, `f${i}.png`)));
   let f = '', last = '[v0]';
-  for (let i = 0; i < n; i++) f += `[${i}:v]zoompan=z='min(zoom+0.0006,1.05)':d=${Math.round(durs[i] * fps)}:x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':s=1080x1920:fps=${fps},setsar=1[v${i}];`;
+  for (let i = 0; i < n; i++) f += `[${i}:v]loop=loop=${Math.round(durs[i] * fps) - 1}:size=1:start=0,fps=${fps},setsar=1[v${i}];`;
   let off = durs[0] - X;
   for (let i = 1; i < n; i++) { f += `${last}[v${i}]xfade=transition=fade:duration=${X}:offset=${off.toFixed(2)}[x${i}];`; last = `[x${i}]`; off += durs[i] - X; }
   fs.mkdirSync(ROOT + '/reel', { recursive: true });
