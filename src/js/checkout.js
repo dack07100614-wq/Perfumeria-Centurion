@@ -43,6 +43,7 @@
     const last = readLast();
     if (location.hash === '#confirmacion' && last) { if (last.pago && last.pago.type === 'mercadopago') Cart.clear(); showConfirmation(last); return; }
     wrapConf.hidden = true;
+    const head0 = $('[data-checkout-head]'); if (head0) head0.hidden = false;
     wrapEmpty.hidden = lines.length > 0;
     wrapCheckout.hidden = lines.length === 0;
     if (lines.length) { renderSummary(); updateShippingLabel(); }
@@ -125,6 +126,7 @@
 
   function showConfirmation(o) {
     wrapCheckout.hidden = true; wrapEmpty.hidden = true; wrapConf.hidden = false;
+    const head = $('[data-checkout-head]'); if (head) head.hidden = true;
     $('[data-conf-id]').textContent = o.id;
     $('[data-conf-items]').innerHTML = o.items.map((i) => `<div class="sitem">${i.i ? `<img src="${esc(i.i)}" alt="" width="56" height="56">` : '<span class="sitem-ph"></span>'}<span><b>${esc(i.n)}</b><small>${i.qty} × ${fmt(i.p)}</small></span><span class="sitem-price">${fmt(i.line)}</span></div>`).join('');
     $('[data-conf-total]').textContent = fmt(o.subtotal);
