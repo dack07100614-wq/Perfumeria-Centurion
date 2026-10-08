@@ -47,7 +47,8 @@ const frames = [
   ...offers.map((p) => `${topbar('OFERTA')}<div class="ph"><img src="${img(p.id)}"></div><div class="badge">-${pct(p)}%</div><div class="info"><div class="br">${p.brand}</div><div class="nm">${p.name}</div><div class="pr"><span class="now">${fmt(p.price)}</span><span class="old">${fmt(p.oldPrice)}</span></div><div class="sv">Ahorrás ${fmt(p.oldPrice - p.price)}</div></div><div class="foot">Originales y sellados · Envíos a todo Uruguay<b>@${cfg.contact.instagram}</b></div>`),
   `<div class="c end"><img src="${logo}"><h2>¿LO QUERÉS?</h2><p>Pedilo por WhatsApp. Envíos a todo Uruguay por DAC.</p><div class="ct"><div><b>WHATSAPP</b>${cfg.contact.whatsappDisplay}</div><div><b>INSTAGRAM</b>@${cfg.contact.instagram}</div></div></div>`,
 ];
-const durs = [1.75, ...offers.map(() => 1.3), 2.2]; // con 7 fundidos de 0.25 s => 10 s
+const LONG = process.argv[2] === '15'; // node tools/promo-reel.js 15  => versión de 15 s
+const durs = LONG ? [2.25, ...offers.map(() => 2.0), 2.5] : [1.75, ...offers.map(() => 1.3), 2.2]; // con 7 fundidos de 0.25 s => 15 s / 10 s
 (async () => {
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'reel-'));
   const b = await chromium.launch({ args: ['--no-sandbox', '--allow-file-access-from-files'] });
@@ -69,7 +70,7 @@ const durs = [1.75, ...offers.map(() => 1.3), 2.2]; // con 7 fundidos de 0.25 s 
   let off = durs[0] - X;
   for (let i = 1; i < n; i++) { f += `${last}[v${i}]xfade=transition=fade:duration=${X}:offset=${off.toFixed(2)}[x${i}];`; last = `[x${i}]`; off += durs[i] - X; }
   fs.mkdirSync(ROOT + '/reel', { recursive: true });
-  args.push('-filter_complex', f.replace(/;$/, ''), '-map', last, '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '18', '-r', String(fps), '-movflags', '+faststart', ROOT + '/reel/Reel-Ofertas.mp4');
+  args.push('-filter_complex', f.replace(/;$/, ''), '-map', last, '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '18', '-r', String(fps), '-movflags', '+faststart', ROOT + (LONG ? '/reel/Reel-Ofertas-15s.mp4' : '/reel/Reel-Ofertas.mp4'));
   execFileSync('ffmpeg', args, { stdio: 'ignore' });
   console.log('reel listo');
 })();
