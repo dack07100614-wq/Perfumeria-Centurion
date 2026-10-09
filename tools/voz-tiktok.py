@@ -17,10 +17,10 @@ V = {
    (10.4, 2.2, 'Mi billetera después... tranquila.'),
    (12.6, 2.8, '¡Mandáselo a quien siempre pregunta! Pedilo por Guatsap.')]),
  'flags': ('Video-TikTok-Flags', [(0.0, 2.2, '¿Grin fláj... o red fláj?'),
-   (2.2, 2.6, 'Grin fláj: oliendo a noche, sin gastar de más.'),
-   (4.8, 2.6, 'Grin fláj: que te pregunten qué usás.'),
-   (7.4, 2.6, 'Grin fláj: entrar y que se note.'),
-   (10.0, 2.6, 'Red fláj: el mismo perfume hace diez años.'),
+   (2.2, 2.6, 'Grin fláj: oler a noche, sin gastar de más.'),
+   (4.8, 2.6, 'Grin fláj: que te pregunten, ¿qué perfume usás?'),
+   (7.4, 2.6, 'Grin fláj: entrar a un lugar, y que se note.'),
+   (10.0, 2.6, 'Red fláj: usar el mismo perfume hace diez años.'),
    (12.6, 2.8, '¡Comentá tu fláj y pedilo por Guatsap!')]),
 }
 name, lines = V[sys.argv[1]]
