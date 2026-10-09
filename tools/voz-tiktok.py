@@ -30,7 +30,7 @@ for i, (start, dur, text) in enumerate(lines):
     inputs += ['-i', raw]
     filt.append(f'[{i+1}:a]atempo={tempo:.3f},adelay={int((start+0.05)*1000)}:all=1[a{i}]')
 mix = ''.join(f'[a{i}]' for i in range(len(lines)))
-filt.append(f'{mix}amix=inputs={len(lines)}:normalize=0,loudnorm=I=-16:TP=-1.5[v]')
+filt.append(f'{mix}amix=inputs={len(lines)}:normalize=0,loudnorm=I=-16:TP=-1.5,apad[v]')
 src = f'{ROOT}/tiktok/{name}.mp4'; out = f'{ROOT}/tiktok/{name}-voz.mp4'
 subprocess.run(['ffmpeg', '-y', '-v', 'error', '-i', src] + inputs + ['-filter_complex', ';'.join(filt), '-map', '0:v', '-map', '[v]', '-c:v', 'copy', '-c:a', 'aac', '-b:a', '160k', '-ar', '44100', '-ac', '2', '-shortest', '-movflags', '+faststart', out], check=True)
 print('listo', out)
