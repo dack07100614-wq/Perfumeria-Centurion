@@ -27,6 +27,9 @@ const VARIANTS = {
     { t0: 5.0, t1: 6.7, html: '¿¿PACK DÚO A<br>$ 3.590??', shake: true },
     { t0: 6.7, t1: DUR + 1, html: 'Pedilo por<br><em>WhatsApp</em>', big: true },
   ],
+  portada: [
+    { t0: 0.0, t1: 30, html: '<span class="tag">ELLA:</span> No sé qué<br>regalarte<br><span class="tag">YO:</span> viendo esto', still: true },
+  ],
 };
 const VAR = process.argv[2] || 'ex';
 const caps = VARIANTS[VAR];
@@ -41,7 +44,7 @@ const html = `<style>
 .deal{position:absolute;right:60px;top:500px;background:#d63a2f;padding:14px 30px;text-align:center;transform:rotate(4deg);box-shadow:0 10px 30px rgba(0,0,0,.4)}
 .deal b{display:block;font-size:30px;letter-spacing:.18em}.deal span{font-size:84px;font-weight:700;line-height:1}.deal s{display:block;font-size:34px;color:#ffd0cb}
 .cap{position:absolute;left:40px;right:40px;top:210px;text-align:center;font-weight:700;text-transform:uppercase;font-size:86px;line-height:1.03;opacity:0;animation:io linear both;text-shadow:-4px -4px 0 #000,4px -4px 0 #000,-4px 4px 0 #000,4px 4px 0 #000,0 8px 30px rgba(0,0,0,.6)}
-.cap.big{font-size:100px}.cap.small{font-size:68px}.cap em{font-style:normal;color:#25d366}
+.cap.big{font-size:100px}.cap.small{font-size:68px}.cap.still{animation:none;opacity:1;font-size:92px;top:200px}.cap.still .tag{font-size:64px;margin-bottom:0}.cap em{font-style:normal;color:#25d366}
 .tag{display:inline-block;background:#d63a2f;padding:2px 30px;font-size:70px;margin-bottom:10px;text-shadow:none}
 @keyframes io{0%{opacity:0;transform:translateY(40px) scale(.9)}8%{opacity:1;transform:none}92%{opacity:1;transform:none}100%{opacity:0;transform:none}}
 @keyframes shk{0%,100%{translate:0 0}25%{translate:-10px 6px}50%{translate:10px -6px}75%{translate:-8px -4px}}
@@ -50,7 +53,7 @@ const html = `<style>
 <div class="logo"><img src="${logo}"><div><small>PERFUMERÍA</small><b>CENTURIÓN</b></div></div>
 <div class="photo"><img src="${img}"></div>
 <div class="deal"><b>PACK DÚO</b><span>${fmt(P.price)}</span><s>${fmt(P.oldPrice)}</s></div>
-${caps.map((c) => `<div class="cap${c.big ? ' big' : ''}${c.small ? ' small' : ''}" style="animation-duration:${(c.t1 - c.t0).toFixed(2)}s;animation-delay:${c.t0}s;${c.shake ? 'animation-name:io,shk;animation-duration:' + (c.t1 - c.t0).toFixed(2) + 's,.3s;animation-iteration-count:1,infinite;animation-timing-function:linear' : ''}">${c.html}</div>`).join('')}
+${caps.map((c) => `<div class="cap${c.big ? ' big' : ''}${c.small ? ' small' : ''}${c.still ? ' still' : ''}" style="animation-duration:${(c.t1 - c.t0).toFixed(2)}s;animation-delay:${c.t0}s;${c.shake ? 'animation-name:io,shk;animation-duration:' + (c.t1 - c.t0).toFixed(2) + 's,.3s;animation-iteration-count:1,infinite;animation-timing-function:linear' : ''}">${c.html}</div>`).join('')}
 <div class="foot"><div class="u">@${cfg.contact.instagram}</div><div class="u" style="color:#25d366;margin-top:12px">${cfg.contact.whatsappDisplay}</div><div class="e">Envíos a todo Uruguay</div></div>`;
 (async () => {
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'pd-'));
@@ -58,12 +61,20 @@ ${caps.map((c) => `<div class="cap${c.big ? ' big' : ''}${c.small ? ' small' : '
   const b = await chromium.launch({ args: ['--no-sandbox', '--allow-file-access-from-files'] });
   const pg = await b.newPage({ viewport: { width: 1080, height: 1920 } });
   await pg.goto('file://' + hf); await pg.evaluate(() => document.fonts.ready);
+  const FRAME = process.env.FRAME ? +process.env.FRAME : null; // FRAME=5.6 -> solo una imagen (portada)
   const n = Math.round(DUR * FPS);
-  for (let f = 0; f < n; f++) {
+  for (let f = FRAME == null ? 0 : Math.round(FRAME * FPS); f < (FRAME == null ? n : Math.round(FRAME * FPS) + 1); f++) {
     await pg.evaluate((ms) => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = ms; }), (f / FPS) * 1000);
     await pg.screenshot({ path: path.join(tmp, `f${String(f).padStart(4, '0')}.png`) });
   }
   await b.close();
+  if (FRAME != null) {
+    const png = ROOT + '/tiktok/Portada-POV-' + VAR + '.png';
+    const dogPng = path.join(tmp, 'dog.png');
+    execFileSync('ffmpeg', ['-y', '-v', 'error', '-ss', String(FRAME + DOG_OFFSET), '-i', DOG, '-frames:v', '1', '-vf', 'scale=1080:1920:flags=lanczos,format=yuv444p,chromakey=0x00ff00:0.22:0.08,despill=type=green,format=rgba', dogPng]);
+    execFileSync('ffmpeg', ['-y', '-v', 'error', '-i', path.join(tmp, `f${String(Math.round(FRAME * FPS)).padStart(4, '0')}.png`), '-i', dogPng, '-filter_complex', '[0:v][1:v]overlay=0:0', '-frames:v', '1', png]);
+    console.log('listo', png); return;
+  }
   const out = ROOT + '/tiktok/POV-Perro' + (VAR === 'ex' ? '' : '-' + VAR) + '.mp4';
   fs.mkdirSync(ROOT + '/tiktok', { recursive: true });
   execFileSync('ffmpeg', ['-y', '-v', 'error', '-framerate', String(FPS), '-i', path.join(tmp, 'f%04d.png'), '-ss', String(DOG_OFFSET), '-i', DOG, '-i', AUDIO,
