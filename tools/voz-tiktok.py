@@ -16,12 +16,12 @@ V = {
    (8.0, 2.4, 'Ella: ¡¿y ese perfume?! Yara.'),
    (10.4, 2.2, 'Mi billetera después... tranquila.'),
    (12.6, 2.8, '¡Mandáselo a quien siempre pregunta! Pedilo por Guatsap.')]),
- 'flags': ('Video-TikTok-Flags', [(0.0, 2.2, '¿Grin fláj... o red fláj?'),
+ 'flags': ('Video-TikTok-Flags', [(0.0, 2.2, '¿Grin fláj... o red fláj? Edición perfumes.'),
    (2.2, 2.6, 'Grin fláj: oler a noche, sin gastar de más.'),
    (4.8, 2.6, 'Grin fláj: que te pregunten, ¿qué perfume usás?'),
    (7.4, 2.6, 'Grin fláj: entrar a un lugar, y que se note.'),
-   (10.0, 2.6, 'Red fláj: usar el mismo perfume hace diez años.'),
-   (12.6, 2.8, '¡Comentá tu fláj y pedilo por Guatsap!')]),
+   (10.0, 2.6, 'Red fláj: usar el mismo perfume hace diez años. Dale una oportunidad a otro aroma.'),
+   (12.6, 2.8, 'Comentá tu fláj, y pedí el tuyo por Guatsap.')]),
 }
 name, lines = V[sys.argv[1]]
 kok = Kokoro(VOZ + '/model.onnx', VOZ + '/voices.npz')
