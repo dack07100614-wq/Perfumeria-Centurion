@@ -8,26 +8,27 @@ from kokoro_onnx import Kokoro
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 VOZ = os.environ.get('VOZ_DIR', '/tmp/work/kok'); VOICE = os.environ.get('VOZ_VOZ', 'em_alex')
 SUFIJO = os.environ.get('VOZ_SUFIJO', 'voz')
+# Los textos se escriben como suenan en español (Khamrah -> Jámra, flag -> fláj) para que la voz los pronuncie bien.
 V = {
  'pov': ('Video-TikTok-POV', [(0.0, 2.4, '¿Qué perfume usás? ¡Vos tenés la respuesta!'),
-   (2.4, 3.0, 'Nadie. Absolutamente nadie. Yo, con Khamrah puesto.'),
-   (5.4, 2.6, 'Todos: ¡¿qué te pusiste?! Khamrah.'),
+   (2.4, 3.0, 'Nadie. Absolutamente nadie. Yo, con Jámra puesto.'),
+   (5.4, 2.6, 'Todos: ¡¿qué te pusiste?! Jámra.'),
    (8.0, 2.4, 'Ella: ¡¿y ese perfume?! Yara.'),
    (10.4, 2.2, 'Mi billetera después... tranquila.'),
-   (12.6, 2.8, '¡Mandáselo a quien siempre pregunta! Pedilo por WhatsApp.')]),
- 'flags': ('Video-TikTok-Flags', [(0.0, 2.2, '¿Green flag... o red flag?'),
-   (2.2, 2.6, 'Green flag: oler a noche, sin gastar de más.'),
-   (4.8, 2.6, 'Green flag: que te pregunten qué usás.'),
-   (7.4, 2.6, 'Green flag: entrar y que se note.'),
-   (10.0, 2.6, 'Red flag: el mismo perfume hace diez años.'),
-   (12.6, 2.8, '¡Comentá tu flag y pedilo por WhatsApp!')]),
+   (12.6, 2.8, '¡Mandáselo a quien siempre pregunta! Pedilo por Guatsap.')]),
+ 'flags': ('Video-TikTok-Flags', [(0.0, 2.2, '¿Grin fláj... o red fláj?'),
+   (2.2, 2.6, 'Grin fláj: oliendo a noche, sin gastar de más.'),
+   (4.8, 2.6, 'Grin fláj: que te pregunten qué usás.'),
+   (7.4, 2.6, 'Grin fláj: entrar y que se note.'),
+   (10.0, 2.6, 'Red fláj: el mismo perfume hace diez años.'),
+   (12.6, 2.8, '¡Comentá tu fláj y pedilo por Guatsap!')]),
 }
 name, lines = V[sys.argv[1]]
 kok = Kokoro(VOZ + '/model.onnx', VOZ + '/voices.npz')
 tmp = tempfile.mkdtemp(); inputs = []; filt = []; clips = []
 for i, (start, mindur, text) in enumerate(lines):
     audio, sr = kok.create(text, voice=VOICE, speed=1.0, lang='es')  # velocidad normal, sin acelerar
-    audio = np.concatenate([np.zeros(int(sr * 0.05)), audio, np.zeros(int(sr * 0.2))])
+    audio = np.concatenate([np.zeros(int(sr * 0.2)), audio, np.zeros(int(sr * 0.2))])
     raw = f'{tmp}/l{i}.wav'; sf.write(raw, audio, sr); clips.append((raw, len(audio) / sr))
 # cada escena dura lo que tarda la frase (+ un respiro), nunca menos que su duración mínima
 durs = [round(max(mind, secs + 0.35), 2) for (_, mind, _), (_, secs) in zip(lines, clips)]
