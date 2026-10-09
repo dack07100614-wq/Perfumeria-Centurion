@@ -16,7 +16,7 @@ const logo = 'file://' + ROOT + '/src/img/logo-emblem.png';
 // Cada texto vive entre t0 y t1 (segundos), siguiendo las poses del perro: tranquilo, olfateando, sorprendido, ladrando.
 const caps = [
   { t0: 0.0, t1: 2.8, html: '<span class="tag">POV</span><br>Tu ex te cruza<br>por la calle' },
-  { t0: 2.8, t1: 5.0, html: 'y te siente<br>el perfume…' },
+  { t0: 2.8, t1: 5.0, html: 'y te siente el perfume<br>que compraste en<br><em>Perfumería Centurión</em>', small: true },
   { t0: 5.0, t1: 6.7, html: '¿¿QUÉ PERFUME<br>USÁS??', shake: true },
   { t0: 6.7, t1: DUR + 1, html: 'Pedilo por<br><em>WhatsApp</em>', big: true },
 ];
@@ -27,11 +27,11 @@ const html = `<style>
 .bg{position:absolute;inset:-120px;background:url('${img}') center/cover;filter:blur(50px) brightness(.5) saturate(1.2)}
 .sh{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,0) 30%,rgba(0,0,0,0) 60%,rgba(0,0,0,.6))}
 .logo{position:absolute;left:56px;top:96px;display:flex;align-items:center;gap:16px}.logo img{width:70px}.logo b{font-size:34px;letter-spacing:.16em;font-weight:600}.logo small{display:block;font-size:12px;letter-spacing:.42em;color:#ccc;margin-bottom:5px}
-.photo{position:absolute;left:40px;top:430px;width:1000px;height:1000px;box-shadow:0 40px 90px rgba(0,0,0,.55);background:#e7e0d4}.photo img{width:100%;height:100%;object-fit:cover;display:block}
-.deal{position:absolute;right:60px;top:450px;background:#d63a2f;padding:14px 30px;text-align:center;transform:rotate(4deg);box-shadow:0 10px 30px rgba(0,0,0,.4)}
+.photo{position:absolute;left:40px;top:480px;width:1000px;height:1000px;box-shadow:0 40px 90px rgba(0,0,0,.55);background:#e7e0d4}.photo img{width:100%;height:100%;object-fit:cover;display:block}
+.deal{position:absolute;right:60px;top:500px;background:#d63a2f;padding:14px 30px;text-align:center;transform:rotate(4deg);box-shadow:0 10px 30px rgba(0,0,0,.4)}
 .deal b{display:block;font-size:30px;letter-spacing:.18em}.deal span{font-size:84px;font-weight:700;line-height:1}.deal s{display:block;font-size:34px;color:#ffd0cb}
 .cap{position:absolute;left:40px;right:40px;top:210px;text-align:center;font-weight:700;text-transform:uppercase;font-size:86px;line-height:1.03;opacity:0;animation:io linear both;text-shadow:-4px -4px 0 #000,4px -4px 0 #000,-4px 4px 0 #000,4px 4px 0 #000,0 8px 30px rgba(0,0,0,.6)}
-.cap.big{font-size:100px}.cap em{font-style:normal;color:#25d366}
+.cap.big{font-size:100px}.cap.small{font-size:68px}.cap em{font-style:normal;color:#25d366}
 .tag{display:inline-block;background:#d63a2f;padding:2px 30px;font-size:70px;margin-bottom:10px;text-shadow:none}
 @keyframes io{0%{opacity:0;transform:translateY(40px) scale(.9)}8%{opacity:1;transform:none}92%{opacity:1;transform:none}100%{opacity:0;transform:none}}
 @keyframes shk{0%,100%{translate:0 0}25%{translate:-10px 6px}50%{translate:10px -6px}75%{translate:-8px -4px}}
@@ -40,7 +40,7 @@ const html = `<style>
 <div class="logo"><img src="${logo}"><div><small>PERFUMERÍA</small><b>CENTURIÓN</b></div></div>
 <div class="photo"><img src="${img}"></div>
 <div class="deal"><b>PACK DÚO</b><span>${fmt(P.price)}</span><s>${fmt(P.oldPrice)}</s></div>
-${caps.map((c) => `<div class="cap${c.big ? ' big' : ''}" style="animation-duration:${(c.t1 - c.t0).toFixed(2)}s;animation-delay:${c.t0}s;${c.shake ? 'animation-name:io,shk;animation-duration:' + (c.t1 - c.t0).toFixed(2) + 's,.3s;animation-iteration-count:1,infinite;animation-timing-function:linear' : ''}">${c.html}</div>`).join('')}
+${caps.map((c) => `<div class="cap${c.big ? ' big' : ''}${c.small ? ' small' : ''}" style="animation-duration:${(c.t1 - c.t0).toFixed(2)}s;animation-delay:${c.t0}s;${c.shake ? 'animation-name:io,shk;animation-duration:' + (c.t1 - c.t0).toFixed(2) + 's,.3s;animation-iteration-count:1,infinite;animation-timing-function:linear' : ''}">${c.html}</div>`).join('')}
 <div class="foot"><div class="u">@${cfg.contact.instagram}</div><div class="u" style="color:#25d366;margin-top:12px">${cfg.contact.whatsappDisplay}</div><div class="e">Envíos a todo Uruguay</div></div>`;
 (async () => {
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'pd-'));
