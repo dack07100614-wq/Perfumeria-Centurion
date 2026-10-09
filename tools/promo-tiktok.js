@@ -7,8 +7,14 @@ const ROOT = path.resolve(__dirname, '..');
 const data = JSON.parse(fs.readFileSync(ROOT + '/data/products.json', 'utf8')).products;
 const cfg = JSON.parse(fs.readFileSync(ROOT + '/data/config.json', 'utf8'));
 const fmt = (n) => '$ ' + Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-const PICKS = ['yara', 'club-de-nuit-intense', 'afnan-9pm', 'asad-edp', 'khamrah']; // #5 .. #1
-const items = PICKS.map((id) => data.find((p) => p.id === id)).filter(Boolean);
+// Uso: node tools/promo-tiktok.js [top5|promos|dulces]
+const THEMES = {
+  top5: { file: 'Video-TikTok', picks: ['yara', 'club-de-nuit-intense', 'afnan-9pm', 'asad-edp', 'khamrah'], rank: true, tag: 'TOP 5', h1: 'PERFUMES<br><em>ÁRABES</em><br>QUE TENÉS<br>QUE PROBAR', cta: '¿CUÁL ES<br>TU FAVORITO?', cta2: 'Comentá el número', bg: 'khamrah', ctaBg: 'afnan-9pm' },
+  promos: { file: 'Video-TikTok-Promos', picks: ['pack-khamrah-duo', 'pack-yara-duo', 'mandarin-sky', 'badee-al-oud'], rank: false, tag: 'PROMOS', h1: 'PERFUMES<br><em>EN OFERTA</em><br>AHORA', cta: '¿CUÁL TE<br>LLEVÁS?', cta2: 'Escribinos por WhatsApp', bg: 'pack-khamrah-duo', ctaBg: 'mandarin-sky', short: { 'pack-khamrah-duo': 'Dúo Khamrah + Qahwa', 'pack-yara-duo': 'Dúo Yara + Yara Moi', 'mandarin-sky': 'Mandarin Sky' } },
+  dulces: { file: 'Video-TikTok-Dulces', picks: ['yara-candy', 'odyssey-toffee-coffee', 'odyssey-dubai-chocolat', 'khamrah-qahwa', 'khamrah'], rank: true, tag: 'TOP 5', h1: 'PERFUMES<br><em>DULCES</em><br>QUE ENAMORAN', cta: '¿CUÁL ES<br>TU FAVORITO?', cta2: 'Comentá el número', bg: 'odyssey-toffee-coffee', ctaBg: 'khamrah-qahwa' },
+};
+const T = THEMES[process.argv[2] || 'top5'];
+const items = T.picks.map((id) => data.find((p) => p.id === id)).filter(Boolean).map((p) => ({ ...p, name: (T.short && T.short[p.id]) || p.name }));
 const F = (f) => 'file://' + ROOT + '/src/fonts/' + f;
 const img = (id) => 'file://' + ROOT + '/public/img/products/' + id + '.webp';
 const logo = 'file://' + ROOT + '/src/img/logo-emblem.png';
@@ -48,20 +54,20 @@ body{width:1080px;height:1920px;font-family:IS,sans-serif;background:#111;color:
 .cta .u{font-size:50px;font-weight:600;letter-spacing:.05em}.cta .e{font-size:38px;letter-spacing:.2em;text-transform:uppercase;color:#ccc;margin-top:34px}`;
 const bgImg = (id) => `<div class="bg" style="background-image:url('${img(id)}')"></div>`;
 const scenes = [
-  { dur: 2.0, html: `${bgImg('khamrah')}<div class="shade"></div>
-    <div class="hk"><span class="t A" style="animation:pop .35s both">TOP 5</span><h1 class="A" style="animation:up .45s .1s both">PERFUMES<br><em>ÁRABES</em><br>QUE TENÉS<br>QUE PROBAR</h1></div>
-    ${[['yara', 640, 1010, 7], ['club-de-nuit-intense', 70, 1080, -6], ['afnan-9pm', 560, 1260, 4], ['asad-edp', 110, 1290, -3], ['khamrah', 400, 1180, 2]].map(([id, x, y, r], i) => `<div class="tile A" style="left:${x}px;top:${y}px;--r:${r}deg;animation:drop .4s ${0.55 + i * 0.15}s both"><img src="${img(id)}"></div>`).join('')}
+  { dur: 2.0, html: `${bgImg(T.bg)}<div class="shade"></div>
+    <div class="hk"><span class="t A" style="animation:pop .35s both">${T.tag}</span><h1 class="A" style="animation:up .45s .1s both">${T.h1}</h1></div>
+    ${[[640, 1010, 7], [70, 1080, -6], [560, 1260, 4], [110, 1290, -3], [400, 1180, 2]].slice(0, items.length).map(([x, y, r], i) => [items[i].id, x, y, r]).map(([id, x, y, r], i) => `<div class="tile A" style="left:${x}px;top:${y}px;--r:${r}deg;animation:drop .4s ${0.55 + i * 0.15}s both"><img src="${img(id)}"></div>`).join('')}
     <div class="sub A" style="animation:fade .4s 1.4s both;top:1760px;font-size:54px">originales · envíos a todo Uruguay</div>` },
   ...items.map((p, i) => ({ dur: 2.4, html: `${bgImg(p.id)}<div class="shade"></div>
     <div class="logo A" style="animation:fade .3s both"><img src="${logo}"><div><small>PERFUMERÍA</small><b>CENTURIÓN</b></div></div>
-    <div class="rank A" style="animation:pop .4s both">#${items.length - i}</div>
+    ${T.rank ? `<div class="rank A" style="animation:pop .4s both">#${items.length - i}</div>` : ''}
     <div class="photo A" style="animation:slideR .35s .05s both"><img src="${img(p.id)}"></div>
     ${p.oldPrice ? `<div class="disc A" style="animation:pop .35s .55s both"><span style="display:inline-block;animation:wob .5s .9s infinite alternate">-${Math.round((p.oldPrice - p.price) / p.oldPrice * 100)}%</span></div>` : ''}
     <div class="info"><div class="br A" style="animation:up .3s .25s both">${[p.brand, p.concentration, p.ml ? p.ml + ' ml' : ''].filter(Boolean).join(' · ')}</div>
     <div class="nm A" style="animation:up .35s .35s both">${p.name}</div>
     <div class="pr"><span class="now A" style="animation:pop .4s .6s both">${fmt(p.price)}</span>${p.oldPrice ? `<span class="old A" style="animation:fade .3s .9s both">${fmt(p.oldPrice)}</span>` : ''}</div></div>` })),
-  { dur: 2.6, html: `${bgImg('afnan-9pm')}<div class="shade" style="background:rgba(0,0,0,.72)"></div>
-    <div class="cta"><img class="logo2 A" src="${logo}" style="animation:pop .4s both"><h2 class="A" style="animation:up .4s .1s both">¿CUÁL ES<br>TU FAVORITO?</h2><h3 class="A" style="animation:up .4s .3s both">Comentá el número</h3>
+  { dur: 2.6, html: `${bgImg(T.ctaBg)}<div class="shade" style="background:rgba(0,0,0,.72)"></div>
+    <div class="cta"><img class="logo2 A" src="${logo}" style="animation:pop .4s both"><h2 class="A" style="animation:up .4s .1s both">${T.cta}</h2><h3 class="A" style="animation:up .4s .3s both">${T.cta2}</h3>
     <div class="pill A" style="animation:pop .4s .6s both">WhatsApp ${cfg.contact.whatsappDisplay}</div><br><div class="u A" style="animation:fade .4s .9s both">@${cfg.contact.instagram}</div>
     <div class="e A" style="animation:fade .4s 1.1s both">Envíos a todo Uruguay</div></div>` },
 ];
@@ -83,7 +89,7 @@ const scenes = [
   }
   await b.close();
   fs.mkdirSync(ROOT + '/tiktok', { recursive: true });
-  const out = ROOT + '/tiktok/Video-TikTok.mp4', out2 = ROOT + '/tiktok/Video-TikTok-audio.mp4';
+  const out = ROOT + '/tiktok/' + T.file + '.mp4', out2 = ROOT + '/tiktok/' + T.file + '-audio.mp4';
   execFileSync('ffmpeg', ['-y', '-framerate', String(FPS), '-i', path.join(tmp, 'f%05d.jpg'), '-c:v', 'libx264', '-profile:v', 'high', '-pix_fmt', 'yuv420p', '-crf', '19', '-r', String(FPS), '-movflags', '+faststart', out], { stdio: 'ignore' });
   execFileSync('ffmpeg', ['-y', '-i', out, '-f', 'lavfi', '-i', 'anullsrc=channel_layout=stereo:sample_rate=44100', '-c:v', 'copy', '-c:a', 'aac', '-b:a', '128k', '-shortest', '-movflags', '+faststart', out2], { stdio: 'ignore' });
   console.log('video listo', n, 'cuadros');
