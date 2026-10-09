@@ -57,27 +57,27 @@ const cta = (bgId, h2, h3) => ({ dur: 2.8, html: `${bg(bgId)}<div class="shade" 
 
 const VIDEOS = {
   pov: { file: 'Video-TikTok-POV', scenes: [
-    { dur: 2.4, html: `${bg('khamrah')}${tag('POV', 230, 'red')}
+    { dur: 2.4, html: `${bg('odyssey-dubai-chocolat')}${tag('POV', 230, 'red')}
       ${m('TE PREGUNTAN<br>“¿QUÉ PERFUME<br>USÁS?”', 400, 118, .2)}
       <div class="m A" style="top:1050px;font-family:CG,serif;font-style:italic;text-transform:none;font-size:92px;font-weight:500;animation:fade .5s 1.3s both">y vos tenés la respuesta</div>` },
     { dur: 3.0, html: `<div class="bg" style="background:#1a1a1a;filter:none"></div>
-      ${m('Nadie:', 200, 120, .1)}${m('Absolutamente nadie:', 400, 100, .7)}${m('Yo con Khamrah puesto:', 640, 100, 1.3, '#ff5a4d')}
-      <div class="photo A" style="top:1010px;left:190px;width:700px;height:700px;animation:pop .4s 1.7s both"><img src="${img('khamrah')}" style="animation:shake .5s 2.1s infinite"></div>` },
-    product('khamrah', 'Todos: “¿QUÉ TE PUSISTE?!”', ''),
-    { ...product('yara', 'Ella: “¿Y ESE PERFUME??”', ''), dur: 2.4 },
-    { dur: 2.2, html: `${bg('asad-edp')}${m('Mi billetera después:', 520, 96, .1)}${m('TRANQUILA', 780, 150, .6, '#25d366', 'pop')}
-      <div class="m A" style="top:1130px;font-size:64px;animation:fade .4s 1.1s both">desde ${fmt(P('asad-edp').price)}</div>` },
-    cta('khamrah', 'MANDÁSELO A<br>QUIEN SIEMPRE<br>PREGUNTA', 'o comentá “YO” 👇'.replace(' 👇', '')),
+      ${m('Nadie:', 200, 120, .1)}${m('Absolutamente nadie:', 400, 100, .7)}${m('Yo con Dubai Chocolat puesto:', 640, 100, 1.3, '#ff5a4d')}
+      <div class="photo A" style="top:1010px;left:190px;width:700px;height:700px;animation:pop .4s 1.7s both"><img src="${img('odyssey-dubai-chocolat')}" style="animation:shake .5s 2.1s infinite"></div>` },
+    product('odyssey-dubai-chocolat', 'Todos: “¿QUÉ TE PUSISTE?!”', ''),
+    { ...product('yara-candy', 'Ella: “¿Y ESE PERFUME??”', ''), dur: 2.4 },
+    { dur: 2.2, html: `${bg('raghba')}${m('Mi billetera después:', 520, 96, .1)}${m('TRANQUILA', 780, 150, .6, '#25d366', 'pop')}
+      <div class="m A" style="top:1130px;font-size:64px;animation:fade .4s 1.1s both">desde ${fmt(Math.min(...data.map((x) => x.price)))}</div>` },
+    cta('odyssey-dubai-chocolat', 'MANDÁSELO A<br>QUIEN SIEMPRE<br>PREGUNTA', 'o comentá “YO” 👇'.replace(' 👇', '')),
   ] },
   flags: { file: 'Video-TikTok-Flags', scenes: [
-    { dur: 2.2, html: `${bg('asad-edp')}${tag('GREEN FLAG', 330, 'green')}${m('O', 520, 120, .3)}${tag('RED FLAG', 700, 'red', .5)}
+    { dur: 2.2, html: `${bg('badee-al-oud-sublime')}${tag('GREEN FLAG', 330, 'green')}${m('O', 520, 120, .3)}${tag('RED FLAG', 700, 'red', .5)}
       ${m('EDICIÓN<br>PERFUMES', 960, 130, .9)}` },
-    product('asad-edp', 'Oler a noche sin gastar de más', `<div class="sticker green A" style="animation:pop .35s .5s both"><span style="display:inline-block;animation:wob .5s .9s infinite alternate">GREEN FLAG</span></div>`),
-    product('khamrah', 'Que te pregunten “¿qué perfume usás?”', `<div class="sticker green A" style="animation:pop .35s .5s both"><span style="display:inline-block;animation:wob .5s .9s infinite alternate">GREEN FLAG</span></div>`),
-    product('club-de-nuit-intense', 'Entrar a un lugar y que se note', `<div class="sticker green A" style="animation:pop .35s .5s both"><span style="display:inline-block;animation:wob .5s .9s infinite alternate">GREEN FLAG</span></div>`),
+    product('badee-al-oud-sublime', 'Oler a noche sin gastar de más', `<div class="sticker green A" style="animation:pop .35s .5s both"><span style="display:inline-block;animation:wob .5s .9s infinite alternate">GREEN FLAG</span></div>`),
+    product('odyssey-toffee-coffee', 'Que te pregunten “¿qué perfume usás?”', `<div class="sticker green A" style="animation:pop .35s .5s both"><span style="display:inline-block;animation:wob .5s .9s infinite alternate">GREEN FLAG</span></div>`),
+    product('hawas-for-him', 'Entrar a un lugar y que se note', `<div class="sticker green A" style="animation:pop .35s .5s both"><span style="display:inline-block;animation:wob .5s .9s infinite alternate">GREEN FLAG</span></div>`),
     { dur: 2.6, html: `<div class="bg" style="background:#3a0d0a;filter:none"></div>${tag('RED FLAG', 330, 'red')}
       ${m('Usar el mismo<br>perfume<br>hace 10 años', 560, 118, .4)}<div class="m A" style="top:1120px;font-family:CG,serif;font-style:italic;text-transform:none;font-size:90px;font-weight:500;animation:fade .5s 1.4s both">dale una oportunidad a otro aroma</div>` },
-    cta('khamrah', 'COMENTÁ<br>TU FLAG', 'y pedí el tuyo por WhatsApp'),
+    cta('hawas-for-him', 'COMENTÁ<br>TU FLAG', 'y pedí el tuyo por WhatsApp'),
   ] },
 };
 (async () => {
