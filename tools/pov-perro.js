@@ -1,5 +1,5 @@
 // POV con el perro de la plantilla de CapCut sobre un fondo nuevo de la tienda (1080x1920).
-// Uso: DOG=/ruta/preview-verde.mp4 AUDIO=/ruta/video-original.mp4 node tools/pov-perro.js  -> tiktok/POV-Perro.mp4
+// Uso: DOG=/ruta/preview-verde.mp4 AUDIO=/ruta/video-original.mp4 node tools/pov-perro.js [ex|regalo]  -> tiktok/POV-Perro[-variante].mp4
 const { chromium } = require('playwright');
 const { execFileSync } = require('child_process');
 const fs = require('fs'), path = require('path'), os = require('os');
@@ -14,12 +14,22 @@ const F = (f) => 'file://' + ROOT + '/src/fonts/' + f;
 const img = 'file://' + ROOT + '/public/img/products/pack-khamrah-duo.webp';
 const logo = 'file://' + ROOT + '/src/img/logo-emblem.png';
 // Cada texto vive entre t0 y t1 (segundos), siguiendo las poses del perro: tranquilo, olfateando, sorprendido, ladrando.
-const caps = [
-  { t0: 0.0, t1: 2.8, html: '<span class="tag">POV</span><br>Tu ex te cruza<br>por la calle' },
-  { t0: 2.8, t1: 5.0, html: 'y te siente el perfume<br>que compraste en<br><em>Perfumería Centurión</em>', small: true },
-  { t0: 5.0, t1: 6.7, html: '¿¿QUÉ PERFUME<br>USÁS??', shake: true },
-  { t0: 6.7, t1: DUR + 1, html: 'Pedilo por<br><em>WhatsApp</em>', big: true },
-];
+const VARIANTS = {
+  ex: [
+    { t0: 0.0, t1: 2.8, html: '<span class="tag">POV</span><br>Tu ex te cruza<br>por la calle' },
+    { t0: 2.8, t1: 5.0, html: 'y te siente el perfume<br>que compraste en<br><em>Perfumería Centurión</em>', small: true },
+    { t0: 5.0, t1: 6.7, html: '¿¿QUÉ PERFUME<br>USÁS??', shake: true },
+    { t0: 6.7, t1: DUR + 1, html: 'Pedilo por<br><em>WhatsApp</em>', big: true },
+  ],
+  regalo: [
+    { t0: 0.0, t1: 2.8, html: '<span class="tag">ELLA:</span><br>No sé qué<br>regalarte' },
+    { t0: 2.8, t1: 5.0, html: '<span class="tag">YO:</span><br>viendo este pedazo<br>de oferta', small: true },
+    { t0: 5.0, t1: 6.7, html: '¿¿PACK DÚO A<br>$ 3.590??', shake: true },
+    { t0: 6.7, t1: DUR + 1, html: 'Pedilo por<br><em>WhatsApp</em>', big: true },
+  ],
+};
+const VAR = process.argv[2] || 'ex';
+const caps = VARIANTS[VAR];
 const html = `<style>
 @font-face{font-family:IS;font-weight:600;src:url(${F('InstrumentSans-600-latin.woff2')})}
 @font-face{font-family:IS;font-weight:700;src:url(${F('InstrumentSans-700-latin.woff2')})}
@@ -54,7 +64,7 @@ ${caps.map((c) => `<div class="cap${c.big ? ' big' : ''}${c.small ? ' small' : '
     await pg.screenshot({ path: path.join(tmp, `f${String(f).padStart(4, '0')}.png`) });
   }
   await b.close();
-  const out = ROOT + '/tiktok/POV-Perro.mp4';
+  const out = ROOT + '/tiktok/POV-Perro' + (VAR === 'ex' ? '' : '-' + VAR) + '.mp4';
   fs.mkdirSync(ROOT + '/tiktok', { recursive: true });
   execFileSync('ffmpeg', ['-y', '-v', 'error', '-framerate', String(FPS), '-i', path.join(tmp, 'f%04d.png'), '-ss', String(DOG_OFFSET), '-i', DOG, '-i', AUDIO,
     '-filter_complex', `[1:v]fps=${FPS},scale=1080:1920:flags=lanczos,chromakey=0x00ff00:0.22:0.08,despill=type=green[d];[0:v][d]overlay=0:0:shortest=1,format=yuv420p[v]`,
