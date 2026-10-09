@@ -1,19 +1,20 @@
 #!/usr/bin/env python3
-"""Agrega una voz en off (Piper, voz es_AR) a los videos de TikTok con formato meme.
-Uso: python3 tools/voz-tiktok.py pov|flags   (necesita piper-tts y el modelo en VOZ_DIR)
+"""Agrega una voz en off (Kokoro, voz masculina es: em_alex) a los videos de TikTok con formato meme.
+Uso: python3 tools/voz-tiktok.py pov|flags   (necesita kokoro-onnx, soundfile y model.onnx + voices.npz en VOZ_DIR)
 Salida: tiktok/Video-TikTok-<POV|Flags>-voz.mp4"""
-import subprocess, sys, os, wave, tempfile
+import subprocess, sys, os, tempfile
+import numpy as np, soundfile as sf
+from kokoro_onnx import Kokoro
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-VOZ = os.environ.get('VOZ_DIR', '/tmp/work/voz'); MODEL = VOZ + '/' + os.environ.get('VOZ_MODELO', 'es_MX-ald-medium') + '.onnx'
-GRAVE = float(os.environ.get('VOZ_GRAVE', '0.93'))  # <1 baja el tono (voz más grave)
+VOZ = os.environ.get('VOZ_DIR', '/tmp/work/kok'); VOICE = os.environ.get('VOZ_VOZ', 'em_alex')
 SUFIJO = os.environ.get('VOZ_SUFIJO', 'voz')
 V = {
  'pov': ('Video-TikTok-POV', [(0.0, 2.4, '¿Qué perfume usás? ¡Vos tenés la respuesta!'),
-   (2.4, 3.0, 'Nadie. Yo, con Khamrah puesto.'),
+   (2.4, 3.0, 'Nadie. Absolutamente nadie. Yo, con Khamrah puesto.'),
    (5.4, 2.6, 'Todos: ¡¿qué te pusiste?! Khamrah.'),
    (8.0, 2.4, 'Ella: ¡¿y ese perfume?! Yara.'),
    (10.4, 2.2, 'Mi billetera después... tranquila.'),
-   (12.6, 2.8, '¡Mandáselo a quien siempre pregunta!')]),
+   (12.6, 2.8, '¡Mandáselo a quien siempre pregunta! Pedilo por WhatsApp.')]),
  'flags': ('Video-TikTok-Flags', [(0.0, 2.2, '¿Green flag... o red flag?'),
    (2.2, 2.6, 'Green flag: oler a noche, sin gastar de más.'),
    (4.8, 2.6, 'Green flag: que te pregunten qué usás.'),
@@ -22,15 +23,17 @@ V = {
    (12.6, 2.8, '¡Comentá tu flag y pedilo por WhatsApp!')]),
 }
 name, lines = V[sys.argv[1]]
+kok = Kokoro(VOZ + '/model.onnx', VOZ + '/voices.npz')
 tmp = tempfile.mkdtemp(); inputs = []; filt = []
 for i, (start, dur, text) in enumerate(lines):
-    raw = f'{tmp}/l{i}.wav'
-    subprocess.run(['python3', '-m', 'piper', '-m', MODEL, '-f', raw, '--noise-scale', '0.9', '--noise-w', '1.0', '--length-scale', '0.88'], input=text.encode(), check=True, capture_output=True)
-    w = wave.open(raw); secs = w.getnframes() / w.getframerate(); w.close()
-    tempo = max(1.0, min(1.5, secs / (dur - 0.15)))
-    print(f'{text[:40]:40s} {secs:.2f}s en {dur}s -> x{tempo:.2f}')
+    audio, sr = kok.create(text, voice=VOICE, speed=1.0, lang='es')
+    secs = len(audio) / sr
+    speed = max(1.0, min(1.4, secs / (dur - 0.2)))  # acelera dentro del modelo, mantiene la entonación
+    if speed > 1.0: audio, sr = kok.create(text, voice=VOICE, speed=speed, lang='es'); secs = len(audio) / sr
+    print(f'{text[:40]:40s} {secs:.2f}s en {dur}s (velocidad x{speed:.2f})')
+    raw = f'{tmp}/l{i}.wav'; sf.write(raw, audio, sr)
     inputs += ['-i', raw]
-    filt.append(f'[{i+1}:a]asetrate={int(22050*GRAVE)},aresample=44100,atempo={tempo/GRAVE:.3f},highpass=f=70,equalizer=f=120:t=h:w=100:g=3,acompressor=threshold=-20dB:ratio=3:attack=5:release=80:makeup=4,adelay={int((start+0.05)*1000)}:all=1[a{i}]')
+    filt.append(f'[{i+1}:a]aresample=44100,highpass=f=70,equalizer=f=120:t=h:w=100:g=2,acompressor=threshold=-20dB:ratio=3:attack=5:release=80:makeup=3,adelay={int((start+0.05)*1000)}:all=1[a{i}]')
 mix = ''.join(f'[a{i}]' for i in range(len(lines)))
 filt.append(f'{mix}amix=inputs={len(lines)}:normalize=0,loudnorm=I=-16:TP=-1.5,apad[v]')
 src = f'{ROOT}/tiktok/{name}.mp4'; out = f'{ROOT}/tiktok/{name}-{SUFIJO}.mp4'
