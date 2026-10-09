@@ -28,7 +28,7 @@ h1 em{font-style:normal;color:#ff5a4d}
 .ph{position:absolute;left:0;right:0;top:150px;height:900px;background:#e7e0d4;overflow:hidden}.ph img{width:100%;height:100%;object-fit:cover;object-position:center 45%}
 .info{position:absolute;left:56px;right:150px;top:1090px}
 .br{font-size:28px;letter-spacing:.34em;text-transform:uppercase;color:#aaa;font-weight:600;margin-bottom:10px}
-.nm{font-size:70px;font-weight:700;line-height:1.05;letter-spacing:.03em;text-transform:uppercase;margin-bottom:22px}
+.nm{font-size:64px;font-weight:700;line-height:1.05;letter-spacing:.03em;text-transform:uppercase;margin-bottom:22px}
 .pr{display:flex;align-items:baseline;gap:26px}.now{font-size:130px;font-weight:700;color:#ff5a4d;line-height:1}.old{font-size:50px;color:#999;text-decoration:line-through}
 .tag{position:absolute;left:56px;top:1370px;font-size:30px;letter-spacing:.16em;color:#bbb;text-transform:uppercase}
 .cta{align-items:center;text-align:center}
@@ -36,7 +36,7 @@ h1 em{font-style:normal;color:#ff5a4d}
 .pill{background:#d63a2f;font-weight:700;font-size:56px;padding:22px 50px;margin-bottom:24px}.cta .u{font-size:46px;letter-spacing:.06em;font-weight:600}`;
 const frames = [
   `<div class="c"><div class="logo"><img src="${logo}"><div><small>PERFUMERÍA</small><b>CENTURIÓN</b></div></div><div class="k">Top 5</div><h1>PERFUMES<br><em>ÁRABES</em><br>QUE TENÉS<br>QUE PROBAR</h1><div class="sub">originales, con envío a todo Uruguay</div></div>`,
-  ...items.map((p, i) => `<div class="ph"><img src="${img(p.id)}"></div><div class="rank">#${items.length - i}</div><div class="info"><div class="br">${p.brand}</div><div class="nm">${p.name}</div><div class="pr"><span class="now">${fmt(p.price)}</span>${p.oldPrice ? `<span class="old">${fmt(p.oldPrice)}</span>` : ''}</div></div><div class="tag">${[p.concentration, p.ml ? p.ml + ' ml' : ''].filter(Boolean).join(' · ')}</div>`),
+  ...items.map((p, i) => `<div class="ph"><img src="${img(p.id)}"></div><div class="rank">#${items.length - i}</div><div class="info"><div class="br">${[p.brand, p.concentration, p.ml ? p.ml + ' ml' : ''].filter(Boolean).join(' · ')}</div><div class="nm">${p.name}</div><div class="pr"><span class="now">${fmt(p.price)}</span>${p.oldPrice ? `<span class="old">${fmt(p.oldPrice)}</span>` : ''}</div></div>`),
   `<div class="c cta"><div class="logo"><img src="${logo}"><div><small>PERFUMERÍA</small><b>CENTURIÓN</b></div></div><h2>PEDÍ EL<br>TUYO</h2><p>Por WhatsApp ${cfg.contact.whatsappDisplay}<br>o en el link de la bio</p><div class="pill">ENVÍOS A TODO URUGUAY</div><div class="u">@${cfg.contact.instagram}</div></div>`,
 ];
 const durs = [2.2, 2.3, 2.3, 2.3, 2.3, 2.6, 2.4]; // 7 escenas, ~16,4 s
