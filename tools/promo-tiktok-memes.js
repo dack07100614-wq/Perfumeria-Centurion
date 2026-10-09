@@ -83,6 +83,8 @@ const VIDEOS = {
 (async () => {
   const V = VIDEOS[process.argv[2]];
   if (!V) { console.error('Uso: node tools/promo-tiktok-memes.js pov|flags'); process.exit(1); }
+  const tf = `${ROOT}/tiktok/tiempos-${process.argv[2]}.json`; // duraciones por escena ajustadas a la voz (tools/voz-tiktok.py)
+  if (fs.existsSync(tf)) { const T = JSON.parse(fs.readFileSync(tf, 'utf8')); V.scenes.forEach((sc, i) => { if (T[i]) sc.dur = T[i]; }); }
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'tm-'));
   const b = await chromium.launch({ args: ['--no-sandbox', '--allow-file-access-from-files'] });
   const pg = await b.newPage({ viewport: { width: 1080, height: 1920 } });
