@@ -1,0 +1,80 @@
+﻿id,Producto,Marca,ml,Código (EAN/GTIN) candidato,Nombre en la base,Cantidad en la base,Observación
+asad-edp,Asad,Lattafa,100,6291108735411,Lattafa | Asad |  100 ml,"100 ml, 100 L",coincide nombre y tamaño
+asad-bourbon,Asad Bourbon,Lattafa,100,,,,sin dato en la base: leer el código de la caja
+khamrah,Khamrah,Lattafa,100,6291108737194,Lattafa Khamrah - Eau de Parfum    100ml,"100 ml, 100 L",coincide nombre y tamaño
+khamrah-qahwa,Khamrah Qahwa,Lattafa,100,6290360593661,Lattafa | Khamrah Qahwa |  100 ml,"100 ml, 100",coincide nombre y tamaño
+yara,Yara,Lattafa,100,,,,sin dato en la base: leer el código de la caja
+yara-moi,Yara Moi,Lattafa,100,,,,sin dato en la base: leer el código de la caja
+mayar,Mayar,Lattafa,100,,,,sin dato en la base: leer el código de la caja
+mandarin-sky,Odyssey Mandarin Sky,Armaf,100,0467188195803,Armaf Odyssey Mandarin Sky Eau De Parfum 100ml,100ml,coincide nombre y tamaño
+mandarin-elixir,Odyssey Mandarin Sky Elixir,Armaf,100,,,,sin dato en la base: leer el código de la caja
+afnan-9pm,9PM,Afnan,100,,,,sin dato en la base: leer el código de la caja
+afnan-9pm-elixir,9PM Elixir,Afnan,100,,,,sin dato en la base: leer el código de la caja
+club-de-nuit-intense,Club de Nuit Intense Man,Armaf,105,6085010044712,Armaf | Club De Nuit Intense Man EDT |  105 ml,"Men, 105 ml, 105",coincide nombre y tamaño
+club-de-nuit-oud,Club de Nuit Oud,Armaf,105,,,,sin dato en la base: leer el código de la caja
+the-kingdom,The Kingdom Hombre,Lattafa,100,,,,sin dato en la base: leer el código de la caja
+badee-al-oud,Bade'e Al Oud Honor & Glory,Lattafa,100,,,,sin dato en la base: leer el código de la caja
+fakhar-rose,Fakhar Rose,Lattafa,100,,,,sin dato en la base: leer el código de la caja
+liquid-brun,Liquid Brun,French Avenue,100,,,,sin dato en la base: leer el código de la caja
+amber-oud-gold,Amber Oud Gold Edition,Al Haramain,120,,,,sin dato en la base: leer el código de la caja
+amber-oud-extreme,Amber Oud Gold Edition Extreme,Al Haramain,100,,,,sin dato en la base: leer el código de la caja
+pack-khamrah-duo,Pack Dúo Khamrah + Khamrah Qahwa,Lattafa,100,,,,"pack: no tiene código propio, usá el de cada perfume o el del pack si la caja trae uno"
+pack-yara-duo,Pack Dúo Yara + Yara Moi,Lattafa,100,,,,"pack: no tiene código propio, usá el de cada perfume o el del pack si la caja trae uno"
+eclaire,Eclaire,Lattafa,100,,,,sin dato en la base: leer el código de la caja
+raghba,Raghba Wood Intense,Lattafa,100,,,,sin dato en la base: leer el código de la caja
+qaed-al-fursan,Qaed Al Fursan,Lattafa,90,,,,sin dato en la base: leer el código de la caja
+yara-tous,Yara Tous,Lattafa,100,,,,sin dato en la base: leer el código de la caja
+her-confession,Her Confession,Lattafa,100,,,,sin dato en la base: leer el código de la caja
+supremacy-not-only-intense,Supremacy Not Only Intense,Afnan,100,,,,sin dato en la base: leer el código de la caja
+afnan-9am,9AM,Afnan,100,,,,sin dato en la base: leer el código de la caja
+turathi-blue,Turathi Blue,Afnan,90,,,,sin dato en la base: leer el código de la caja
+club-de-nuit-untold,Club de Nuit Untold,Armaf,105,,,,sin dato en la base: leer el código de la caja
+club-de-nuit-woman,Club de Nuit Woman,Armaf,105,,,,sin dato en la base: leer el código de la caja
+hawas-for-him,Hawas for Him,Rasasi,100,,,,sin dato en la base: leer el código de la caja
+laventure,L'Aventure,Al Haramain,100,,,,sin dato en la base: leer el código de la caja
+club-de-nuit-milestone,Club de Nuit Milestone,Armaf,105,,,,sin dato en la base: leer el código de la caja
+club-de-nuit-iconic,Club de Nuit Iconic,Armaf,105,,,,sin dato en la base: leer el código de la caja
+club-de-nuit-sillage,Club de Nuit Sillage,Armaf,105,,,,sin dato en la base: leer el código de la caja
+club-de-nuit-urban-man,Club de Nuit Urban Man,Armaf,105,,,,sin dato en la base: leer el código de la caja
+club-de-nuit-maleka,Club de Nuit Maleka,Armaf,105,,,,sin dato en la base: leer el código de la caja
+odyssey-aoud,Odyssey Aoud,Armaf,100,,,,sin dato en la base: leer el código de la caja
+odyssey-black-forest,Odyssey Black Forest,Armaf,100,,,,sin dato en la base: leer el código de la caja
+odyssey-revolution-ultra,Odyssey Revolution Ultra,Armaf,100,,,,sin dato en la base: leer el código de la caja
+odyssey-mega-man,Odyssey Mega Man,Armaf,100,,,,sin dato en la base: leer el código de la caja
+odyssey-limoni-fresh,Odyssey Limoni Fresh,Armaf,100,6295199800751,Odyssey - Limoni Fresh Edition by Armaf for Unisex - 3 Oz EDP Spray,100ml,coincide nombre y tamaño
+odyssey-toffee-coffee,Odyssey Toffee Coffee,Armaf,100,,,,sin dato en la base: leer el código de la caja
+odyssey-dubai-chocolat,Odyssey Dubai Chocolat,Armaf,100,,,,sin dato en la base: leer el código de la caja
+odyssey-candee,Odyssey Candee,Armaf,100,,,,sin dato en la base: leer el código de la caja
+odyssey-marshmallow,Odyssey Marshmallow,Armaf,100,,,,sin dato en la base: leer el código de la caja
+odyssey-homme,Odyssey Homme,Armaf,100,,,,sin dato en la base: leer el código de la caja
+eclaire-pistache,Eclaire Pistache,Lattafa,100,,,,sin dato en la base: leer el código de la caja
+eclaire-banoffi,Eclaire Banoffi,Lattafa,100,,,,sin dato en la base: leer el código de la caja
+fakhar-black,Fakhar Black,Lattafa,100,6291107456058,Lattafa Fakhar Black in Clear Edp 100Ml,100 ml.,coincide nombre y tamaño
+fakhar-platin,Fakhar Platin,Lattafa,100,,,,sin dato en la base: leer el código de la caja
+khamrah-dukhan,Khamrah Dukhan,Lattafa,100,,,,sin dato en la base: leer el código de la caja
+asad-elixir,Asad Elixir,Lattafa,100,,,,sin dato en la base: leer el código de la caja
+yara-candy,Yara Candy,Lattafa,100,,,,sin dato en la base: leer el código de la caja
+vintage-radio,Vintage Radio,Lattafa,100,,,,sin dato en la base: leer el código de la caja
+mayar-cherry-intense,Mayar Cherry Intense,Lattafa,100,,,,sin dato en la base: leer el código de la caja
+mayar-natural-intense,Mayar Natural Intense,Lattafa,100,,,,sin dato en la base: leer el código de la caja
+victoria,Victoria,Lattafa,100,,,,sin dato en la base: leer el código de la caja
+angham,Angham,Lattafa,100,,,,sin dato en la base: leer el código de la caja
+ameer-al-oudh-intense-oud,Ameer Al Oudh Intense Oud,Lattafa,100,,,,sin dato en la base: leer el código de la caja
+the-kingdom-her,The Kingdom Mujer,Lattafa,100,,,,sin dato en la base: leer el código de la caja
+cookie-crave,Cookie Crave,Lattafa,100,,,,sin dato en la base: leer el código de la caja
+berry-on-top,Berry on Top,Lattafa,100,,,,sin dato en la base: leer el código de la caja
+vanilla-freak,Vanilla Freak,Lattafa,100,,,,sin dato en la base: leer el código de la caja
+choco-overdose,Choco Overdose,Lattafa,100,,,,sin dato en la base: leer el código de la caja
+mallow-maddness,Mallow Maddness,Lattafa,100,,,,sin dato en la base: leer el código de la caja
+whipped-pleasure,Whipped Pleasure,Lattafa,100,,,,sin dato en la base: leer el código de la caja
+badee-al-oud-sublime,Bade'e Al Oud Sublime,Lattafa,100,,,,sin dato en la base: leer el código de la caja
+badee-al-oud-amethyst,Bade'e Al Oud Amethyst,Lattafa,100,,,,sin dato en la base: leer el código de la caja
+amber-oud-bleu,Amber Oud Bleu Edition,Al Haramain,120,,,,sin dato en la base: leer el código de la caja
+amber-oud-aqua-dubai,Amber Oud Aqua Dubai,Al Haramain,120,,,,sin dato en la base: leer el código de la caja
+hawas-ice,Hawas Ice,Rasasi,100,,,,sin dato en la base: leer el código de la caja
+hawas-for-her,Hawas for Her,Rasasi,100,,,,sin dato en la base: leer el código de la caja
+salvo-edp,Salvo,Maison Alhambra,100,,,,sin dato en la base: leer el código de la caja
+salvo-elixir,Salvo Elixir,Maison Alhambra,60,,,,sin dato en la base: leer el código de la caja
+afnan-9pm-pour-femme,9PM Pour Femme,Afnan,100,,,,sin dato en la base: leer el código de la caja
+afnan-9am-dive,9AM Dive,Afnan,100,6290171072836,Afnan 9am Dive Eau De Parfum 100ml Unisex - Apple - One Size,100ml,coincide nombre y tamaño
+hawas-pink,Hawas Pink,Rasasi,100,,,,sin dato en la base: leer el código de la caja
