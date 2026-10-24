@@ -16,7 +16,6 @@
         "ahumado"
       ],
       "price": 1790,
-      "oldPrice": 1990,
       "image": "asad-edp.webp",
       "badges": [
         "bestseller"
@@ -106,7 +105,7 @@
         "especiado",
         "gourmand"
       ],
-      "price": 1890,
+      "price": 1690,
       "image": "khamrah.webp",
       "badges": [
         "bestseller"
@@ -146,7 +145,8 @@
         "Clima fresco"
       ],
       "season": "Otoño / Invierno",
-      "priority": 2
+      "priority": 2,
+      "oldPrice": 1890
     },
     {
       "id": "khamrah-qahwa",
@@ -371,7 +371,6 @@
         "cítrico"
       ],
       "price": 1990,
-      "oldPrice": 2190,
       "image": "mandarin-sky.webp",
       "badges": [
         "bestseller"
@@ -476,7 +475,6 @@
         "amaderado"
       ],
       "price": 2290,
-      "oldPrice": 2490,
       "image": "afnan-9pm.webp",
       "badges": [
         "bestseller"
@@ -576,7 +574,7 @@
         "ahumado",
         "cítrico"
       ],
-      "price": 2190,
+      "price": 1990,
       "image": "club-de-nuit-intense.webp",
       "badges": [
         "bestseller"
@@ -617,7 +615,8 @@
         "Uso nocturno"
       ],
       "season": "Todo el año",
-      "priority": 8
+      "priority": 8,
+      "oldPrice": 2190
     },
     {
       "id": "club-de-nuit-oud",
@@ -745,7 +744,6 @@
         "frutal"
       ],
       "price": 1890,
-      "oldPrice": 1990,
       "image": "badee-al-oud.webp",
       "badges": [
         "bestseller"
@@ -1010,7 +1008,8 @@
         "Regalo"
       ],
       "season": "Otoño / Invierno",
-      "priority": 40
+      "priority": 40,
+      "published": false
     },
     {
       "id": "pack-yara-duo",
@@ -1052,7 +1051,134 @@
         "Regalo"
       ],
       "season": "Todo el año",
+      "priority": 41,
+      "published": false
+    },
+    {
+      "id": "pack-postres-duo",
+      "name": "Pack Dúo Postres: Cookie Crave + Berry on Top",
+      "brand": "Lattafa",
+      "concentration": "EDP",
+      "ml": 100,
+      "gender": "unisex",
+      "family": "Pack gourmand dulce",
+      "tags": [
+        "dulce",
+        "gourmand",
+        "frutal"
+      ],
+      "price": 3890,
+      "oldPrice": 4380,
+      "image": "pack-postres-duo.webp",
+      "badges": [
+        "pack"
+      ],
+      "short": "Galletita y frutos rojos: el combo para los que no comparten el postre.",
+      "description": "Cookie Crave y Berry on Top en un solo pedido, a precio especial. Uno huele a galletita recién horneada y el otro a frutos rojos con crema. Ideal para regalar o para tener uno para vos y otro para tu pareja (o los dos para vos, no juzgamos). Cada frasco de 100 ml.",
+      "pack": [
+        "cookie-crave",
+        "berry-on-top"
+      ],
+      "notes": {},
+      "keyNotes": [
+        "Galleta",
+        "Vainilla",
+        "Frutos rojos",
+        "Crema"
+      ],
+      "longevity": "Buena · 6 a 8 h aprox.",
+      "projection": "Media",
+      "occasion": [
+        "Salidas",
+        "Regalo",
+        "Día a día"
+      ],
+      "season": "Todo el año",
+      "priority": 40
+    },
+    {
+      "id": "pack-club-de-nuit-pareja",
+      "name": "Pack Pareja Club de Nuit: Intense Man + Woman",
+      "brand": "Armaf",
+      "concentration": "EDT / EDP",
+      "ml": 105,
+      "gender": "unisex",
+      "family": "Pack para pareja",
+      "tags": [
+        "frutal",
+        "amaderado",
+        "floral"
+      ],
+      "price": 3590,
+      "oldPrice": 3980,
+      "image": "pack-club-de-nuit-pareja.webp",
+      "badges": [
+        "pack"
+      ],
+      "short": "Uno para él, uno para ella y nadie se roba el perfume del otro.",
+      "description": "Club de Nuit Intense Man y Club de Nuit Woman en un solo pedido, a precio especial. Él con el clásico cítrico ahumado de la ananá y el abedul; ella con un floral frutal elegante y con mucha presencia. El regalo de pareja que no falla. Cada frasco de 105 ml.",
+      "pack": [
+        "club-de-nuit-intense",
+        "club-de-nuit-woman"
+      ],
+      "notes": {},
+      "keyNotes": [
+        "Ananá",
+        "Abedul",
+        "Rosa",
+        "Pachulí"
+      ],
+      "longevity": "Excelente · 8 a 10 h aprox.",
+      "projection": "Fuerte",
+      "occasion": [
+        "Salidas",
+        "Regalo",
+        "Noches"
+      ],
+      "season": "Todo el año",
       "priority": 41
+    },
+    {
+      "id": "pack-mandarin-duo",
+      "name": "Pack Dúo Mandarin Sky + Mandarin Sky Elixir",
+      "brand": "Armaf",
+      "concentration": "EDP",
+      "ml": 100,
+      "gender": "masculino",
+      "family": "Pack cítrico dulce",
+      "tags": [
+        "citrico",
+        "dulce",
+        "amaderado"
+      ],
+      "price": 3990,
+      "oldPrice": 4490,
+      "image": "pack-mandarin-duo.webp",
+      "badges": [
+        "pack"
+      ],
+      "short": "El Mandarin Sky para el día y el Elixir para la noche.",
+      "description": "Odyssey Mandarin Sky y Mandarin Sky Elixir en un solo pedido, a precio especial. El original, fresco y dulce de mandarina para todos los días, y el Elixir, más intenso y profundo para cuando querés que te pregunten qué tenés puesto. Cada frasco de 100 ml.",
+      "pack": [
+        "mandarin-sky",
+        "mandarin-elixir"
+      ],
+      "notes": {},
+      "keyNotes": [
+        "Mandarina",
+        "Caramelo",
+        "Haba tonka",
+        "Maderas"
+      ],
+      "longevity": "Excelente · 8 a 10 h aprox.",
+      "projection": "Fuerte",
+      "occasion": [
+        "Día a día",
+        "Noches",
+        "Regalo"
+      ],
+      "season": "Todo el año",
+      "priority": 42
     },
     {
       "id": "eclaire",
@@ -1419,7 +1545,7 @@
         "fresco",
         "frutal"
       ],
-      "price": 2290,
+      "price": 1990,
       "image": "",
       "photoPending": true,
       "badges": [],
@@ -1440,7 +1566,8 @@
         "Oficina"
       ],
       "season": "Primavera / Verano",
-      "priority": 35
+      "priority": 35,
+      "oldPrice": 2290
     },
     {
       "id": "laventure",
