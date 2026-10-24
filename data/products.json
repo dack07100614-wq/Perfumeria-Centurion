@@ -2837,6 +2837,40 @@
       "revisar": true
     },
     {
+      "id": "afnan-9pm-night-out",
+      "name": "9PM Night Out",
+      "brand": "Afnan",
+      "concentration": "EDP",
+      "ml": 100,
+      "gender": "masculino",
+      "family": "Dulce especiado nocturno",
+      "tags": [
+        "dulce",
+        "especiado",
+        "amaderado"
+      ],
+      "price": 2490,
+      "image": "",
+      "photoPending": true,
+      "badges": [
+        "new"
+      ],
+      "short": "El 9PM con ganas de salir: dulce, especiado y hecho para la noche.",
+      "description": "9PM Night Out de Afnan es la versión de salida de la línea 9PM: una fragancia masculina dulce y especiada, pensada para la noche y para dejar huella. Si el 9PM es la previa, este es el boliche. Original y sellada, con envíos a todo Uruguay.",
+      "notes": {},
+      "keyNotes": [],
+      "longevity": "",
+      "projection": "",
+      "occasion": [
+        "Noches",
+        "Salidas",
+        "Citas"
+      ],
+      "season": "Otoño / Invierno",
+      "priority": 107,
+      "revisar": true
+    },
+    {
       "id": "afnan-9am-dive",
       "name": "9AM Dive",
       "brand": "Afnan",
