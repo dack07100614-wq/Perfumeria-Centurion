@@ -105,7 +105,7 @@
         "especiado",
         "gourmand"
       ],
-      "price": 1690,
+      "price": 1890,
       "image": "khamrah.webp",
       "badges": [
         "bestseller"
@@ -145,8 +145,7 @@
         "Clima fresco"
       ],
       "season": "Otoño / Invierno",
-      "priority": 2,
-      "oldPrice": 1890
+      "priority": 2
     },
     {
       "id": "khamrah-qahwa",
@@ -574,7 +573,7 @@
         "ahumado",
         "cítrico"
       ],
-      "price": 1990,
+      "price": 2190,
       "image": "club-de-nuit-intense.webp",
       "badges": [
         "bestseller"
@@ -615,8 +614,7 @@
         "Uso nocturno"
       ],
       "season": "Todo el año",
-      "priority": 8,
-      "oldPrice": 2190
+      "priority": 8
     },
     {
       "id": "club-de-nuit-oud",
@@ -1056,7 +1054,7 @@
     },
     {
       "id": "pack-postres-duo",
-      "name": "Pack Dúo Postres: Cookie Crave + Berry on Top",
+      "name": "Promo Postre Sin Calorías: Cookie Crave + Berry on Top",
       "brand": "Lattafa",
       "concentration": "EDP",
       "ml": 100,
@@ -1073,8 +1071,8 @@
       "badges": [
         "pack"
       ],
-      "short": "Galletita y frutos rojos: el combo para los que no comparten el postre.",
-      "description": "Cookie Crave y Berry on Top en un solo pedido, a precio especial. Uno huele a galletita recién horneada y el otro a frutos rojos con crema. Ideal para regalar o para tener uno para vos y otro para tu pareja (o los dos para vos, no juzgamos). Cada frasco de 100 ml.",
+      "short": "El único postre que podés repetir sin que te mire mal el nutricionista.",
+      "description": "Cookie Crave y Berry on Top en un solo pedido, a precio especial. Uno huele a galletita recién horneada y el otro a frutos rojos con crema. Olés a postre todo el día y no sumás ni una caloría. Ideal para regalar o para tener uno de cada (no juzgamos). Cada frasco de 100 ml.",
       "pack": [
         "cookie-crave",
         "berry-on-top"
@@ -1098,7 +1096,7 @@
     },
     {
       "id": "pack-club-de-nuit-pareja",
-      "name": "Pack Pareja Club de Nuit: Intense Man + Woman",
+      "name": "Promo Primera Cita: Club de Nuit Intense Man + Woman",
       "brand": "Armaf",
       "concentration": "EDT / EDP",
       "ml": 105,
@@ -1115,8 +1113,8 @@
       "badges": [
         "pack"
       ],
-      "short": "Uno para él, uno para ella y nadie se roba el perfume del otro.",
-      "description": "Club de Nuit Intense Man y Club de Nuit Woman en un solo pedido, a precio especial. Él con el clásico cítrico ahumado de la ananá y el abedul; ella con un floral frutal elegante y con mucha presencia. El regalo de pareja que no falla. Cada frasco de 105 ml.",
+      "short": "Uno para cada uno y se terminan las peleas por quién le robó el perfume a quién.",
+      "description": "Club de Nuit Intense Man y Club de Nuit Woman en un solo pedido, a precio especial. Él con el clásico cítrico ahumado de la ananá y el abedul; ella con un floral frutal elegante y con mucha presencia. Si la cita sale mal, por lo menos salieron oliendo bárbaro. Cada frasco de 105 ml.",
       "pack": [
         "club-de-nuit-intense",
         "club-de-nuit-woman"
@@ -1140,7 +1138,7 @@
     },
     {
       "id": "pack-mandarin-duo",
-      "name": "Pack Dúo Mandarin Sky + Mandarin Sky Elixir",
+      "name": "Promo Turno Completo: Mandarin Sky + Mandarin Sky Elixir",
       "brand": "Armaf",
       "concentration": "EDP",
       "ml": 100,
@@ -1157,8 +1155,8 @@
       "badges": [
         "pack"
       ],
-      "short": "El Mandarin Sky para el día y el Elixir para la noche.",
-      "description": "Odyssey Mandarin Sky y Mandarin Sky Elixir en un solo pedido, a precio especial. El original, fresco y dulce de mandarina para todos los días, y el Elixir, más intenso y profundo para cuando querés que te pregunten qué tenés puesto. Cada frasco de 100 ml.",
+      "short": "El de día para la oficina y el Elixir para cuando se arma la previa.",
+      "description": "Odyssey Mandarin Sky y Mandarin Sky Elixir en un solo pedido, a precio especial. El original, fresco y dulce de mandarina, aguanta de 9 a 18; el Elixir, más intenso y profundo, se encarga del after. Cubrís las 24 horas sin repetir perfume. Cada frasco de 100 ml.",
       "pack": [
         "mandarin-sky",
         "mandarin-elixir"
@@ -1179,6 +1177,91 @@
       ],
       "season": "Todo el año",
       "priority": 42
+    },
+    {
+      "id": "pack-suegra-contenta",
+      "name": "Promo Suegra Contenta: Yara Moi + Mayar",
+      "brand": "Lattafa",
+      "concentration": "EDP",
+      "ml": 100,
+      "gender": "femenino",
+      "family": "Pack floral frutal",
+      "tags": [
+        "floral",
+        "frutal",
+        "dulce"
+      ],
+      "price": 3290,
+      "oldPrice": 3700,
+      "image": "pack-suegra-contenta.webp",
+      "badges": [
+        "pack"
+      ],
+      "short": "Uno para tu suegra, otro para tu novia y quedás como un rey en el asado del domingo.",
+      "description": "Yara Moi y Mayar en un solo pedido, a precio especial. Yara Moi es floral, cremosa y elegante; Mayar es frutal, jugosa y fresca. Dos regalos que no fallan para quedar bien con las mujeres de la familia (y si te sobra uno, también vale). Cada frasco de 100 ml.",
+      "pack": [
+        "yara-moi",
+        "mayar"
+      ],
+      "notes": {},
+      "keyNotes": [
+        "Jazmín",
+        "Vainilla",
+        "Lichi",
+        "Frambuesa"
+      ],
+      "longevity": "Buena · 6 a 8 h aprox.",
+      "projection": "Media",
+      "occasion": [
+        "Regalo",
+        "Día a día",
+        "Salidas"
+      ],
+      "season": "Todo el año",
+      "priority": 43
+    },
+    {
+      "id": "pack-no-me-lo-robes",
+      "name": "Promo No Me Lo Robes: Asad + Khamrah",
+      "brand": "Lattafa",
+      "concentration": "EDP",
+      "ml": 100,
+      "gender": "masculino",
+      "family": "Pack especiado dulce",
+      "tags": [
+        "especiado",
+        "dulce",
+        "gourmand",
+        "amaderado"
+      ],
+      "price": 3290,
+      "oldPrice": 3680,
+      "image": "pack-no-me-lo-robes.webp",
+      "badges": [
+        "pack"
+      ],
+      "short": "Para que tu viejo, tu hermano o tu compañero de casa dejen de usar el tuyo.",
+      "description": "Asad y Khamrah en un solo pedido, a precio especial. Asad es oscuro, especiado y elegante; Khamrah es el postre especiado de canela, dátiles y vainilla que todos quieren probar. Te quedás con uno y el otro se lo das al que siempre te lo saca del baño. Paz familiar asegurada. Cada frasco de 100 ml.",
+      "pack": [
+        "asad-edp",
+        "khamrah"
+      ],
+      "notes": {},
+      "keyNotes": [
+        "Pimienta negra",
+        "Canela",
+        "Dátiles",
+        "Vainilla"
+      ],
+      "longevity": "Excelente · 8 a 10 h aprox.",
+      "projection": "Fuerte",
+      "occasion": [
+        "Noches",
+        "Salidas",
+        "Regalo"
+      ],
+      "season": "Otoño / Invierno",
+      "priority": 44
     },
     {
       "id": "eclaire",
