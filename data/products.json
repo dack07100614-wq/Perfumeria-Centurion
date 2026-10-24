@@ -2837,6 +2837,65 @@
       "revisar": true
     },
     {
+      "id": "afnan-9pm-night-out",
+      "name": "9PM Night Out",
+      "brand": "Afnan",
+      "concentration": "Parfum",
+      "ml": 100,
+      "gender": "unisex",
+      "family": "Oriental amaderado frutal",
+      "tags": [
+        "dulce",
+        "frutal",
+        "amaderado",
+        "especiado"
+      ],
+      "price": 3290,
+      "image": "afnan-9pm-night-out.webp",
+      "badges": [
+        "new"
+      ],
+      "short": "El 9PM vestido para salir: frutal, licoroso y con fondo de toffee. Extrait de parfum.",
+      "description": "9PM Night Out es la versión extrait de parfum de la línea 9PM de Afnan, y se nota: más concentrado, más oscuro y con más presencia. Arranca frutal y chispeante con pitahaya, manzana, bergamota y un toque de coñac, pasa a un corazón cálido de toffee, cardamomo y gamuza, y cierra con tonka, patchouli y maderas ambaradas. Si el 9PM es la previa, este es el boliche hasta que prenden las luces. Unisex, original y sellado.",
+      "notes": {
+        "top": [
+          "Pitahaya",
+          "Bergamota",
+          "Coñac",
+          "Lavanda",
+          "Manzana"
+        ],
+        "heart": [
+          "Cardamomo",
+          "Mahonial",
+          "Gamuza",
+          "Toffee",
+          "Cedro"
+        ],
+        "base": [
+          "Haba tonka",
+          "Akigalawood",
+          "Ambrofix",
+          "Patchouli"
+        ]
+      },
+      "keyNotes": [
+        "Pitahaya",
+        "Coñac",
+        "Toffee",
+        "Haba tonka"
+      ],
+      "longevity": "Excelente · 8 a 12 h aprox.",
+      "projection": "Fuerte",
+      "occasion": [
+        "Noches",
+        "Salidas",
+        "Citas"
+      ],
+      "season": "Otoño / Invierno",
+      "priority": 15
+    },
+    {
       "id": "afnan-9am-dive",
       "name": "9AM Dive",
       "brand": "Afnan",
