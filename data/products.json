@@ -1065,7 +1065,7 @@
         "gourmand",
         "frutal"
       ],
-      "price": 3890,
+      "price": 4180,
       "oldPrice": 4380,
       "image": "pack-postres-duo.webp",
       "badges": [
@@ -1107,7 +1107,7 @@
         "amaderado",
         "floral"
       ],
-      "price": 3590,
+      "price": 3780,
       "oldPrice": 3980,
       "image": "pack-club-de-nuit-pareja.webp",
       "badges": [
@@ -1149,7 +1149,7 @@
         "dulce",
         "amaderado"
       ],
-      "price": 3990,
+      "price": 4290,
       "oldPrice": 4490,
       "image": "pack-mandarin-duo.webp",
       "badges": [
@@ -1191,7 +1191,7 @@
         "frutal",
         "dulce"
       ],
-      "price": 3290,
+      "price": 3500,
       "oldPrice": 3700,
       "image": "pack-suegra-contenta.webp",
       "badges": [
@@ -1234,7 +1234,7 @@
         "gourmand",
         "amaderado"
       ],
-      "price": 3290,
+      "price": 3480,
       "oldPrice": 3680,
       "image": "pack-no-me-lo-robes.webp",
       "badges": [
@@ -1628,7 +1628,7 @@
         "fresco",
         "frutal"
       ],
-      "price": 1990,
+      "price": 2190,
       "image": "",
       "photoPending": true,
       "badges": [],
