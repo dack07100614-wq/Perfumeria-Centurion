@@ -370,8 +370,7 @@
         "amaderado",
         "cítrico"
       ],
-      "price": 1990,
-      "oldPrice": 2190,
+      "price": 2190,
       "image": "mandarin-sky.webp",
       "badges": [
         "bestseller"
@@ -576,7 +575,7 @@
         "ahumado",
         "cítrico"
       ],
-      "price": 2190,
+      "price": 2290,
       "image": "club-de-nuit-intense.webp",
       "badges": [
         "bestseller"
@@ -690,7 +689,7 @@
         "amaderado",
         "gourmand"
       ],
-      "price": 1890,
+      "price": 2190,
       "image": "the-kingdom.webp",
       "badges": [
         "new"
@@ -883,7 +882,7 @@
         "frutal",
         "fresco"
       ],
-      "price": 2990,
+      "price": 3490,
       "image": "amber-oud-gold.webp",
       "badges": [
         "bestseller"
@@ -1068,7 +1067,7 @@
         "floral"
       ],
       "price": 3780,
-      "oldPrice": 3980,
+      "oldPrice": 4080,
       "image": "pack-club-de-nuit-pareja.webp",
       "badges": [
         "pack"
@@ -1326,7 +1325,7 @@
         "fresco",
         "frutal"
       ],
-      "price": 2390,
+      "price": 3350,
       "image": "",
       "photoPending": true,
       "badges": [
@@ -2777,7 +2776,7 @@
         "fresco",
         "cítrico"
       ],
-      "price": 1890,
+      "price": 2450,
       "image": "",
       "photoPending": true,
       "badges": [],
