@@ -1055,6 +1055,91 @@
       "priority": 41
     },
     {
+      "id": "pack-club-de-nuit-pareja",
+      "name": "Promo Primera Cita: Club de Nuit Intense Man + Woman",
+      "brand": "Armaf",
+      "concentration": "EDT / EDP",
+      "ml": 105,
+      "gender": "unisex",
+      "family": "Pack para pareja",
+      "tags": [
+        "frutal",
+        "amaderado",
+        "floral"
+      ],
+      "price": 3780,
+      "oldPrice": 3980,
+      "image": "pack-club-de-nuit-pareja.webp",
+      "badges": [
+        "pack"
+      ],
+      "short": "Uno para cada uno y se terminan las peleas por quién le robó el perfume a quién.",
+      "description": "Club de Nuit Intense Man y Club de Nuit Woman en un solo pedido, a precio especial. Él con el clásico cítrico ahumado de la ananá y el abedul; ella con un floral frutal elegante y con mucha presencia. Si la cita sale mal, por lo menos salieron oliendo bárbaro. Cada frasco de 105 ml.",
+      "pack": [
+        "club-de-nuit-intense",
+        "club-de-nuit-woman"
+      ],
+      "notes": {},
+      "keyNotes": [
+        "Ananá",
+        "Abedul",
+        "Rosa",
+        "Pachulí"
+      ],
+      "longevity": "Excelente · 8 a 10 h aprox.",
+      "projection": "Fuerte",
+      "occasion": [
+        "Salidas",
+        "Regalo",
+        "Noches"
+      ],
+      "season": "Todo el año",
+      "priority": 41
+    },
+    {
+      "id": "pack-no-me-lo-robes",
+      "name": "Promo No Me Lo Robes: Asad + Khamrah",
+      "brand": "Lattafa",
+      "concentration": "EDP",
+      "ml": 100,
+      "gender": "masculino",
+      "family": "Pack especiado dulce",
+      "tags": [
+        "especiado",
+        "dulce",
+        "gourmand",
+        "amaderado"
+      ],
+      "price": 3480,
+      "oldPrice": 3680,
+      "image": "pack-no-me-lo-robes.webp",
+      "badges": [
+        "pack"
+      ],
+      "short": "Para que tu viejo, tu hermano o tu compañero de casa dejen de usar el tuyo.",
+      "description": "Asad y Khamrah en un solo pedido, a precio especial. Asad es oscuro, especiado y elegante; Khamrah es el postre especiado de canela, dátiles y vainilla que todos quieren probar. Te quedás con uno y el otro se lo das al que siempre te lo saca del baño. Paz familiar asegurada. Cada frasco de 100 ml.",
+      "pack": [
+        "asad-edp",
+        "khamrah"
+      ],
+      "notes": {},
+      "keyNotes": [
+        "Pimienta negra",
+        "Canela",
+        "Dátiles",
+        "Vainilla"
+      ],
+      "longevity": "Excelente · 8 a 10 h aprox.",
+      "projection": "Fuerte",
+      "occasion": [
+        "Noches",
+        "Salidas",
+        "Regalo"
+      ],
+      "season": "Otoño / Invierno",
+      "priority": 44
+    },
+    {
       "id": "eclaire",
       "name": "Eclaire",
       "brand": "Lattafa",
