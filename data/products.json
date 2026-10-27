@@ -16,6 +16,7 @@
         "ahumado"
       ],
       "price": 1790,
+      "oldPrice": 1990,
       "image": "asad-edp.webp",
       "badges": [
         "bestseller"
@@ -370,6 +371,7 @@
         "cítrico"
       ],
       "price": 1990,
+      "oldPrice": 2190,
       "image": "mandarin-sky.webp",
       "badges": [
         "bestseller"
@@ -474,6 +476,7 @@
         "amaderado"
       ],
       "price": 2290,
+      "oldPrice": 2490,
       "image": "afnan-9pm.webp",
       "badges": [
         "bestseller"
@@ -742,6 +745,7 @@
         "frutal"
       ],
       "price": 1890,
+      "oldPrice": 1990,
       "image": "badee-al-oud.webp",
       "badges": [
         "bestseller"
@@ -1006,8 +1010,7 @@
         "Regalo"
       ],
       "season": "Otoño / Invierno",
-      "priority": 40,
-      "published": false
+      "priority": 40
     },
     {
       "id": "pack-yara-duo",
@@ -1049,50 +1052,7 @@
         "Regalo"
       ],
       "season": "Todo el año",
-      "priority": 41,
-      "published": false
-    },
-    {
-      "id": "pack-postres-duo",
-      "name": "Promo Postre Sin Calorías: Cookie Crave + Berry on Top",
-      "brand": "Lattafa",
-      "concentration": "EDP",
-      "ml": 100,
-      "gender": "unisex",
-      "family": "Pack gourmand dulce",
-      "tags": [
-        "dulce",
-        "gourmand",
-        "frutal"
-      ],
-      "price": 4180,
-      "oldPrice": 4380,
-      "image": "pack-postres-duo.webp",
-      "badges": [
-        "pack"
-      ],
-      "short": "El único postre que podés repetir sin que te mire mal el nutricionista.",
-      "description": "Cookie Crave y Berry on Top en un solo pedido, a precio especial. Uno huele a galletita recién horneada y el otro a frutos rojos con crema. Olés a postre todo el día y no sumás ni una caloría. Ideal para regalar o para tener uno de cada (no juzgamos). Cada frasco de 100 ml.",
-      "pack": [
-        "cookie-crave",
-        "berry-on-top"
-      ],
-      "notes": {},
-      "keyNotes": [
-        "Galleta",
-        "Vainilla",
-        "Frutos rojos",
-        "Crema"
-      ],
-      "longevity": "Buena · 6 a 8 h aprox.",
-      "projection": "Media",
-      "occasion": [
-        "Salidas",
-        "Regalo",
-        "Día a día"
-      ],
-      "season": "Todo el año",
-      "priority": 40
+      "priority": 41
     },
     {
       "id": "pack-club-de-nuit-pareja",
@@ -1135,90 +1095,6 @@
       ],
       "season": "Todo el año",
       "priority": 41
-    },
-    {
-      "id": "pack-mandarin-duo",
-      "name": "Promo Turno Completo: Mandarin Sky + Mandarin Sky Elixir",
-      "brand": "Armaf",
-      "concentration": "EDP",
-      "ml": 100,
-      "gender": "masculino",
-      "family": "Pack cítrico dulce",
-      "tags": [
-        "citrico",
-        "dulce",
-        "amaderado"
-      ],
-      "price": 4290,
-      "oldPrice": 4490,
-      "image": "pack-mandarin-duo.webp",
-      "badges": [
-        "pack"
-      ],
-      "short": "El de día para la oficina y el Elixir para cuando se arma la previa.",
-      "description": "Odyssey Mandarin Sky y Mandarin Sky Elixir en un solo pedido, a precio especial. El original, fresco y dulce de mandarina, aguanta de 9 a 18; el Elixir, más intenso y profundo, se encarga del after. Cubrís las 24 horas sin repetir perfume. Cada frasco de 100 ml.",
-      "pack": [
-        "mandarin-sky",
-        "mandarin-elixir"
-      ],
-      "notes": {},
-      "keyNotes": [
-        "Mandarina",
-        "Caramelo",
-        "Haba tonka",
-        "Maderas"
-      ],
-      "longevity": "Excelente · 8 a 10 h aprox.",
-      "projection": "Fuerte",
-      "occasion": [
-        "Día a día",
-        "Noches",
-        "Regalo"
-      ],
-      "season": "Todo el año",
-      "priority": 42
-    },
-    {
-      "id": "pack-suegra-contenta",
-      "name": "Promo Suegra Contenta: Yara Moi + Mayar",
-      "brand": "Lattafa",
-      "concentration": "EDP",
-      "ml": 100,
-      "gender": "femenino",
-      "family": "Pack floral frutal",
-      "tags": [
-        "floral",
-        "frutal",
-        "dulce"
-      ],
-      "price": 3500,
-      "oldPrice": 3700,
-      "image": "pack-suegra-contenta.webp",
-      "badges": [
-        "pack"
-      ],
-      "short": "Uno para tu suegra, otro para tu novia y quedás como un rey en el asado del domingo.",
-      "description": "Yara Moi y Mayar en un solo pedido, a precio especial. Yara Moi es floral, cremosa y elegante; Mayar es frutal, jugosa y fresca. Dos regalos que no fallan para quedar bien con las mujeres de la familia (y si te sobra uno, también vale). Cada frasco de 100 ml.",
-      "pack": [
-        "yara-moi",
-        "mayar"
-      ],
-      "notes": {},
-      "keyNotes": [
-        "Jazmín",
-        "Vainilla",
-        "Lichi",
-        "Frambuesa"
-      ],
-      "longevity": "Buena · 6 a 8 h aprox.",
-      "projection": "Media",
-      "occasion": [
-        "Regalo",
-        "Día a día",
-        "Salidas"
-      ],
-      "season": "Todo el año",
-      "priority": 43
     },
     {
       "id": "pack-no-me-lo-robes",
@@ -1628,7 +1504,7 @@
         "fresco",
         "frutal"
       ],
-      "price": 2190,
+      "price": 2290,
       "image": "",
       "photoPending": true,
       "badges": [],
@@ -1649,8 +1525,7 @@
         "Oficina"
       ],
       "season": "Primavera / Verano",
-      "priority": 35,
-      "oldPrice": 2290
+      "priority": 35
     },
     {
       "id": "laventure",
