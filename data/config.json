@@ -40,10 +40,10 @@
       {
         "id": "gestionpost",
         "label": "Envío por Gestión Post en Montevideo",
-        "description": "Te lo llevamos a tu casa con Gestión Post. Cuesta $ 90 y si tu compra es de $ 3.000 o más, el envío va de regalo.",
-        "cost": 90,
+        "description": "Te lo llevamos a tu casa con Gestión Post. Cuesta $ 100 y si tu compra es de $ 3.000 o más, el envío va de regalo.",
+        "cost": 100,
         "freeFrom": 3000,
-        "costLabel": "$\u00a090 · gratis desde $\u00a03.000",
+        "costLabel": "$\u00a0100 · gratis desde $\u00a03.000",
         "who": "Se suma al total de tu compra",
         "eta": "2 a 3 días hábiles",
         "departamentos": ["Montevideo"],
