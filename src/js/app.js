@@ -36,9 +36,17 @@
     count() { return this.lines().reduce((a, l) => a + l.qty, 0); },
     subtotal() { return this.lines().reduce((a, l) => a + l.line, 0); },
   };
-  window.CenturionCart = { Cart, fmt, esc, CONFIG, BY_ID };
+  // Costo de un método de envío para un subtotal: un número (0 = gratis) o null si se paga en destino.
+  const shipCost = (m, sub) => (!m || typeof m.cost !== 'number' ? null : (m.freeFrom && sub >= m.freeFrom ? 0 : m.cost));
+  window.CenturionCart = { Cart, fmt, esc, CONFIG, BY_ID, shipCost };
 
-  const shippingLabel = () => (CONFIG.shipping && CONFIG.shipping[0] && CONFIG.shipping[0].costLabel) || 'A pagar en destino';
+  // En el carrito todavía no sabemos el destino: mostramos lo de Montevideo (el primer método con costo).
+  const shippingLabel = (sub) => {
+    const m = (CONFIG.shipping || []).find((x) => typeof x.cost === 'number');
+    if (!m) return 'A pagar en destino';
+    if (shipCost(m, sub) === 0) return 'Gratis en Montevideo';
+    return m.freeFrom ? `Te faltan ${fmt(m.freeFrom - sub)} para envío gratis en Montevideo` : `${fmt(m.cost)} en Montevideo`;
+  };
 
   const toast = $('[data-toast]');
 
@@ -79,7 +87,7 @@
     const sub = Cart.subtotal();
     $('[data-cart-subtotal]', drawer).textContent = fmt(sub);
     $('[data-cart-total]', drawer).textContent = fmt(sub);
-    $('[data-cart-shipping]', drawer).textContent = shippingLabel();
+    $('[data-cart-shipping]', drawer).textContent = shippingLabel(sub);
     foot.hidden = false;
   }
 
