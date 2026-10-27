@@ -34,24 +34,28 @@
   },
   "shipping": {
     "title": "Envíos a todo Uruguay",
-    "intro": "Llegamos a los 19 departamentos. Elegís cómo recibirlo al finalizar la compra.",
+    "intro": "En Montevideo te lo lleva Gestión Post y al interior despachamos por DAC. Elegís cómo recibirlo al finalizar la compra.",
+    "_ayuda": "cost es lo que se cobra por el envío (en pesos) y freeFrom el monto de compra desde el cual el envío es gratis. Sin cost, el envío se paga en destino.",
     "methods": [
       {
-        "id": "dac",
-        "label": "Envío por DAC a todo el país",
-        "description": "Se despacha por DAC y el costo del envío lo pagás vos en destino, al retirarlo.",
-        "costLabel": "A pagar en destino",
-        "who": "Lo paga el cliente a DAC al recibir",
+        "id": "gestionpost",
+        "label": "Envío por Gestión Post en Montevideo",
+        "description": "Te lo llevamos a tu casa con Gestión Post. Cuesta $ 100 y si tu compra es de $ 3.000 o más, el envío va de regalo.",
+        "cost": 100,
+        "freeFrom": 3000,
+        "costLabel": "$\u00a0100 · gratis desde $\u00a03.000",
+        "who": "Se suma al total de tu compra",
         "eta": "2 a 3 días hábiles",
+        "departamentos": ["Montevideo"],
         "needsAddress": true
       },
       {
-        "id": "montevideo",
-        "label": "Entrega coordinada en Montevideo",
-        "description": "Coordinamos por WhatsApp el día y el lugar de entrega.",
-        "costLabel": "A coordinar",
-        "who": "Se acuerda por WhatsApp",
-        "eta": "A coordinar",
+        "id": "dac",
+        "label": "Envío por DAC al interior",
+        "description": "Se despacha por DAC a los otros 18 departamentos y el costo del envío lo pagás vos en destino, al retirarlo.",
+        "costLabel": "A pagar en destino",
+        "who": "Lo paga el cliente a DAC al recibir",
+        "eta": "2 a 3 días hábiles",
         "needsAddress": true
       }
     ],
@@ -153,7 +157,7 @@
     {
       "icon": "truck",
       "title": "Envíos a todo Uruguay",
-      "text": "Despachamos por DAC a los 19 departamentos."
+      "text": "Gestión Post en Montevideo (gratis desde $ 3.000) y DAC al interior."
     },
     {
       "icon": "chat",

@@ -7,4 +7,4 @@
 
 [functions]
   directory = "netlify/functions"
-  included_files = ["data/products.json"]
+  included_files = ["data/products.json", "data/config.json"]

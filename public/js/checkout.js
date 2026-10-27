@@ -1,7 +1,7 @@
 /* Checkout: validación, confirmación del pedido y envío por WhatsApp. */
 (() => {
   'use strict';
-  const { Cart, fmt, esc, CONFIG } = window.CenturionCart;
+  const { Cart, fmt, esc, CONFIG, shipCost } = window.CenturionCart;
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
   const LAST = 'centurion-last-order';
@@ -24,19 +24,31 @@
   function renderSummary() {
     const lines = Cart.lines();
     $('[data-summary-items]').innerHTML = lines.map((l) => `<div class="sitem">${l.i ? `<img src="${esc(l.i)}" alt="" width="56" height="56">` : '<span class="sitem-ph"></span>'}<span><b>${esc(l.n)}</b><small>${l.qty} × ${fmt(l.p)}</small></span><span class="sitem-price">${fmt(l.line)}</span></div>`).join('');
-    const sub = Cart.subtotal();
-    $('[data-summary-subtotal]').textContent = fmt(sub);
-    $('[data-summary-total]').textContent = fmt(sub);
+    $('[data-summary-subtotal]').textContent = fmt(Cart.subtotal());
     return lines;
   }
   const selected = (list, id) => list.find((x) => x.id === id) || list[0];
   const val = (name) => (form.elements[name]?.value || '').trim();
+  const shipText = (cost, m) => (cost === null ? m.costLabel : cost === 0 ? 'Gratis' : fmt(cost));
 
   function updateShippingLabel() {
     const m = selected(CONFIG.shipping || [], val('envio'));
-    $('[data-summary-shipping]').textContent = m ? m.costLabel : '';
+    const sub = Cart.subtotal();
+    const cost = shipCost(m, sub);
+    $('[data-summary-shipping]').textContent = m ? shipText(cost, m) : '';
+    $('[data-summary-total]').textContent = fmt(sub + (cost || 0));
   }
-  form.addEventListener('change', (e) => { if (e.target.name === 'envio') updateShippingLabel(); });
+  // Al elegir el departamento, marcamos solo el envío que corresponde (Gestión Post en Montevideo, DAC al interior).
+  function pickShippingFor(dep) {
+    const list = CONFIG.shipping || [];
+    const m = list.find((x) => (x.departamentos || []).includes(dep)) || list.find((x) => !x.departamentos);
+    const input = m && form.querySelector(`input[name="envio"][value="${m.id}"]`);
+    if (input) input.checked = true;
+  }
+  form.addEventListener('change', (e) => {
+    if (e.target.name === 'departamento') pickShippingFor(e.target.value);
+    if (e.target.name === 'envio' || e.target.name === 'departamento') updateShippingLabel();
+  });
 
   function showState() {
     const lines = Cart.lines();
@@ -62,6 +74,8 @@
     if (!val('departamento')) mark('departamento', 'Elegí tu departamento.');
     if (val('direccion').length < 5) mark('direccion', 'Ingresá tu dirección de entrega.');
     if (!val('envio')) problems.push('Elegí un método de envío.');
+    const ship = selected(CONFIG.shipping || [], val('envio'));
+    if (ship && ship.departamentos && val('departamento') && !ship.departamentos.includes(val('departamento'))) problems.push(`${ship.label} es solo para ${ship.departamentos.join(', ')}. Para el interior elegí DAC.`);
     if (!val('pago')) problems.push('Elegí un método de pago.');
     if (!Cart.lines().length) problems.push('Tu carrito está vacío.');
     if (problems.length) {
@@ -85,7 +99,7 @@
     const lines = Cart.lines();
     const ship = selected(CONFIG.shipping || [], val('envio'));
     const pay = selected(CONFIG.payments || [], val('pago'));
-    return {
+    const o = {
       id: newOrderId(),
       date: new Date().toISOString(),
       nombre: val('nombre'), apellido: val('apellido'), telefono: val('telefono'),
@@ -93,7 +107,10 @@
       envio: ship, pago: pay,
       items: lines.map((l) => ({ id: l.id, n: l.n, qty: l.qty, p: l.p, line: l.line, i: l.i })),
       subtotal: Cart.subtotal(),
+      envioCosto: shipCost(ship, Cart.subtotal()),
     };
+    o.total = o.subtotal + (o.envioCosto || 0);
+    return o;
   }
   function message(o) {
     const L = [];
@@ -101,9 +118,10 @@
     L.push(`*Cliente:* ${o.nombre} ${o.apellido}`, `*Teléfono:* ${o.telefono}`);
     L.push(`*Departamento:* ${o.departamento}${o.localidad ? ' · ' + o.localidad : ''}`, `*Dirección:* ${o.direccion}`);
     if (o.obs) L.push(`*Observaciones:* ${o.obs}`);
-    L.push(`*Envío:* ${o.envio.label} (${o.envio.costLabel})`, `*Pago:* ${o.pago.label}`, '', '*Productos:*');
+    const envio = shipText(o.envioCosto ?? null, o.envio);
+    L.push(`*Envío:* ${o.envio.label} (${envio})`, `*Pago:* ${o.pago.label}`, '', '*Productos:*');
     o.items.forEach((i) => L.push(`• ${i.qty} × ${i.n} — ${fmt(i.line)}`));
-    L.push('', `*Total productos:* ${fmt(o.subtotal)}`, `Envío: ${o.envio.costLabel}`);
+    L.push('', `Productos: ${fmt(o.subtotal)}`, `Envío: ${envio}`, `*Total:* ${fmt(o.total ?? o.subtotal)}`);
     return L.join('\n');
   }
   const waUrl = (text) => `https://wa.me/${CONFIG.wa}?text=${encodeURIComponent(text)}`;
@@ -117,7 +135,7 @@
     try {
       form.elements['pedido_id'].value = o.id;
       form.elements['productos'].value = o.items.map((i) => `${i.qty} x ${i.n} (${fmt(i.line)})`).join(' | ');
-      form.elements['subtotal'].value = String(o.subtotal);
+      form.elements['subtotal'].value = String(o.total ?? o.subtotal);
       const data = new URLSearchParams(new FormData(form));
       data.set('envio', o.envio.label); data.set('pago', o.pago.label);
       await fetch(form.getAttribute('action') || '/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: data.toString() });
@@ -129,13 +147,14 @@
     const head = $('[data-checkout-head]'); if (head) head.hidden = true;
     $('[data-conf-id]').textContent = o.id;
     $('[data-conf-items]').innerHTML = o.items.map((i) => `<div class="sitem">${i.i ? `<img src="${esc(i.i)}" alt="" width="56" height="56">` : '<span class="sitem-ph"></span>'}<span><b>${esc(i.n)}</b><small>${i.qty} × ${fmt(i.p)}</small></span><span class="sitem-price">${fmt(i.line)}</span></div>`).join('');
-    $('[data-conf-total]').textContent = fmt(o.subtotal);
-    $('[data-conf-ship]').textContent = `${o.envio.label}: ${o.envio.description || o.envio.costLabel} Entrega estimada: ${o.envio.eta || 'a coordinar'}.`;
+    const total = o.total ?? o.subtotal;
+    $('[data-conf-total]').textContent = fmt(total);
+    $('[data-conf-ship]').textContent = `${o.envio.label} (${shipText(o.envioCosto ?? null, o.envio).toLowerCase()}). Entrega estimada: ${o.envio.eta || 'a coordinar'}.`;
     const pay = $('[data-conf-pay]');
     const acc = o.pago.account;
     pay.innerHTML = o.pago.type === 'transfer' && acc
-      ? `<h3>Cómo pagar</h3><p>Transferí <b>${fmt(o.subtotal)}</b> a esta cuenta y enviá el comprobante por WhatsApp indicando tu pedido <b>${esc(o.id)}</b>.</p>
-         <dl class="acct"><div><dt>Banco</dt><dd>${esc(acc.bank)}</dd></div><div><dt>Cuenta</dt><dd>${esc(acc.number)}</dd></div><div><dt>Titular</dt><dd>${esc(acc.holder)}</dd></div><div><dt>Monto</dt><dd>${fmt(o.subtotal)}</dd></div></dl>
+      ? `<h3>Cómo pagar</h3><p>Transferí <b>${fmt(total)}</b> a esta cuenta y enviá el comprobante por WhatsApp indicando tu pedido <b>${esc(o.id)}</b>.</p>
+         <dl class="acct"><div><dt>Banco</dt><dd>${esc(acc.bank)}</dd></div><div><dt>Cuenta</dt><dd>${esc(acc.number)}</dd></div><div><dt>Titular</dt><dd>${esc(acc.holder)}</dd></div><div><dt>Monto</dt><dd>${fmt(total)}</dd></div></dl>
          <p>Con el comprobante, preparamos y despachamos tu pedido.</p>`
       : o.pago.type === 'mercadopago'
         ? `<h3>Pago con Mercado Pago</h3><p>Si el pago se aprobó, ya lo recibimos. Para coordinar el envío, mandanos el pedido por WhatsApp con el botón de abajo.</p><p>Si cerraste la ventana de pago antes de terminar, escribinos y te ayudamos a completarlo.</p>`
@@ -148,7 +167,7 @@
   async function startMercadoPago(o) {
     const r = await fetch('/.netlify/functions/mp-checkout', {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ orderId: o.id, items: o.items.map((i) => ({ id: i.id, qty: i.qty })), payer: { name: o.nombre, surname: o.apellido } }),
+      body: JSON.stringify({ orderId: o.id, items: o.items.map((i) => ({ id: i.id, qty: i.qty })), envio: o.envio.id, payer: { name: o.nombre, surname: o.apellido } }),
     });
     const j = await r.json().catch(() => ({}));
     if (!r.ok || !j.url || !/^https:\/\//.test(j.url)) throw new Error('mp');
