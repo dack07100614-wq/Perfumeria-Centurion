@@ -72,7 +72,7 @@
       {
         "id": "transferencia",
         "type": "transfer",
-        "enabled": true,
+        "enabled": false,
         "label": "Transferencia Prex",
         "description": "Transferís el total de los productos y nos mandás el comprobante por WhatsApp.",
         "icon": "bank",
@@ -89,8 +89,18 @@
         "label": "Mercado Pago",
         "description": "Pagá online con tarjeta de crédito, débito o saldo de Mercado Pago, de forma segura.",
         "icon": "card"
+      },
+      {
+        "id": "paypal",
+        "type": "paypal",
+        "enabled": true,
+        "label": "PayPal",
+        "description": "Pagá con tu cuenta de PayPal o con tarjeta internacional. Te mandamos el link de cobro por WhatsApp.",
+        "icon": "card",
+        "link": ""
       }
     ],
+    "_paypal": "PayPal no cobra en pesos uruguayos: el link de cobro se manda en dólares. Si cargás tu link de PayPal.me en \"link\" (ej. https://paypal.me/tuusuario), la confirmación muestra un botón para pagar.",
     "_mercadopago": "Para activar el cobro online: 1) creá una cuenta de Mercado Pago Uruguay, 2) cargá tu Access Token en Netlify como variable MP_ACCESS_TOKEN, 3) cambiá enabled a true arriba. Ver README."
   },
   "policies": {
@@ -167,7 +177,7 @@
     {
       "icon": "lock",
       "title": "Compra segura",
-      "text": "Pagás por transferencia y confirmamos cada pedido personalmente."
+      "text": "Pagás online con Mercado Pago o PayPal y confirmamos cada pedido personalmente."
     },
     {
       "icon": "card",
