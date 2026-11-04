@@ -97,7 +97,7 @@
         "label": "PayPal",
         "description": "Pagá con tu cuenta de PayPal o con tarjeta internacional. Te mandamos el link de cobro por WhatsApp.",
         "icon": "card",
-        "link": ""
+        "link": "https://paypal.me/perfumeriacenturion"
       }
     ],
     "_paypal": "PayPal no cobra en pesos uruguayos: el link de cobro se manda en dólares. Si cargás tu link de PayPal.me en \"link\" (ej. https://paypal.me/tuusuario), la confirmación muestra un botón para pagar.",
