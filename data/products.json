@@ -70,7 +70,7 @@
         "especiado",
         "amaderado"
       ],
-      "price": 1890,
+      "price": 2790,
       "image": "asad-bourbon.webp",
       "badges": [
         "bestseller"
@@ -319,7 +319,7 @@
         "floral",
         "frutal"
       ],
-      "price": 1850,
+      "price": 2890,
       "image": "mayar.webp",
       "badges": [],
       "short": "Frutal-floral, jugoso y fresco. Muy fácil de querer.",
@@ -425,7 +425,7 @@
         "amaderado",
         "cítrico"
       ],
-      "price": 2500,
+      "price": 3790,
       "image": "mandarin-elixir.webp",
       "badges": [
         "new"
@@ -631,7 +631,7 @@
         "amaderado",
         "frutal"
       ],
-      "price": 3150,
+      "price": 3990,
       "image": "club-de-nuit-oud.webp",
       "badges": [
         "new"
@@ -793,7 +793,7 @@
         "dulce",
         "frutal"
       ],
-      "price": 1890,
+      "price": 2890,
       "image": "fakhar-rose.webp",
       "badges": [],
       "short": "Floral blanco brillante, elegante e intenso desde el primer spray.",
@@ -837,7 +837,7 @@
         "especiado",
         "gourmand"
       ],
-      "price": 2500,
+      "price": 3390,
       "image": "liquid-brun.webp",
       "badges": [
         "new"
@@ -930,7 +930,7 @@
         "frutal",
         "amaderado"
       ],
-      "price": 5290,
+      "price": 5990,
       "image": "amber-oud-extreme.webp",
       "badges": [
         "new"
@@ -1066,8 +1066,8 @@
         "amaderado",
         "floral"
       ],
-      "price": 3780,
-      "oldPrice": 4080,
+      "price": 5980,
+      "oldPrice": 6180,
       "image": "pack-club-de-nuit-pareja.webp",
       "badges": [
         "pack"
@@ -1150,7 +1150,7 @@
         "dulce",
         "gourmand"
       ],
-      "price": 1890,
+      "price": 2790,
       "image": "",
       "photoPending": true,
       "badges": [
@@ -1187,7 +1187,7 @@
         "amaderado",
         "dulce"
       ],
-      "price": 1650,
+      "price": 2690,
       "image": "",
       "photoPending": true,
       "badges": [],
@@ -1222,7 +1222,7 @@
         "frutal",
         "amaderado"
       ],
-      "price": 1790,
+      "price": 2690,
       "image": "",
       "photoPending": true,
       "badges": [],
@@ -1291,7 +1291,7 @@
         "frutal",
         "gourmand"
       ],
-      "price": 1890,
+      "price": 3890,
       "image": "",
       "photoPending": true,
       "badges": [],
@@ -1361,7 +1361,7 @@
         "fresco",
         "especiado"
       ],
-      "price": 2390,
+      "price": 2590,
       "image": "",
       "photoPending": true,
       "badges": [
@@ -1396,7 +1396,7 @@
       "tags": [
         "fresco"
       ],
-      "price": 2290,
+      "price": 3190,
       "image": "",
       "photoPending": true,
       "badges": [],
@@ -1432,7 +1432,7 @@
         "ahumado",
         "dulce"
       ],
-      "price": 2590,
+      "price": 3790,
       "image": "",
       "photoPending": true,
       "badges": [
@@ -1469,7 +1469,7 @@
         "floral",
         "dulce"
       ],
-      "price": 1790,
+      "price": 3490,
       "image": "",
       "photoPending": true,
       "badges": [],
@@ -1503,7 +1503,7 @@
         "fresco",
         "frutal"
       ],
-      "price": 2290,
+      "price": 3190,
       "image": "",
       "photoPending": true,
       "badges": [],
@@ -1539,7 +1539,7 @@
         "frutal",
         "amaderado"
       ],
-      "price": 3290,
+      "price": 3390,
       "image": "",
       "photoPending": true,
       "badges": [],
@@ -1573,7 +1573,7 @@
         "fresco",
         "frutal"
       ],
-      "price": 2090,
+      "price": 3690,
       "image": "",
       "photoPending": true,
       "badges": [],
@@ -1604,7 +1604,7 @@
         "fresco",
         "amaderado"
       ],
-      "price": 2290,
+      "price": 3990,
       "image": "",
       "photoPending": true,
       "badges": [],
@@ -1635,7 +1635,7 @@
         "fresco",
         "amaderado"
       ],
-      "price": 2190,
+      "price": 3990,
       "image": "",
       "photoPending": true,
       "badges": [],
@@ -1667,7 +1667,7 @@
         "amaderado",
         "cítrico"
       ],
-      "price": 2790,
+      "price": 4390,
       "image": "",
       "photoPending": true,
       "badges": [],
@@ -1699,7 +1699,7 @@
         "floral",
         "frutal"
       ],
-      "price": 2590,
+      "price": 3990,
       "image": "",
       "photoPending": true,
       "badges": [],
@@ -1729,7 +1729,7 @@
         "especiado",
         "amaderado"
       ],
-      "price": 2090,
+      "price": 3490,
       "image": "",
       "photoPending": true,
       "badges": [],
@@ -1761,7 +1761,7 @@
         "amaderado",
         "gourmand"
       ],
-      "price": 2490,
+      "price": 3290,
       "image": "",
       "photoPending": true,
       "badges": [],
@@ -1793,7 +1793,7 @@
         "especiado",
         "amaderado"
       ],
-      "price": 2190,
+      "price": 2390,
       "image": "",
       "photoPending": true,
       "badges": [],
@@ -1825,7 +1825,7 @@
         "amaderado",
         "cítrico"
       ],
-      "price": 2090,
+      "price": 3290,
       "image": "",
       "photoPending": true,
       "badges": [],
@@ -1856,7 +1856,7 @@
         "fresco",
         "cítrico"
       ],
-      "price": 2090,
+      "price": 2990,
       "image": "",
       "photoPending": true,
       "badges": [],
@@ -1887,7 +1887,7 @@
         "dulce",
         "gourmand"
       ],
-      "price": 2090,
+      "price": 2490,
       "image": "",
       "photoPending": true,
       "badges": [],
@@ -1917,7 +1917,7 @@
         "dulce",
         "gourmand"
       ],
-      "price": 2090,
+      "price": 2590,
       "image": "",
       "photoPending": true,
       "badges": [],
@@ -1947,7 +1947,7 @@
         "dulce",
         "gourmand"
       ],
-      "price": 2090,
+      "price": 2990,
       "image": "",
       "photoPending": true,
       "badges": [],
@@ -1977,7 +1977,7 @@
         "dulce",
         "gourmand"
       ],
-      "price": 2090,
+      "price": 2990,
       "image": "",
       "photoPending": true,
       "badges": [],
@@ -2007,7 +2007,7 @@
         "fresco",
         "amaderado"
       ],
-      "price": 2090,
+      "price": 2990,
       "image": "",
       "photoPending": true,
       "badges": [],
@@ -2038,7 +2038,7 @@
         "dulce",
         "gourmand"
       ],
-      "price": 1890,
+      "price": 2690,
       "image": "",
       "photoPending": true,
       "badges": [],
@@ -2068,7 +2068,7 @@
         "dulce",
         "gourmand"
       ],
-      "price": 1890,
+      "price": 2790,
       "image": "",
       "photoPending": true,
       "badges": [],
@@ -2099,7 +2099,7 @@
         "especiado",
         "amaderado"
       ],
-      "price": 1890,
+      "price": 2290,
       "image": "",
       "photoPending": true,
       "badges": [],
@@ -2194,7 +2194,7 @@
         "dulce",
         "amaderado"
       ],
-      "price": 1890,
+      "price": 2990,
       "image": "",
       "photoPending": true,
       "badges": [],
@@ -2256,7 +2256,7 @@
         "especiado",
         "amaderado"
       ],
-      "price": 1790,
+      "price": 2390,
       "image": "",
       "photoPending": true,
       "badges": [],
@@ -2287,7 +2287,7 @@
         "dulce",
         "frutal"
       ],
-      "price": 1890,
+      "price": 2990,
       "image": "",
       "photoPending": true,
       "badges": [],
@@ -2318,7 +2318,7 @@
         "floral",
         "frutal"
       ],
-      "price": 1890,
+      "price": 3490,
       "image": "",
       "photoPending": true,
       "badges": [],
@@ -2350,7 +2350,7 @@
         "floral",
         "frutal"
       ],
-      "price": 1790,
+      "price": 2790,
       "image": "",
       "photoPending": true,
       "badges": [],
@@ -2381,7 +2381,7 @@
         "gourmand",
         "especiado"
       ],
-      "price": 2090,
+      "price": 2990,
       "image": "",
       "photoPending": true,
       "badges": [],
@@ -2445,7 +2445,7 @@
         "dulce",
         "frutal"
       ],
-      "price": 1890,
+      "price": 1990,
       "image": "",
       "photoPending": true,
       "badges": [],
@@ -2475,7 +2475,7 @@
         "dulce",
         "gourmand"
       ],
-      "price": 2190,
+      "price": 2990,
       "image": "",
       "photoPending": true,
       "badges": [],
@@ -2505,7 +2505,7 @@
         "dulce",
         "frutal"
       ],
-      "price": 2190,
+      "price": 2890,
       "image": "",
       "photoPending": true,
       "badges": [],
@@ -2535,7 +2535,7 @@
         "dulce",
         "gourmand"
       ],
-      "price": 2190,
+      "price": 3390,
       "image": "",
       "photoPending": true,
       "badges": [],
@@ -2565,7 +2565,7 @@
         "dulce",
         "gourmand"
       ],
-      "price": 2190,
+      "price": 3990,
       "image": "",
       "photoPending": true,
       "badges": [],
@@ -2595,7 +2595,7 @@
         "dulce",
         "gourmand"
       ],
-      "price": 2190,
+      "price": 2290,
       "image": "",
       "photoPending": true,
       "badges": [],
@@ -2625,7 +2625,7 @@
         "dulce",
         "gourmand"
       ],
-      "price": 2190,
+      "price": 4190,
       "image": "",
       "photoPending": true,
       "badges": [],
@@ -2654,7 +2654,7 @@
       "tags": [
         "amaderado"
       ],
-      "price": 1690,
+      "price": 2390,
       "image": "",
       "photoPending": true,
       "badges": [],
@@ -2684,7 +2684,7 @@
         "amaderado",
         "especiado"
       ],
-      "price": 1690,
+      "price": 2890,
       "image": "",
       "photoPending": true,
       "badges": [],
@@ -2745,7 +2745,7 @@
       "tags": [
         "fresco"
       ],
-      "price": 3390,
+      "price": 4290,
       "image": "",
       "photoPending": true,
       "badges": [],
@@ -2808,7 +2808,7 @@
         "frutal",
         "floral"
       ],
-      "price": 1690,
+      "price": 3490,
       "image": "",
       "photoPending": true,
       "badges": [],
@@ -2838,7 +2838,7 @@
         "fresco",
         "amaderado"
       ],
-      "price": 1790,
+      "price": 1990,
       "image": "",
       "photoPending": true,
       "badges": [],
@@ -2902,7 +2902,7 @@
         "frutal",
         "floral"
       ],
-      "price": 2090,
+      "price": 2890,
       "image": "",
       "photoPending": true,
       "badges": [],
@@ -2990,7 +2990,7 @@
       "tags": [
         "fresco"
       ],
-      "price": 2490,
+      "price": 2990,
       "image": "",
       "photoPending": true,
       "badges": [],
@@ -3022,7 +3022,7 @@
         "frutal",
         "floral"
       ],
-      "price": 2290,
+      "price": 3990,
       "image": "",
       "badges": [
         "new"
