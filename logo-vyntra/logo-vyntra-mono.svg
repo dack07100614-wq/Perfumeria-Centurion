@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 220" width="640" height="220"><rect width="640" height="220" fill="#FFFFFF"/>
+<g transform="translate(20,15) scale(0.95)"><path d="M20 40 H58 L100 128 V185 H88 Z" fill="#111111"/><path d="M180 40 H142 L100 128 V185 H112 Z" fill="#111111"/><circle cx="100" cy="22" r="11" fill="#111111"/></g>
+<text x="225" y="115" font-family="Montserrat, 'Segoe UI', Arial, Helvetica, sans-serif" font-size="78" font-weight="800" letter-spacing="6" fill="#111111">VYNTRA</text>
+<rect x="229" y="132" width="60" height="5" fill="#111111"/>
+<text x="229" y="168" font-family="Montserrat, 'Segoe UI', Arial, Helvetica, sans-serif" font-size="22" font-weight="500" letter-spacing="9" fill="#111111">DISTRIBUIDORA</text></svg>
