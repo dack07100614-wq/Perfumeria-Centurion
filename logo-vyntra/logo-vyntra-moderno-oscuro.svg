@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 220" width="640" height="220"><rect width="640" height="220" fill="#0B0B1E"/>
+<g transform="translate(24,14) scale(0.95)"><defs>
+<linearGradient id="aD" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4F46E5"/><stop offset="1" stop-color="#9333EA"/></linearGradient>
+<linearGradient id="bD" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#EC4899"/><stop offset="1" stop-color="#FB923C"/></linearGradient>
+</defs>
+<path d="M42 62 L98 160" stroke="url(#aD)" stroke-width="38" stroke-linecap="round" fill="none"/>
+<path d="M98 160 L166 40" stroke="url(#bD)" stroke-width="38" stroke-linecap="round" fill="none" style="mix-blend-mode:screen"/>
+<circle cx="150" cy="22" r="9" fill="#22D3EE"/></g>
+<text x="232" y="122" font-family="Montserrat, Inter, 'Segoe UI', Arial, sans-serif" font-size="92" font-weight="700" letter-spacing="-2" fill="#FFFFFF">vyntra</text>
+<text x="236" y="164" font-family="Montserrat, Inter, 'Segoe UI', Arial, sans-serif" font-size="19" font-weight="500" letter-spacing="11" fill="#9A9AB8">DISTRIBUIDORA</text></svg>
