@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400"><rect width="400" height="400" fill="#FFFFFF"/>
+<defs><path id="t" d="M 62 200 A 138 138 0 0 1 338 200"/><path id="b" d="M 40 200 A 160 160 0 0 0 360 200"/></defs>
+<circle cx="200" cy="200" r="190" fill="#0F2B46"/>
+<circle cx="200" cy="200" r="178" fill="none" stroke="#D4A84B" stroke-width="3"/>
+<circle cx="200" cy="200" r="104" fill="none" stroke="#D4A84B" stroke-width="2"/>
+<text font-family="Montserrat, 'Segoe UI', Arial, Helvetica, sans-serif" font-size="30" font-weight="700" letter-spacing="9" fill="#FFFFFF"><textPath href="#t" startOffset="50%" text-anchor="middle">DISTRIBUIDORA</textPath></text>
+<text font-family="Montserrat, 'Segoe UI', Arial, Helvetica, sans-serif" font-size="36" font-weight="800" letter-spacing="14" fill="#D4A84B"><textPath href="#b" startOffset="50%" text-anchor="middle">VYNTRA</textPath></text>
+<g transform="translate(128,128) scale(0.72)"><path d="M20 40 H58 L100 128 V185 H88 Z" fill="#FFFFFF"/><path d="M180 40 H142 L100 128 V185 H112 Z" fill="#D4A84B"/></g>
+<circle cx="52" cy="200" r="5" fill="#D4A84B"/><circle cx="348" cy="200" r="5" fill="#D4A84B"/></svg>

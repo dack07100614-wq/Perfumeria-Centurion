@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 220" width="640" height="220"><rect width="640" height="220" fill="#FAF7F2"/>
+<g transform="translate(30,18)">
+<path d="M100 14 L170 54 L100 94 L30 54 Z" fill="#E3C27A"/>
+<path d="M30 54 L100 94 V176 L30 136 Z" fill="#0F3D3E"/>
+<path d="M100 94 L170 54 V136 L100 176 Z" fill="#1B5E5F"/>
+<path d="M65 34 L135 74" stroke="#C9A24B" stroke-width="9" stroke-linecap="butt"/>
+</g>
+<text x="235" y="112" font-family="Montserrat, 'Segoe UI', Arial, Helvetica, sans-serif" font-size="76" font-weight="300" letter-spacing="4" fill="#0F3D3E">vyn<tspan font-weight="800">tra</tspan></text>
+<rect x="239" y="134" width="360" height="2" fill="#C9A24B"/>
+<text x="239" y="170" font-family="Montserrat, 'Segoe UI', Arial, Helvetica, sans-serif" font-size="21" font-weight="600" letter-spacing="10" fill="#C9A24B">DISTRIBUIDORA</text></svg>

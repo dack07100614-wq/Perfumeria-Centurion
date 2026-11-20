@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 220" width="640" height="220"><rect width="640" height="220" fill="#FFFFFF"/>
+<defs><linearGradient id="g" gradientUnits="userSpaceOnUse" x1="70" y1="0" x2="560" y2="0"><stop offset="0" stop-color="#6A11CB"/><stop offset="1" stop-color="#2575FC"/></linearGradient></defs>
+<text x="320" y="125" text-anchor="middle" font-family="Montserrat, 'Segoe UI', Arial, Helvetica, sans-serif" font-size="104" font-weight="900" font-style="italic" letter-spacing="2" fill="url(#g)">VYNTRA</text>
+<path d="M70 152 H535" stroke="url(#g)" stroke-width="7" stroke-linecap="round" fill="none"/>
+<path d="M520 136 L560 152 L520 168 Z" fill="#2575FC"/>
+<text x="320" y="200" text-anchor="middle" font-family="Montserrat, 'Segoe UI', Arial, Helvetica, sans-serif" font-size="22" font-weight="600" letter-spacing="14" fill="#444">DISTRIBUIDORA</text></svg>
