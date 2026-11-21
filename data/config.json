@@ -71,15 +71,27 @@
       {
         "id": "transferencia",
         "type": "transfer",
-        "enabled": false,
-        "label": "Transferencia Prex",
-        "description": "Transferís el total de los productos y nos mandás el comprobante por WhatsApp.",
+        "enabled": true,
+        "recommended": true,
+        "badge": "Recomendada · la más rápida",
+        "label": "Transferencia",
+        "description": "Transferí por Itaú o Prex. Es la forma más rápida: al finalizar te mostramos las cuentas y confirmamos tu pedido apenas nos mandás el comprobante por WhatsApp.",
         "icon": "bank",
-        "account": {
-          "bank": "Prex",
-          "number": "23390693",
-          "holder": "Nahuel Centurion"
-        }
+        "accounts": [
+          {
+            "bank": "Banco Itaú",
+            "type": "Caja de ahorro",
+            "number": "4208413",
+            "currency": "UYU",
+            "holder": "Nahuel Centurion"
+          },
+          {
+            "bank": "Prex",
+            "number": "23390693",
+            "currency": "UYU",
+            "holder": "Nahuel Centurion"
+          }
+        ]
       },
       {
         "id": "mercadopago",
@@ -99,6 +111,7 @@
         "link": "https://paypal.me/perfumeriacenturion"
       }
     ],
+    "_transferencia": "accounts es la lista de cuentas a las que puede transferir el cliente (Prex, Itaú, etc.). Para agregar una, sumá otro bloque con bank, number y holder.",
     "_paypal": "PayPal no cobra en pesos uruguayos: el link de cobro se manda en dólares. Si cargás tu link de PayPal.me en \"link\" (ej. https://paypal.me/tuusuario), la confirmación muestra un botón para pagar.",
     "_mercadopago": "Para activar el cobro online: 1) creá una cuenta de Mercado Pago Uruguay, 2) cargá tu Access Token en Netlify como variable MP_ACCESS_TOKEN, 3) cambiá enabled a true arriba. Ver README."
   },
@@ -176,7 +189,7 @@
     {
       "icon": "lock",
       "title": "Compra segura",
-      "text": "Pagás online con Mercado Pago o PayPal y confirmamos cada pedido personalmente."
+      "text": "Pagás por transferencia, Mercado Pago o PayPal y confirmamos cada pedido personalmente."
     },
     {
       "icon": "card",
