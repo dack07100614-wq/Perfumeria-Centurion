@@ -171,7 +171,7 @@
     const accs = o.pago.accounts || [];
     pay.innerHTML = o.pago.type === 'transfer' && accs.length
       ? `<h3>Cómo pagar</h3><p>Transferí <b>${fmt(total)}</b> ${accs.length > 1 ? 'a la cuenta que prefieras' : 'a esta cuenta'} y enviá el comprobante por WhatsApp indicando tu pedido <b>${esc(o.id)}</b>.</p>
-         ${accs.map((acc) => `<dl class="acct"><div><dt>Banco</dt><dd>${esc(acc.bank)}</dd></div><div><dt>Cuenta</dt><dd>${esc(acc.number)}</dd></div><div><dt>Titular</dt><dd>${esc(acc.holder)}</dd></div><div><dt>Monto</dt><dd>${fmt(total)}</dd></div></dl>`).join('')}
+         ${accs.map((acc) => `<dl class="acct"><div><dt>Banco</dt><dd>${esc(acc.bank)}</dd></div>${acc.type ? `<div><dt>Tipo</dt><dd>${esc(acc.type)}</dd></div>` : ''}<div><dt>Cuenta</dt><dd>${esc(acc.number)}</dd></div>${acc.currency ? `<div><dt>Moneda</dt><dd>${esc(acc.currency)}</dd></div>` : ''}<div><dt>Titular</dt><dd>${esc(acc.holder)}</dd></div><div><dt>Monto</dt><dd>${fmt(total)}</dd></div></dl>`).join('')}
          <p>Con el comprobante, preparamos y despachamos tu pedido.</p>`
       : o.pago.type === 'paypal'
         ? `<h3>Pago con PayPal</h3><p>Mandanos el pedido <b>${esc(o.id)}</b> por WhatsApp con el botón de abajo y te pasamos el link de cobro de PayPal. PayPal cobra en dólares, así que te confirmamos el monto en USD.</p>${o.pago.link && /^https:\/\//.test(o.pago.link) ? `<p><a class="btn btn-gold" href="${esc(o.pago.link)}" target="_blank" rel="noopener">IR A PAYPAL</a></p>` : ''}`

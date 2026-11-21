@@ -75,12 +75,20 @@
         "recommended": true,
         "badge": "Recomendada · la más rápida",
         "label": "Transferencia",
-        "description": "La forma más rápida: al finalizar te mostramos a qué cuenta transferir y confirmamos tu pedido apenas nos mandás el comprobante por WhatsApp.",
+        "description": "Transferí por Itaú o Prex. Es la forma más rápida: al finalizar te mostramos las cuentas y confirmamos tu pedido apenas nos mandás el comprobante por WhatsApp.",
         "icon": "bank",
         "accounts": [
           {
+            "bank": "Banco Itaú",
+            "type": "Caja de ahorro",
+            "number": "4208413",
+            "currency": "UYU",
+            "holder": "Nahuel Centurion"
+          },
+          {
             "bank": "Prex",
             "number": "23390693",
+            "currency": "UYU",
             "holder": "Nahuel Centurion"
           }
         ]
