@@ -37,12 +37,12 @@
     subtotal() { return this.lines().reduce((a, l) => a + l.line, 0); },
   };
   // Costo de un método de envío para un subtotal: un número (0 = gratis) o null si se paga en destino.
-  const shipCost = (m, sub) => (!m || typeof m.cost !== 'number' ? null : (m.freeFrom && sub >= m.freeFrom ? 0 : m.cost));
+  const shipCost = (m, sub) => (!m ? null : (m.freeFrom && sub >= m.freeFrom ? 0 : (typeof m.cost === 'number' ? m.cost : null)));
   window.CenturionCart = { Cart, fmt, esc, CONFIG, BY_ID, shipCost };
 
   // En el carrito todavía no sabemos el destino: mostramos lo de Montevideo (el primer método con costo).
   const shippingLabel = (sub) => {
-    const m = (CONFIG.shipping || []).find((x) => typeof x.cost === 'number');
+    const m = (CONFIG.shipping || []).find((x) => typeof x.cost === 'number' || x.freeFrom);
     if (!m) return 'A pagar en destino';
     if (shipCost(m, sub) === 0) return 'Gratis en Montevideo';
     return m.freeFrom ? `Te faltan ${fmt(m.freeFrom - sub)} para envío gratis en Montevideo` : `${fmt(m.cost)} en Montevideo`;
