@@ -31,10 +31,11 @@ exports.handler = async (event) => {
     mpItems.push({ id: p.id, title: `${p.brand} ${p.name} ${p.ml ? p.ml + ' ml' : ''}`.trim(), quantity: qty, unit_price: Number(p.price), currency_id: 'UYU' });
   }
 
-  // El envío también se calcula acá, con data/config.json (ej. Gestión Post: $ 90, gratis desde $ 3.000).
+  // El envío también se calcula acá, con data/config.json (si un método define cost; los de pago en destino no suman).
   const config = JSON.parse(fs.readFileSync(path.join(__dirname, '../../data/config.json'), 'utf8'));
   const ship = config.shipping.methods.find((m) => m.id === envio);
   const subtotal = mpItems.reduce((a, i) => a + i.unit_price * i.quantity, 0);
+  if (ship && ship.minSubtotal && subtotal < ship.minSubtotal) return json(400, { error: 'shipping_min_not_met' });
   if (ship && typeof ship.cost === 'number' && !(ship.freeFrom && subtotal >= ship.freeFrom) && ship.cost > 0) {
     mpItems.push({ id: `envio-${ship.id}`, title: ship.label, quantity: 1, unit_price: ship.cost, currency_id: 'UYU' });
   }

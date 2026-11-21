@@ -580,3 +580,6 @@ div.pgallery-main { cursor: default; }
   .brand-top { letter-spacing: .3em; }
   .btn-sm { font-size: 10px; letter-spacing: .08em; }
 }
+
+.option input:disabled + .option-box { opacity: .5; cursor: not-allowed; background: #f4f4f4; }
+.option.option-disabled { cursor: not-allowed; }

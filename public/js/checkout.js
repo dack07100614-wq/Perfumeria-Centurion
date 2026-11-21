@@ -38,16 +38,27 @@
     $('[data-summary-shipping]').textContent = m ? shipText(cost, m) : '';
     $('[data-summary-total]').textContent = fmt(sub + (cost || 0));
   }
-  // Al elegir el departamento, marcamos solo el envío que corresponde (Gestión Post en Montevideo, DAC al interior).
-  function pickShippingFor(dep) {
-    const list = CONFIG.shipping || [];
-    const m = list.find((x) => (x.departamentos || []).includes(dep)) || list.find((x) => !x.departamentos);
-    const input = m && form.querySelector(`input[name="envio"][value="${m.id}"]`);
-    if (input) input.checked = true;
+  // Gestión Post (envío gratis) solo está disponible para compras desde minSubtotal; por debajo se usa DAC.
+  function applyShippingRules() {
+    const sub = Cart.subtotal();
+    const inputs = $$('input[name="envio"]', form);
+    inputs.forEach((input) => {
+      const m = (CONFIG.shipping || []).find((x) => x.id === input.value);
+      const tag = input.closest('label').querySelector('.option-tag');
+      const blocked = !!(m && m.minSubtotal && sub < m.minSubtotal);
+      input.disabled = blocked;
+      input.closest('label').classList.toggle('option-disabled', blocked);
+      if (tag && m) tag.textContent = blocked ? `Te faltan ${fmt(m.minSubtotal - sub)}` : (m.costLabel || m.eta || '');
+    });
+    // Elegimos el mejor envío disponible: el gratis si la compra llega al mínimo; si no, el primero habilitado.
+    const free = inputs.find((i) => !i.disabled && (CONFIG.shipping || []).some((x) => x.id === i.value && x.minSubtotal));
+    const current = inputs.find((i) => i.checked && !i.disabled);
+    if (!current) { const pick = free || inputs.find((i) => !i.disabled); if (pick) pick.checked = true; }
+    else if (free && !form.dataset.shipTouched) free.checked = true;
+    updateShippingLabel();
   }
   form.addEventListener('change', (e) => {
-    if (e.target.name === 'departamento') pickShippingFor(e.target.value);
-    if (e.target.name === 'envio' || e.target.name === 'departamento') updateShippingLabel();
+    if (e.target.name === 'envio') { form.dataset.shipTouched = '1'; updateShippingLabel(); }
   });
 
   function showState() {
@@ -58,7 +69,7 @@
     const head0 = $('[data-checkout-head]'); if (head0) head0.hidden = false;
     wrapEmpty.hidden = lines.length > 0;
     wrapCheckout.hidden = lines.length === 0;
-    if (lines.length) { renderSummary(); updateShippingLabel(); }
+    if (lines.length) { renderSummary(); applyShippingRules(); }
   }
   document.addEventListener('cart:change', () => { if (wrapConf.hidden) showState(); });
 
@@ -75,7 +86,7 @@
     if (val('direccion').length < 5) mark('direccion', 'Ingresá tu dirección de entrega.');
     if (!val('envio')) problems.push('Elegí un método de envío.');
     const ship = selected(CONFIG.shipping || [], val('envio'));
-    if (ship && ship.departamentos && val('departamento') && !ship.departamentos.includes(val('departamento'))) problems.push(`${ship.label} es solo para ${ship.departamentos.join(', ')}. Para el interior elegí DAC.`);
+    if (ship && ship.minSubtotal && Cart.subtotal() < ship.minSubtotal) problems.push(`${ship.label} es para compras de ${fmt(ship.minSubtotal)} o más. Elegí DAC o sumá más perfumes.`);
     if (!val('pago')) problems.push('Elegí un método de pago.');
     if (!Cart.lines().length) problems.push('Tu carrito está vacío.');
     if (problems.length) {
@@ -137,7 +148,13 @@
       form.elements['productos'].value = o.items.map((i) => `${i.qty} x ${i.n} (${fmt(i.line)})`).join(' | ');
       form.elements['subtotal'].value = String(o.total ?? o.subtotal);
       const data = new URLSearchParams(new FormData(form));
-      data.set('envio', o.envio.label); data.set('pago', o.pago.label);
+      // Netlify solo guarda los campos que existen en el HTML: los radios de envío y pago los
+      // agrega el JS, por eso se copian a estos campos ocultos para que lleguen en el mail.
+      data.set('metodo_pago', o.pago.label);
+      data.set('metodo_envio', `${o.envio.label} (${shipText(o.envioCosto ?? null, o.envio)})`);
+      data.set('estado_pago', o.pago.type === 'mercadopago'
+        ? 'Pendiente: el cliente fue a pagar a Mercado Pago. Confirmá en tu cuenta de MP con el número de pedido.'
+        : 'Pendiente de pago: todavía no pagó.');
       await fetch(form.getAttribute('action') || '/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: data.toString() });
     } catch (_) { /* sin conexión o fuera de Netlify */ }
   }
@@ -156,6 +173,8 @@
       ? `<h3>Cómo pagar</h3><p>Transferí <b>${fmt(total)}</b> a esta cuenta y enviá el comprobante por WhatsApp indicando tu pedido <b>${esc(o.id)}</b>.</p>
          <dl class="acct"><div><dt>Banco</dt><dd>${esc(acc.bank)}</dd></div><div><dt>Cuenta</dt><dd>${esc(acc.number)}</dd></div><div><dt>Titular</dt><dd>${esc(acc.holder)}</dd></div><div><dt>Monto</dt><dd>${fmt(total)}</dd></div></dl>
          <p>Con el comprobante, preparamos y despachamos tu pedido.</p>`
+      : o.pago.type === 'paypal'
+        ? `<h3>Pago con PayPal</h3><p>Mandanos el pedido <b>${esc(o.id)}</b> por WhatsApp con el botón de abajo y te pasamos el link de cobro de PayPal. PayPal cobra en dólares, así que te confirmamos el monto en USD.</p>${o.pago.link && /^https:\/\//.test(o.pago.link) ? `<p><a class="btn btn-gold" href="${esc(o.pago.link)}" target="_blank" rel="noopener">IR A PAYPAL</a></p>` : ''}`
       : o.pago.type === 'mercadopago'
         ? `<h3>Pago con Mercado Pago</h3><p>Si el pago se aprobó, ya lo recibimos. Para coordinar el envío, mandanos el pedido por WhatsApp con el botón de abajo.</p><p>Si cerraste la ventana de pago antes de terminar, escribinos y te ayudamos a completarlo.</p>`
         : `<h3>Pago</h3><p>${esc(o.pago.label)}. Te contactamos por WhatsApp para coordinar el pago.</p>`;
