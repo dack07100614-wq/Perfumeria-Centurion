@@ -27,6 +27,27 @@
     $('[data-summary-subtotal]').textContent = fmt(Cart.subtotal());
     return lines;
   }
+  // Cotización del dólar para PayPal: se consulta una vez (función de Netlify) y, si falla, se usa fallbackRate del config.
+  const paypalCfg = (CONFIG.payments || []).find((x) => x.type === 'paypal');
+  const usdRate = { value: paypalCfg ? paypalCfg.fallbackRate || null : null, live: false };
+  if (paypalCfg) {
+    fetch('/.netlify/functions/usd-rate').then((r) => (r.ok ? r.json() : null)).then((j) => {
+      if (j && j.rate > 0) { usdRate.value = j.rate; usdRate.live = true; updateUsdNote(); }
+    }).catch(() => { /* sin conexión o fuera de Netlify: queda la cotización de respaldo */ });
+  }
+  const toUsd = (uyu) => (usdRate.value ? Math.ceil((uyu / usdRate.value) * 100) / 100 : null); // se redondea hacia arriba al centavo
+  const fmtUsd = (n) => `US$\u00a0${n.toFixed(2).replace('.', ',')}`;
+  const fmtRate = (n) => `$\u00a0${Number(n).toFixed(2).replace('.', ',')}`; // la cotización se muestra con centavos
+  // "Envío gratis por Gestión Post (gratis)" sería repetido: si el nombre ya dice gratis, no se agrega entre paréntesis.
+  const shipLine = (label, costText) => (/gratis/i.test(label) && /^gratis$/i.test(costText) ? label : `${label} (${costText})`);
+  function updateUsdNote() {
+    const note = $('[data-usd-note]');
+    if (!note) return;
+    const m = selected(CONFIG.payments || [], val('pago'));
+    const usd = m && m.type === 'paypal' ? toUsd(Cart.subtotal() + (shipCost(selected(CONFIG.shipping || [], val('envio')), Cart.subtotal()) || 0)) : null;
+    note.hidden = !usd;
+    if (usd) note.innerHTML = `<b>Total en dólares para PayPal: ${fmtUsd(usd)}</b> (cotización: 1 US$ = ${fmtRate(usdRate.value)}).`;
+  }
   const selected = (list, id) => list.find((x) => x.id === id) || list[0];
   const val = (name) => (form.elements[name]?.value || '').trim();
   const shipText = (cost, m) => (cost === null ? m.costLabel : cost === 0 ? 'Gratis' : fmt(cost));
@@ -37,6 +58,7 @@
     const cost = shipCost(m, sub);
     $('[data-summary-shipping]').textContent = m ? shipText(cost, m) : '';
     $('[data-summary-total]').textContent = fmt(sub + (cost || 0));
+    updateUsdNote();
   }
   // Gestión Post (envío gratis) solo está disponible para compras desde minSubtotal; por debajo se usa DAC.
   function applyShippingRules() {
@@ -59,6 +81,7 @@
   }
   form.addEventListener('change', (e) => {
     if (e.target.name === 'envio') { form.dataset.shipTouched = '1'; updateShippingLabel(); }
+    if (e.target.name === 'pago' || e.target.name === 'envio') updateUsdNote();
   });
 
   function showState() {
@@ -121,6 +144,7 @@
       envioCosto: shipCost(ship, Cart.subtotal()),
     };
     o.total = o.subtotal + (o.envioCosto || 0);
+    if (pay && pay.type === 'paypal') { o.usd = toUsd(o.total); o.usdRate = usdRate.value; }
     return o;
   }
   function message(o) {
@@ -130,7 +154,7 @@
     L.push(`*Departamento:* ${o.departamento}${o.localidad ? ' · ' + o.localidad : ''}`, `*Dirección:* ${o.direccion}`);
     if (o.obs) L.push(`*Observaciones:* ${o.obs}`);
     const envio = shipText(o.envioCosto ?? null, o.envio);
-    L.push(`*Envío:* ${o.envio.label} (${envio})`, `*Pago:* ${o.pago.label}`, '', '*Productos:*');
+    L.push(`*Envío:* ${shipLine(o.envio.label, envio)}`, `*Pago:* ${o.pago.label}${o.usd ? ' — ' + fmtUsd(o.usd) : ''}`, '', '*Productos:*');
     o.items.forEach((i) => L.push(`• ${i.qty} × ${i.n} — ${fmt(i.line)}`));
     L.push('', `Productos: ${fmt(o.subtotal)}`, `Envío: ${envio}`, `*Total:* ${fmt(o.total ?? o.subtotal)}`);
     return L.join('\n');
@@ -166,7 +190,7 @@
     $('[data-conf-items]').innerHTML = o.items.map((i) => `<div class="sitem">${i.i ? `<img src="${esc(i.i)}" alt="" width="56" height="56">` : '<span class="sitem-ph"></span>'}<span><b>${esc(i.n)}</b><small>${i.qty} × ${fmt(i.p)}</small></span><span class="sitem-price">${fmt(i.line)}</span></div>`).join('');
     const total = o.total ?? o.subtotal;
     $('[data-conf-total]').textContent = fmt(total);
-    $('[data-conf-ship]').textContent = `${o.envio.label} (${shipText(o.envioCosto ?? null, o.envio).toLowerCase()}). Entrega estimada: ${o.envio.eta || 'a coordinar'}.`;
+    $('[data-conf-ship]').textContent = `${shipLine(o.envio.label, shipText(o.envioCosto ?? null, o.envio)).replace(/\(([^)]*)\)$/, (m, t) => `(${t.toLowerCase()})`)}. Entrega estimada: ${o.envio.eta || 'a coordinar'}.`;
     const pay = $('[data-conf-pay]');
     const accs = o.pago.accounts || [];
     pay.innerHTML = o.pago.type === 'transfer' && accs.length
@@ -174,7 +198,14 @@
          ${accs.map((acc) => `<dl class="acct"><div><dt>Banco</dt><dd>${esc(acc.bank)}</dd></div>${acc.type ? `<div><dt>Tipo</dt><dd>${esc(acc.type)}</dd></div>` : ''}<div><dt>Cuenta</dt><dd>${esc(acc.number)}</dd></div>${acc.currency ? `<div><dt>Moneda</dt><dd>${esc(acc.currency)}</dd></div>` : ''}<div><dt>Titular</dt><dd>${esc(acc.holder)}</dd></div><div><dt>Monto</dt><dd>${fmt(total)}</dd></div></dl>`).join('')}
          <p>Con el comprobante, preparamos y despachamos tu pedido.</p>`
       : o.pago.type === 'paypal'
-        ? `<h3>Pago con PayPal</h3><p>Mandanos el pedido <b>${esc(o.id)}</b> por WhatsApp con el botón de abajo y te pasamos el link de cobro de PayPal. PayPal cobra en dólares, así que te confirmamos el monto en USD.</p>${o.pago.link && /^https:\/\//.test(o.pago.link) ? `<p><a class="btn btn-gold" href="${esc(o.pago.link)}" target="_blank" rel="noopener">IR A PAYPAL</a></p>` : ''}`
+        ? (() => {
+          const usd = o.usd || toUsd(total);
+          const base = (o.pago.link || '').replace(/\/+$/, '');
+          const ok = usd && /^https:\/\/(www\.)?paypal\.me\/[A-Za-z0-9._-]+$/.test(base);
+          return `<h3>Pagá con PayPal</h3><p>PayPal cobra en dólares. Tu pedido de <b>${fmt(total)}</b> son <b>${usd ? fmtUsd(usd) : 'USD (te confirmamos el monto)'}</b>${o.usdRate ? ` (cotización: 1 US$ = ${fmtRate(o.usdRate)})` : ''}.</p>
+            ${ok ? `<p><a class="btn btn-gold btn-lg" href="${esc(base)}/${usd.toFixed(2)}USD" target="_blank" rel="noopener">PAGAR ${fmtUsd(usd)} CON PAYPAL</a></p>` : ''}
+            <p>Cuando pagues, mandanos el comprobante por WhatsApp indicando tu pedido <b>${esc(o.id)}</b> y confirmamos el envío.</p>`;
+        })()
       : o.pago.type === 'mercadopago'
         ? `<h3>Pago con Mercado Pago</h3><p>Si el pago se aprobó, ya lo recibimos. Para coordinar el envío, mandanos el pedido por WhatsApp con el botón de abajo.</p><p>Si cerraste la ventana de pago antes de terminar, escribinos y te ayudamos a completarlo.</p>`
         : `<h3>Pago</h3><p>${esc(o.pago.label)}. Te contactamos por WhatsApp para coordinar el pago.</p>`;

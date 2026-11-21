@@ -106,13 +106,14 @@
         "type": "paypal",
         "enabled": true,
         "label": "PayPal",
-        "description": "Pagá con tu cuenta de PayPal o con tarjeta internacional. Te mandamos el link de cobro por WhatsApp.",
+        "description": "Pagá en dólares con tu cuenta de PayPal o con tarjeta internacional. Te mostramos el total ya convertido a USD y un botón para pagar.",
         "icon": "card",
-        "link": "https://paypal.me/perfumeriacenturion"
+        "link": "https://paypal.me/perfumeriacenturion",
+        "fallbackRate": 40.6
       }
     ],
     "_transferencia": "accounts es la lista de cuentas a las que puede transferir el cliente (Prex, Itaú, etc.). Para agregar una, sumá otro bloque con bank, number y holder.",
-    "_paypal": "PayPal no cobra en pesos uruguayos: el link de cobro se manda en dólares. Si cargás tu link de PayPal.me en \"link\" (ej. https://paypal.me/tuusuario), la confirmación muestra un botón para pagar.",
+    "_paypal": "PayPal no cobra en pesos uruguayos: el total se convierte a dólares con la cotización del día (se busca sola) y el botón abre PayPal.me con ese monto. fallbackRate es la cotización que se usa solo si no se puede consultar la del día (pesos por 1 dólar).",
     "_mercadopago": "Para activar el cobro online: 1) creá una cuenta de Mercado Pago Uruguay, 2) cargá tu Access Token en Netlify como variable MP_ACCESS_TOKEN, 3) cambiá enabled a true arriba. Ver README."
   },
   "policies": {
