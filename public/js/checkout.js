@@ -106,7 +106,10 @@
     const digits = val('telefono').replace(/\D/g, '');
     if (digits.length < 8 || digits.length > 13) mark('telefono', 'Ingresá un teléfono válido (ej. 098 123 456).');
     if (!val('departamento')) mark('departamento', 'Elegí tu departamento.');
-    if (val('direccion').length < 5) mark('direccion', 'Ingresá tu dirección de entrega.');
+    if (val('calle').length < 2) mark('calle', 'Ingresá la calle.');
+    if (val('direccion').length < 1) mark('direccion', 'Ingresá el número de puerta (y apto., si corresponde).');
+    if (val('esquina').length < 2) mark('esquina', 'Ingresá la esquina.');
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(val('email'))) mark('email', 'Ingresá un correo electrónico válido.');
     if (!val('envio')) problems.push('Elegí un método de envío.');
     const ship = selected(CONFIG.shipping || [], val('envio'));
     if (ship && ship.minSubtotal && Cart.subtotal() < ship.minSubtotal) problems.push(`${ship.label} es para compras de ${fmt(ship.minSubtotal)} o más. Elegí DAC o sumá más perfumes.`);
@@ -137,7 +140,7 @@
       id: newOrderId(),
       date: new Date().toISOString(),
       nombre: val('nombre'), apellido: val('apellido'), telefono: val('telefono'),
-      departamento: val('departamento'), localidad: val('localidad'), direccion: val('direccion'), obs: val('observaciones'),
+      departamento: val('departamento'), localidad: val('localidad'), calle: val('calle'), direccion: val('direccion'), esquina: val('esquina'), email: val('email'), obs: val('observaciones'),
       envio: ship, pago: pay,
       items: lines.map((l) => ({ id: l.id, n: l.n, qty: l.qty, p: l.p, line: l.line, i: l.i })),
       subtotal: Cart.subtotal(),
@@ -150,8 +153,8 @@
   function message(o) {
     const L = [];
     L.push(`*Pedido ${o.id} — ${CONFIG.site}*`, '');
-    L.push(`*Cliente:* ${o.nombre} ${o.apellido}`, `*Teléfono:* ${o.telefono}`);
-    L.push(`*Departamento:* ${o.departamento}${o.localidad ? ' · ' + o.localidad : ''}`, `*Dirección:* ${o.direccion}`);
+    L.push(`*Cliente:* ${o.nombre} ${o.apellido}`, `*Teléfono:* ${o.telefono}`, `*Correo:* ${o.email}`);
+    L.push(`*Departamento:* ${o.departamento}${o.localidad ? ' · ' + o.localidad : ''}`, `*Dirección:* ${o.calle} ${o.direccion}, esquina ${o.esquina}`);
     if (o.obs) L.push(`*Observaciones:* ${o.obs}`);
     const envio = shipText(o.envioCosto ?? null, o.envio);
     L.push(`*Envío:* ${shipLine(o.envio.label, envio)}`, `*Pago:* ${o.pago.label}${o.usd ? ' — ' + fmtUsd(o.usd) : ''}`, '', '*Productos:*');
@@ -209,7 +212,9 @@
       : o.pago.type === 'mercadopago'
         ? `<h3>Pago con Mercado Pago</h3><p>Si el pago se aprobó, ya lo recibimos. Para coordinar el envío, mandanos el pedido por WhatsApp con el botón de abajo.</p><p>Si cerraste la ventana de pago antes de terminar, escribinos y te ayudamos a completarlo.</p>`
         : `<h3>Pago</h3><p>${esc(o.pago.label)}. Te contactamos por WhatsApp para coordinar el pago.</p>`;
-    $('[data-conf-wa]').href = waUrl(message(o) + `\n\nQuedo atento/a a los datos de pago.`);
+    const comprobante = o.pago.type === 'transfer' || o.pago.type === 'paypal';
+    const waLabel = $('[data-conf-wa-label]'); if (waLabel) waLabel.textContent = comprobante ? 'ENVIAR COMPROBANTE POR WHATSAPP' : 'ENVIAR PEDIDO POR WHATSAPP';
+    $('[data-conf-wa]').href = waUrl(message(o) + (comprobante ? `\n\nTe envío el comprobante de pago.` : `\n\nQuedo atento/a a los datos de pago.`));
     if (location.hash !== '#confirmacion') history.replaceState(null, '', '#confirmacion');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
@@ -247,17 +252,6 @@
       errBox.textContent = 'No pudimos iniciar el pago online. Probá con otro medio de pago o finalizá por WhatsApp.';
       errBox.hidden = false;
     } finally { busy = false; btn.textContent = old; btn.disabled = false; }
-  });
-
-  $('[data-order-wa]').addEventListener('click', () => {
-    if (!validate()) return;
-    const o = collect();
-    // Se abre WhatsApp de inmediato (dentro del gesto del usuario) para evitar bloqueos del navegador.
-    window.open(waUrl(message(o)), '_blank', 'noopener');
-    registerOrder(o);
-    saveLast(o);
-    Cart.clear();
-    showConfirmation(o);
   });
 
   window.addEventListener('hashchange', showState);
