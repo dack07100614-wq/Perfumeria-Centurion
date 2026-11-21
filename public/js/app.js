@@ -40,12 +40,12 @@
   const shipCost = (m, sub) => (!m ? null : (m.freeFrom && sub >= m.freeFrom ? 0 : (typeof m.cost === 'number' ? m.cost : null)));
   window.CenturionCart = { Cart, fmt, esc, CONFIG, BY_ID, shipCost };
 
-  // En el carrito todavía no sabemos el destino: mostramos lo de Montevideo (el primer método con costo).
+  // En el carrito: avisamos cuánto falta para el envío gratis por Gestión Post (compras desde minSubtotal).
   const shippingLabel = (sub) => {
-    const m = (CONFIG.shipping || []).find((x) => typeof x.cost === 'number' || x.freeFrom);
+    const m = (CONFIG.shipping || []).find((x) => x.minSubtotal);
     if (!m) return 'A pagar en destino';
-    if (shipCost(m, sub) === 0) return 'Gratis en Montevideo';
-    return m.freeFrom ? `Te faltan ${fmt(m.freeFrom - sub)} para envío gratis en Montevideo` : `${fmt(m.cost)} en Montevideo`;
+    if (sub >= m.minSubtotal) return 'Envío gratis con Gestión Post';
+    return `Te faltan ${fmt(m.minSubtotal - sub)} para envío gratis con Gestión Post`;
   };
 
   const toast = $('[data-toast]');

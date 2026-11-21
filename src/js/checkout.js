@@ -38,16 +38,27 @@
     $('[data-summary-shipping]').textContent = m ? shipText(cost, m) : '';
     $('[data-summary-total]').textContent = fmt(sub + (cost || 0));
   }
-  // Al elegir el departamento, marcamos solo el envío que corresponde (Gestión Post en Montevideo, DAC al interior).
-  function pickShippingFor(dep) {
-    const list = CONFIG.shipping || [];
-    const m = list.find((x) => (x.departamentos || []).includes(dep)) || list.find((x) => !x.departamentos);
-    const input = m && form.querySelector(`input[name="envio"][value="${m.id}"]`);
-    if (input) input.checked = true;
+  // Gestión Post (envío gratis) solo está disponible para compras desde minSubtotal; por debajo se usa DAC.
+  function applyShippingRules() {
+    const sub = Cart.subtotal();
+    const inputs = $$('input[name="envio"]', form);
+    inputs.forEach((input) => {
+      const m = (CONFIG.shipping || []).find((x) => x.id === input.value);
+      const tag = input.closest('label').querySelector('.option-tag');
+      const blocked = !!(m && m.minSubtotal && sub < m.minSubtotal);
+      input.disabled = blocked;
+      input.closest('label').classList.toggle('option-disabled', blocked);
+      if (tag && m) tag.textContent = blocked ? `Te faltan ${fmt(m.minSubtotal - sub)}` : (m.costLabel || m.eta || '');
+    });
+    // Elegimos el mejor envío disponible: el gratis si la compra llega al mínimo; si no, el primero habilitado.
+    const free = inputs.find((i) => !i.disabled && (CONFIG.shipping || []).some((x) => x.id === i.value && x.minSubtotal));
+    const current = inputs.find((i) => i.checked && !i.disabled);
+    if (!current) { const pick = free || inputs.find((i) => !i.disabled); if (pick) pick.checked = true; }
+    else if (free && !form.dataset.shipTouched) free.checked = true;
+    updateShippingLabel();
   }
   form.addEventListener('change', (e) => {
-    if (e.target.name === 'departamento') pickShippingFor(e.target.value);
-    if (e.target.name === 'envio' || e.target.name === 'departamento') updateShippingLabel();
+    if (e.target.name === 'envio') { form.dataset.shipTouched = '1'; updateShippingLabel(); }
   });
 
   function showState() {
@@ -58,7 +69,7 @@
     const head0 = $('[data-checkout-head]'); if (head0) head0.hidden = false;
     wrapEmpty.hidden = lines.length > 0;
     wrapCheckout.hidden = lines.length === 0;
-    if (lines.length) { renderSummary(); updateShippingLabel(); }
+    if (lines.length) { renderSummary(); applyShippingRules(); }
   }
   document.addEventListener('cart:change', () => { if (wrapConf.hidden) showState(); });
 
@@ -75,7 +86,7 @@
     if (val('direccion').length < 5) mark('direccion', 'Ingresá tu dirección de entrega.');
     if (!val('envio')) problems.push('Elegí un método de envío.');
     const ship = selected(CONFIG.shipping || [], val('envio'));
-    if (ship && ship.departamentos && val('departamento') && !ship.departamentos.includes(val('departamento'))) problems.push(`${ship.label} es solo para ${ship.departamentos.join(', ')}. Para el interior elegí DAC.`);
+    if (ship && ship.minSubtotal && Cart.subtotal() < ship.minSubtotal) problems.push(`${ship.label} es para compras de ${fmt(ship.minSubtotal)} o más. Elegí DAC o sumá más perfumes.`);
     if (!val('pago')) problems.push('Elegí un método de pago.');
     if (!Cart.lines().length) problems.push('Tu carrito está vacío.');
     if (problems.length) {

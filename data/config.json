@@ -34,25 +34,24 @@
   },
   "shipping": {
     "title": "Envíos a todo Uruguay",
-    "intro": "En Montevideo te lo lleva Gestión Post y al interior despachamos por DAC. Elegís cómo recibirlo al finalizar la compra.",
+    "intro": "Compras de $ 3.000 o más: envío gratis por Gestión Post a todo el país. Compras menores: DAC, con el envío a pagar en destino.",
     "_ayuda": "cost es lo que se cobra por el envío (en pesos) y freeFrom el monto de compra desde el cual el envío es gratis. Sin cost, el envío se paga en destino (y si hay freeFrom, es gratis desde ese monto).",
     "methods": [
       {
         "id": "gestionpost",
-        "label": "Envío por Gestión Post en Montevideo",
-        "description": "Te lo llevamos a tu casa con Gestión Post. Cuesta $ 200 y si tu compra es de $ 3.000 o más, el envío va de regalo.",
-        "cost": 200,
-        "freeFrom": 3000,
-        "costLabel": "$\u00a0200 · gratis desde $\u00a03.000",
-        "who": "Se suma al total de tu compra",
+        "label": "Envío gratis por Gestión Post",
+        "description": "Para compras de $ 3.000 o más: te lo llevamos gratis con Gestión Post, a todo el país.",
+        "cost": 0,
+        "minSubtotal": 3000,
+        "costLabel": "Gratis · compras desde $\u00a03.000",
+        "who": "Sin costo para el cliente",
         "eta": "2 a 3 días hábiles",
-        "departamentos": ["Montevideo"],
         "needsAddress": true
       },
       {
         "id": "dac",
-        "label": "Envío por DAC al interior",
-        "description": "Se despacha por DAC a los otros 18 departamentos y el costo del envío lo pagás vos en destino, al retirarlo.",
+        "label": "Envío por DAC a todo el país",
+        "description": "Para compras de menos de $ 3.000. Se despacha por DAC y el costo del envío lo pagás vos en destino, al retirarlo.",
         "costLabel": "A pagar en destino",
         "who": "Lo paga el cliente a DAC al recibir",
         "eta": "2 a 3 días hábiles",
@@ -167,7 +166,7 @@
     {
       "icon": "truck",
       "title": "Envíos a todo Uruguay",
-      "text": "Gestión Post en Montevideo ($ 200, gratis desde $ 3.000) y DAC al interior, con el envío a pagar en destino."
+      "text": "Envío gratis por Gestión Post desde $ 3.000 y DAC a pagar en destino por debajo de ese monto."
     },
     {
       "icon": "chat",
