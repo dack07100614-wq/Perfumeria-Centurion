@@ -158,6 +158,15 @@
          <p>Con el comprobante, preparamos y despachamos tu pedido.</p>`
       : o.pago.type === 'mercadopago'
         ? `<h3>Pago con Mercado Pago</h3><p>Si el pago se aprobó, ya lo recibimos. Para coordinar el envío, mandanos el pedido por WhatsApp con el botón de abajo.</p><p>Si cerraste la ventana de pago antes de terminar, escribinos y te ayudamos a completarlo.</p>`
+        : o.pago.type === 'paypal' && o.pago.paypalMe && o.pago.uyuPerUsd > 0
+          ? (() => {
+            const usd = Math.ceil((o.subtotal / o.pago.uyuPerUsd) * 100) / 100; // se redondea hacia arriba al centavo
+            const cur = o.pago.currency || 'USD';
+            const link = `https://www.paypal.me/${encodeURIComponent(o.pago.paypalMe)}/${usd.toFixed(2)}${cur}`;
+            return `<h3>Pagar con PayPal</h3><p>Tu pedido es de <b>${fmt(o.subtotal)}</b>, que equivalen a <b>${usd.toFixed(2)} ${esc(cur)}</b> (cotización de referencia: 1 ${esc(cur)} = ${fmt(o.pago.uyuPerUsd)}).</p>
+              <p><a class="btn btn-lg" href="${link}" target="_blank" rel="noopener">PAGAR CON PAYPAL</a></p>
+              <p>Cuando pagues, mandanos el comprobante por WhatsApp indicando tu pedido <b>${esc(o.id)}</b>.</p>`;
+          })()
         : `<h3>Pago</h3><p>${esc(o.pago.label)}. Te contactamos por WhatsApp para coordinar el pago.</p>`;
     $('[data-conf-wa]').href = waUrl(message(o) + `\n\nQuedo atento/a a los datos de pago.`);
     if (location.hash !== '#confirmacion') history.replaceState(null, '', '#confirmacion');
