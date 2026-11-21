@@ -144,7 +144,13 @@
   document.addEventListener('click', (e) => {
     const t = e.target.closest('button, a, [data-overlay]');
     if (!t) return;
-    if (t.hasAttribute('data-add')) {
+    if (t.hasAttribute('data-buy-now')) {
+      // "Comprar ahora": suma el perfume al carrito y lleva directo al checkout (datos de entrega y pago).
+      e.preventDefault();
+      const qtyEl = t.hasAttribute('data-add-qty') ? $('[data-qty-value]') : null;
+      const id = t.getAttribute('data-buy-now');
+      if (BY_ID[id]) { Cart.add(id, qtyEl ? parseInt(qtyEl.textContent, 10) || 1 : 1); location.href = '/checkout/'; }
+    } else if (t.hasAttribute('data-add')) {
       e.preventDefault();
       const qtyEl = t.hasAttribute('data-add-qty') ? $('[data-qty-value]') : null;
       addToCart(t.getAttribute('data-add'), qtyEl ? parseInt(qtyEl.textContent, 10) || 1 : 1, t);
