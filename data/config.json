@@ -70,7 +70,7 @@
       {
         "id": "transferencia",
         "type": "transfer",
-        "enabled": true,
+        "enabled": false,
         "label": "Transferencia Prex",
         "description": "Transferís el total de los productos y nos mandás el comprobante por WhatsApp.",
         "icon": "bank",
@@ -91,16 +91,14 @@
       {
         "id": "paypal",
         "type": "paypal",
-        "enabled": false,
+        "enabled": true,
         "label": "PayPal",
-        "description": "Pagá con tu cuenta PayPal o con tarjeta, en dólares.",
+        "description": "Pagá con tu cuenta de PayPal o con tarjeta internacional. Te mandamos el link de cobro por WhatsApp.",
         "icon": "card",
-        "paypalMe": "",
-        "currency": "USD",
-        "uyuPerUsd": 0
+        "link": "https://paypal.me/perfumeriacenturion"
       }
     ],
-    "_paypal": "Para activar PayPal: 1) poné en paypalMe tu usuario de paypal.me (lo que va después de paypal.me/), 2) poné en uyuPerUsd cuántos pesos uruguayos equivalen a 1 dólar para convertir el total, 3) cambiá enabled a true.",
+    "_paypal": "PayPal no cobra en pesos uruguayos: el link de cobro se manda en dólares. Si cargás tu link de PayPal.me en \"link\" (ej. https://paypal.me/tuusuario), la confirmación muestra un botón para pagar.",
     "_mercadopago": "Para activar el cobro online: 1) creá una cuenta de Mercado Pago Uruguay, 2) cargá tu Access Token en Netlify como variable MP_ACCESS_TOKEN, 3) cambiá enabled a true arriba. Ver README."
   },
   "policies": {
@@ -177,7 +175,7 @@
     {
       "icon": "lock",
       "title": "Compra segura",
-      "text": "Pagás por transferencia y confirmamos cada pedido personalmente."
+      "text": "Pagás online con Mercado Pago o PayPal y confirmamos cada pedido personalmente."
     },
     {
       "icon": "card",

@@ -137,7 +137,13 @@
       form.elements['productos'].value = o.items.map((i) => `${i.qty} x ${i.n} (${fmt(i.line)})`).join(' | ');
       form.elements['subtotal'].value = String(o.total ?? o.subtotal);
       const data = new URLSearchParams(new FormData(form));
-      data.set('envio', o.envio.label); data.set('pago', o.pago.label);
+      // Netlify solo guarda los campos que existen en el HTML: los radios de envío y pago los
+      // agrega el JS, por eso se copian a estos campos ocultos para que lleguen en el mail.
+      data.set('metodo_pago', o.pago.label);
+      data.set('metodo_envio', `${o.envio.label} (${shipText(o.envioCosto ?? null, o.envio)})`);
+      data.set('estado_pago', o.pago.type === 'mercadopago'
+        ? 'Pendiente: el cliente fue a pagar a Mercado Pago. Confirmá en tu cuenta de MP con el número de pedido.'
+        : 'Pendiente de pago: todavía no pagó.');
       await fetch(form.getAttribute('action') || '/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: data.toString() });
     } catch (_) { /* sin conexión o fuera de Netlify */ }
   }
@@ -156,6 +162,8 @@
       ? `<h3>Cómo pagar</h3><p>Transferí <b>${fmt(total)}</b> a esta cuenta y enviá el comprobante por WhatsApp indicando tu pedido <b>${esc(o.id)}</b>.</p>
          <dl class="acct"><div><dt>Banco</dt><dd>${esc(acc.bank)}</dd></div><div><dt>Cuenta</dt><dd>${esc(acc.number)}</dd></div><div><dt>Titular</dt><dd>${esc(acc.holder)}</dd></div><div><dt>Monto</dt><dd>${fmt(total)}</dd></div></dl>
          <p>Con el comprobante, preparamos y despachamos tu pedido.</p>`
+      : o.pago.type === 'paypal'
+        ? `<h3>Pago con PayPal</h3><p>Mandanos el pedido <b>${esc(o.id)}</b> por WhatsApp con el botón de abajo y te pasamos el link de cobro de PayPal. PayPal cobra en dólares, así que te confirmamos el monto en USD.</p>${o.pago.link && /^https:\/\//.test(o.pago.link) ? `<p><a class="btn btn-gold" href="${esc(o.pago.link)}" target="_blank" rel="noopener">IR A PAYPAL</a></p>` : ''}`
       : o.pago.type === 'mercadopago'
         ? `<h3>Pago con Mercado Pago</h3><p>Si el pago se aprobó, ya lo recibimos. Para coordinar el envío, mandanos el pedido por WhatsApp con el botón de abajo.</p><p>Si cerraste la ventana de pago antes de terminar, escribinos y te ayudamos a completarlo.</p>`
         : `<h3>Pago</h3><p>${esc(o.pago.label)}. Te contactamos por WhatsApp para coordinar el pago.</p>`;
