@@ -40,10 +40,11 @@
       {
         "id": "gestionpost",
         "label": "Envío por Gestión Post en Montevideo",
-        "description": "Te lo llevamos a tu casa con Gestión Post y el costo del envío lo pagás vos en destino, al recibirlo. Si tu compra es de $ 3.000 o más, el envío va de regalo.",
+        "description": "Te lo llevamos a tu casa con Gestión Post. Cuesta $ 200 y si tu compra es de $ 3.000 o más, el envío va de regalo.",
+        "cost": 200,
         "freeFrom": 3000,
-        "costLabel": "A pagar en destino · gratis desde $\u00a03.000",
-        "who": "Lo paga el cliente a Gestión Post al recibir; gratis desde $ 3.000",
+        "costLabel": "$\u00a0200 · gratis desde $\u00a03.000",
+        "who": "Se suma al total de tu compra",
         "eta": "2 a 3 días hábiles",
         "departamentos": ["Montevideo"],
         "needsAddress": true
@@ -166,7 +167,7 @@
     {
       "icon": "truck",
       "title": "Envíos a todo Uruguay",
-      "text": "Gestión Post en Montevideo (gratis desde $ 3.000) y DAC al interior, con el envío a pagar en destino."
+      "text": "Gestión Post en Montevideo ($ 200, gratis desde $ 3.000) y DAC al interior, con el envío a pagar en destino."
     },
     {
       "icon": "chat",
