@@ -14,7 +14,7 @@
 
   /* ───── Opciones de envío y pago (vienen de data/config.json) ───── */
   const optionHTML = (name, o, checked) => `<label class="option"><input type="radio" name="${name}" value="${esc(o.id)}" ${checked ? 'checked' : ''} required>
-    <span class="option-box"><span class="option-radio"></span><span><span class="option-title">${esc(o.label)}</span><span class="option-desc">${esc(o.description || '')}</span></span><span class="option-tag">${esc(o.costLabel || o.eta || '')}</span></span></label>`;
+    <span class="option-box"><span class="option-radio"></span><span><span class="option-title">${esc(o.label)}${o.recommended ? `<em class="option-rec">${esc(o.badge || 'Recomendada')}</em>` : ''}</span><span class="option-desc">${esc(o.description || '')}</span></span><span class="option-tag">${esc(o.costLabel || o.eta || '')}</span></span></label>`;
   $('[data-shipping-options]').innerHTML = (CONFIG.shipping || []).map((o, i) => optionHTML('envio', o, i === 0)).join('');
   $('[data-payment-options]').innerHTML = (CONFIG.payments || []).map((o, i) => optionHTML('pago', o, i === 0)).join('');
   const depSel = $('[data-departamentos]');
@@ -168,10 +168,10 @@
     $('[data-conf-total]').textContent = fmt(total);
     $('[data-conf-ship]').textContent = `${o.envio.label} (${shipText(o.envioCosto ?? null, o.envio).toLowerCase()}). Entrega estimada: ${o.envio.eta || 'a coordinar'}.`;
     const pay = $('[data-conf-pay]');
-    const acc = o.pago.account;
-    pay.innerHTML = o.pago.type === 'transfer' && acc
-      ? `<h3>Cómo pagar</h3><p>Transferí <b>${fmt(total)}</b> a esta cuenta y enviá el comprobante por WhatsApp indicando tu pedido <b>${esc(o.id)}</b>.</p>
-         <dl class="acct"><div><dt>Banco</dt><dd>${esc(acc.bank)}</dd></div><div><dt>Cuenta</dt><dd>${esc(acc.number)}</dd></div><div><dt>Titular</dt><dd>${esc(acc.holder)}</dd></div><div><dt>Monto</dt><dd>${fmt(total)}</dd></div></dl>
+    const accs = o.pago.accounts || [];
+    pay.innerHTML = o.pago.type === 'transfer' && accs.length
+      ? `<h3>Cómo pagar</h3><p>Transferí <b>${fmt(total)}</b> ${accs.length > 1 ? 'a la cuenta que prefieras' : 'a esta cuenta'} y enviá el comprobante por WhatsApp indicando tu pedido <b>${esc(o.id)}</b>.</p>
+         ${accs.map((acc) => `<dl class="acct"><div><dt>Banco</dt><dd>${esc(acc.bank)}</dd></div><div><dt>Cuenta</dt><dd>${esc(acc.number)}</dd></div><div><dt>Titular</dt><dd>${esc(acc.holder)}</dd></div><div><dt>Monto</dt><dd>${fmt(total)}</dd></div></dl>`).join('')}
          <p>Con el comprobante, preparamos y despachamos tu pedido.</p>`
       : o.pago.type === 'paypal'
         ? `<h3>Pago con PayPal</h3><p>Mandanos el pedido <b>${esc(o.id)}</b> por WhatsApp con el botón de abajo y te pasamos el link de cobro de PayPal. PayPal cobra en dólares, así que te confirmamos el monto en USD.</p>${o.pago.link && /^https:\/\//.test(o.pago.link) ? `<p><a class="btn btn-gold" href="${esc(o.pago.link)}" target="_blank" rel="noopener">IR A PAYPAL</a></p>` : ''}`
